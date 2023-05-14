@@ -1,0 +1,275 @@
+.listings-createbusinesslisting-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.listings-createbusinesslisting-navbar-interactive {
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding-top: var(--dl-space-space-twounits);
+  padding-left: var(--dl-space-space-threeunits);
+  padding-right: var(--dl-space-space-threeunits);
+  padding-bottom: var(--dl-space-space-twounits);
+  justify-content: space-between;
+}
+.listings-createbusinesslisting-logo {
+  height: 2rem;
+}
+.listings-createbusinesslisting-desktop-menu {
+  display: flex;
+}
+.listings-createbusinesslisting-nav {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.listings-createbusinesslisting-navlink {
+  top: 41px;
+  right: 250px;
+  position: absolute;
+  text-align: center;
+  text-decoration: none;
+}
+.listings-createbusinesslisting-btn-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.listings-createbusinesslisting-login {
+  border-width: 0px;
+  margin-right: var(--dl-space-space-twounits);
+  text-decoration: none;
+}
+.listings-createbusinesslisting-register {
+  text-decoration: none;
+}
+.listings-createbusinesslisting-burger-menu {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.listings-createbusinesslisting-icon {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+}
+.listings-createbusinesslisting-mobile-menu {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  padding: 32px;
+  z-index: 100;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.listings-createbusinesslisting-nav1 {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.listings-createbusinesslisting-container1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-threeunits);
+  justify-content: space-between;
+}
+.listings-createbusinesslisting-image {
+  height: 2rem;
+}
+.listings-createbusinesslisting-menu-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.listings-createbusinesslisting-icon02 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+}
+.listings-createbusinesslisting-nav2 {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.listings-createbusinesslisting-text {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.listings-createbusinesslisting-text01 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.listings-createbusinesslisting-text02 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.listings-createbusinesslisting-text03 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.listings-createbusinesslisting-text04 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.listings-createbusinesslisting-container2 {
+  flex: 0 0 auto;
+  width: auto;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  align-items: center;
+  flex-direction: row;
+}
+.listings-createbusinesslisting-login1 {
+  margin-right: var(--dl-space-space-twounits);
+}
+.listings-createbusinesslisting-icon-group {
+  display: flex;
+}
+.listings-createbusinesslisting-icon04 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+  margin-right: var(--dl-space-space-twounits);
+}
+.listings-createbusinesslisting-icon06 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+  margin-right: var(--dl-space-space-twounits);
+}
+.listings-createbusinesslisting-icon08 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+}
+.listings-createbusinesslisting-blog {
+  width: 100%;
+  height: 1556px;
+  display: flex;
+  padding: var(--dl-space-space-threeunits);
+  position: relative;
+  max-width: var(--dl-size-size-maxwidth);
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-halfunit);
+  justify-content: space-between;
+}
+.listings-createbusinesslisting-text05 {
+  align-self: flex-start;
+}
+.listings-createbusinesslisting-textarea {
+  top: 669px;
+  left: 76px;
+  width: 651px;
+  height: 98px;
+  position: absolute;
+}
+.listings-createbusinesslisting-text06 {
+  top: 371px;
+  left: 94px;
+  position: absolute;
+  font-size: 30px;
+}
+.listings-createbusinesslisting-register2 {
+  top: 57px;
+  right: 55px;
+  position: absolute;
+  text-decoration: none;
+}
+.listings-createbusinesslisting-text07 {
+  top: 135px;
+  left: 89px;
+  position: absolute;
+  font-size: 30px;
+}
+.listings-createbusinesslisting-text08 {
+  top: 135px;
+  left: 89px;
+  position: absolute;
+  font-size: 30px;
+}
+.listings-createbusinesslisting-text09 {
+  top: 135px;
+  left: 89px;
+  position: absolute;
+  font-size: 30px;
+}
+.listings-createbusinesslisting-navlink1 {
+  top: 869px;
+  left: 75px;
+  color: var(--dl-color-gray-white);
+  position: absolute;
+  font-size: 0.75rem;
+  transition: 0.3s;
+  text-decoration: none;
+  background-color: var(--dl-color-gray-black);
+}
+.listings-createbusinesslisting-navlink1:hover {
+  color: var(--dl-color-gray-black);
+  background-color: transparent;
+}
+.listings-createbusinesslisting-text10 {
+  top: 135px;
+  left: 89px;
+  position: absolute;
+  font-size: 30px;
+}
+.listings-createbusinesslisting-text11 {
+  top: 135px;
+  left: 89px;
+  position: absolute;
+  font-size: 30px;
+}
+.listings-createbusinesslisting-text12 {
+  top: 616px;
+  left: 77px;
+  position: absolute;
+  font-size: 30px;
+}
+.listings-createbusinesslisting-textarea1 {
+  top: 197px;
+  left: 89px;
+  width: 1020px;
+  height: 67px;
+  position: absolute;
+}
+@media(max-width: 767px) {
+  .listings-createbusinesslisting-navbar-interactive {
+    padding-left: var(--dl-space-space-twounits);
+    padding-right: var(--dl-space-space-twounits);
+  }
+  .listings-createbusinesslisting-desktop-menu {
+    display: none;
+  }
+  .listings-createbusinesslisting-btn-group {
+    display: none;
+  }
+  .listings-createbusinesslisting-burger-menu {
+    display: flex;
+  }
+  .listings-createbusinesslisting-blog {
+    padding-left: var(--dl-space-space-twounits);
+    padding-right: var(--dl-space-space-twounits);
+  }
+}
+@media(max-width: 479px) {
+  .listings-createbusinesslisting-navbar-interactive {
+    padding: var(--dl-space-space-unit);
+  }
+  .listings-createbusinesslisting-mobile-menu {
+    padding: 16px;
+  }
+  .listings-createbusinesslisting-blog {
+    padding-top: var(--dl-space-space-twounits);
+    padding-left: var(--dl-space-space-unit);
+    padding-right: var(--dl-space-space-unit);
+    padding-bottom: var(--dl-space-space-twounits);
+  }
+  .listings-createbusinesslisting-navlink1 {
+    margin-top: var(--dl-space-space-unit);
+    margin-left: 0px;
+  }
+}
