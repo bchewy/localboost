@@ -138,6 +138,13 @@
   position: absolute;
   align-self: flex-end;
 }
+.assignments-milestone-verify {
+  right: 110px;
+  bottom: 1px;
+  height: 35px;
+  position: absolute;
+  align-self: flex-end;
+}
 @media(max-width: 767px) {
   .assignments-milestone-header {
     padding-left: var(--dl-space-space-twounits);
