@@ -90,15 +90,15 @@ const GPTChatSampleInteraction = (props) => {
       </header>
 
 
-    {/* Header section */}
+      {/* Header section */}
 
       <h1>Chat with our AI</h1>
       <span>
         Talk to the AI about your problem, and help find realistic, suitable
         solutions.
       </span>
-    {/* End Header  */}
-    {/* Begin Chat Logs*/}
+      {/* End Header  */}
+      {/* Begin Chat Logs*/}
 
       <div className="gp-chat-sample-interaction-container2">
         {/* User's first chat message */}
@@ -213,19 +213,21 @@ const GPTChatSampleInteraction = (props) => {
       </div>
 
       {/* Form Section Chat input  */}
-      <div className="gp-chat-sample-interaction-container6">
-        <input
-          type="text"
-          required
-          autoFocus
-          placeholder="Type your message here"
-          className="gp-chat-sample-interaction-textinput textarea input"
-        />
-        <button className="gp-chat-sample-interaction-button3 button">
-          Send
-        </button>
-      </div>
+      <form action='http://localhost:80/chat.php' method='post'>
+        <div className="gp-chat-sample-interaction-container6">
+          <input name='chatmessage'
+            type="text"
+            required
+            placeholder="Type your message here!"
+            className="gp-chat-sample-interaction-textinput textarea input"
+          />
+          <button className="gp-chat-sample-interaction-button3 button">
+            Send
+          </button>
+        </div>
+      </form>
     </div>
+
   )
 }
 
