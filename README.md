@@ -9,7 +9,7 @@ Don't have NPM? use `https://nodejs.org/en/download`.
 
 ## Initalise firebase
 Make sure you have a `.env` file in the root directory, credentials are in telegram, don't push any published .env to a git repo!
-```
+```js
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
@@ -25,7 +25,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-```
+```js
 Replace .env-sample with the proper values, and rename it as `.env`
 ```
 REACT_APP_API_KEY=
