@@ -68,6 +68,29 @@ const App = () => {
       }
   };
   
+  function SaveDataComponent() {
+    const saveData = () => {
+      const database = firebase.database(); // or firebase.firestore() for Firestore
+      const dataRef = database.ref('data'); // Replace 'data' with your desired data path
+  
+      const newData = {
+        messages: messages
+      };
+  
+      dataRef.push(newData)
+        .then(() => {
+          console.log('Data saved successfully.');
+        })
+        .catch((error) => {
+          console.error('Error saving data:', error);
+        });
+    };
+  
+    return (
+      <button onClick={saveData}>Save Data to Firebase</button>
+    );
+  }
+
 
     return (
         <div>
