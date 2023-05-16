@@ -3,6 +3,8 @@ import axios from 'axios';
 import { TextField, Button, LinearProgress } from '@mui/material';
 import database from './firebase';
 import { getDatabase, ref, push, set } from "firebase/database";
+import { TextField, Button, LinearProgress, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
 const App = () => {
   const systemMessage = { role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and  can be found on the LocalBoost platform. .' };
@@ -10,6 +12,24 @@ const App = () => {
   const [messages, setMessages] = useState([systemMessage]);
   const [aiResponse, setAiResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const useStyles = makeStyles({
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 'auto',
+      maxWidth: 400,
+      padding: 16,
+    },
+    messageContainer: {
+      marginBottom: 16,
+    },
+    message: {
+      marginBottom: 8,
+    },
+  });
 
   const handleChange = (event) => {
     setInput(event.target.value);
@@ -107,38 +127,40 @@ const App = () => {
 
 
   return (
-    
-    <div>
-      <meta name="viewport" content="initial-scale=1, width=device-width" />
-
-
-      
-      <div>
-        {/* {messages.map((message, index) => (
-                    <p key={index}><b>You:</b> {message.content}</p>
-                ))} */}
-
+    <div className={classes.container}>
+      <div className={classes.messageContainer}>
         {messages.map((message, index) => {
           if (message.role === 'system') {
-            return null; // Do not render system messages
+            return null;
           }
           const roleDisplay = message.role === 'user' ? 'You' : 'AI';
           return (
-            <p key={index}><b>{roleDisplay}:</b> {message.content}</p>
+            <Typography
+              key={index}
+              className={classes.message}
+              variant="body1"
+              component="p"
+            >
+              <b>{roleDisplay}:</b> {message.content}
+            </Typography>
           );
         })}
-
-
       </div>
-      {aiResponse && <p><b>LocalBoost AI:</b> {aiResponse}</p>}
+
+      {aiResponse && (
+        <Typography variant="body1" component="p">
+          <b>LocalBoost AI:</b> {aiResponse}
+        </Typography>
+      )}
 
       {isLoading && <LinearProgress />}
+
       <form onSubmit={handleSubmit}>
         <TextField value={input} onChange={handleChange} />
-        <Button type="submit" variant="contained">Send</Button>
+        <Button type="submit" variant="contained">
+          Send
+        </Button>
       </form>
-
-
     </div>
   );
 };
