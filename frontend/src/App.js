@@ -106,18 +106,6 @@ const App = () => {
   // }
 
 
-  function writeMessageData(content) {
-    const db = getDatabase();
-    const messagesRef = ref(db, 'messages');
-  
-    push(messagesRef, {
-      content: content,
-      timestamp: new Date().toISOString()
-    });
-  }
-
-
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
