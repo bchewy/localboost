@@ -1,15 +1,65 @@
-import React from 'react'
-
+import React, { useState } from "react"
 import { Helmet } from 'react-helmet'
-
 import NavigationLinks from '../components/navigation-links'
 import './gp-chat-sample-interaction.css'
 
+
+// Form component
+function MyForm({ onSubmit }) {
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const handleSubmitXML = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const userQuery = formData.get("chatmessage");
+    const response = await searchWithChat4(userQuery);
+    setResponseMessage(response);
+    onSubmit(response);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmitXML}>
+        <div className="gp-chat-sample-interaction-container6">
+          <input
+            name="chatmessage"
+            type="text"
+            required
+            placeholder="Type your message here!"
+            className="gp-chat-sample-interaction-textinput textarea input"
+          />
+          <button className="gp-chat-sample-interaction-button3 button">
+            Send
+          </button>
+        </div>
+      </form>
+      {responseMessage && <p>{responseMessage}</p>}
+    </div>
+  );
+}
+
+
+
+
+
+
 const GPTChatSampleInteraction = (props) => {
+
+  const [messages, setMessages] = useState([]);
+
+  const handleMessageSend = async (message) => {
+    const response = await searchWithChat4(message);
+    setMessages((messages) => [
+      ...messages,
+      { role: "user", content: message },
+      { role: "system", content: response },
+    ]);
+  };
+
   return (
     <div className="gp-chat-sample-interaction-container">
       <Helmet>
-        <title>GPTChat-sample-interaction - LocalBoost</title>
+        <title>LocalBoost</title>
         <meta
           property="og:title"
           content="GPTChat-sample-interaction - LocalBoost"
@@ -213,7 +263,8 @@ const GPTChatSampleInteraction = (props) => {
       </div>
 
       {/* Form Section Chat input  */}
-      <form action='http://localhost:80/chat.php' method='post'>
+      
+      {/* <form onSubmit={handleSubmitXML}>
         <div className="gp-chat-sample-interaction-container6">
           <input name='chatmessage'
             type="text"
@@ -225,10 +276,100 @@ const GPTChatSampleInteraction = (props) => {
             Send
           </button>
         </div>
-      </form>
+      </form> */}
+
+
+
+      <div>
+      <div className="gp-chat-sample-interaction-container5">
+        {messages.map((message, index) => (
+          <div key={index} className={`gp-chat-sample-${message.role}`}>
+            {message.content}
+          </div>
+        ))}
+      </div>
+      <MyForm onSubmit={handleMessageSend} />
+    </div>
+
+
     </div>
 
   )
 }
+
+// // Fetch method
+// const handleSubmit = async (event) => {
+//   event.preventDefault();
+//   const formData = new FormData(event.target);
+//   const response = await fetch('http://localhost:80/chat.php', {
+//     method: 'POST',
+//     body: formData
+//   });
+//   const data = await response.json();
+//   // Use the data retrieved from your PHP file here
+//   console.log(data);
+// };
+
+//XMLHttpRequest Method
+// const handleSubmitXML = async (event) => {
+//   event.preventDefault();
+//   const formData = new FormData(event.target);
+//   const xhr = new XMLHttpRequest();
+//   xhr.open('POST', 'http://localhost:80/chat.php');
+//   xhr.onreadystatechange = function() {
+//     if (xhr.readyState === XMLHttpRequest.DONE) {
+//       const data = JSON.parse(xhr.responseText);
+//       // Use the data retrieved from your PHP file here
+//       console.log(data);
+//     }
+//   };
+//   xhr.send(formData);
+// };
+
+
+
+
+
+
+
+async function searchWithChat4(user_query) {
+  const url = "https://api.openai.com/v1/chat/completions";
+  const apiKey = "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";
+
+  const messages = [
+      { role: "system", content: "You are a helpful assistant to help small businesses find a solution or student to assist the business from our platform, LocalBoost'" },
+      { role: "user", content: user_query }
+  ];
+
+  // Create request body
+  const requestBody = {
+      model: "gpt-4",
+      messages: messages,
+      max_tokens: 120
+  };
+
+  // Set request headers
+  const headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${apiKey}`
+  };
+
+  // Send POST request to the API endpoint
+  const response = await fetch(url, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(requestBody)
+  });
+
+  // Decode JSON response into an object
+  const responseDataObject = await response.json();
+
+  // Get the message from the API response
+  const message = responseDataObject.choices[0].message.content;
+
+  // Return the system message
+  return message;
+}
+
 
 export default GPTChatSampleInteraction
