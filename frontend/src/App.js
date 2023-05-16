@@ -59,7 +59,7 @@ const App = () => {
 
           // Add user's message and AI's response to the messages list
           setMessages(prevMessages => [...prevMessages, userMessage, aiMessage]);
-    
+          SaveDataComponent();
 
       } catch (error) {
           console.error("Error occurred while calling OpenAI API: ", error);
