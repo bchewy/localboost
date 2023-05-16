@@ -3,10 +3,10 @@ SMUChamp's Project Submission for HackSingapore 2023
 
 
 ## Quickstart for local development environment
-Install NodeJS https://nodejs.org/en/download
-Run `npm install` in the root directory of the appropriate project (either `teleport-frontend` or `frontend`). 
-This command installs the required dependencies you need to start the project. It goes through the `package.json` to do this
-Once this is complete, Run `npm start` to start the development server.
+Install NodeJS https://nodejs.org/en/download/<br>
+Run `npm install` in the root directory of the appropriate project (either `teleport-frontend` or `frontend`). <br>
+This command installs the required dependencies you need to start the project. It goes through the `package.json` to do this<br>
+Once this is complete, Run `npm start` to start the development server.<br>
 
 
 ## Initalise firebase
