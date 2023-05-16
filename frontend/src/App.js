@@ -1,35 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { TextField, Button, LinearProgress } from '@mui/material';
+import {Container, TextField, Button, LinearProgress, Typography } from '@mui/material';
 import database from './firebase';
 import { getDatabase, ref, push, set } from "firebase/database";
-import { TextField, Button, LinearProgress, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 
+// Main app component
 const App = () => {
   const systemMessage = { role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and  can be found on the LocalBoost platform. .' };
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([systemMessage]);
   const [aiResponse, setAiResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  const useStyles = makeStyles({
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: 'auto',
-      maxWidth: 400,
-      padding: 16,
-    },
-    messageContainer: {
-      marginBottom: 16,
-    },
-    message: {
-      marginBottom: 8,
-    },
-  });
 
   const handleChange = (event) => {
     setInput(event.target.value);
@@ -127,41 +108,35 @@ const App = () => {
 
 
   return (
-    <div className={classes.container}>
-      <div className={classes.messageContainer}>
-        {messages.map((message, index) => {
-          if (message.role === 'system') {
-            return null;
-          }
-          const roleDisplay = message.role === 'user' ? 'You' : 'AI';
-          return (
-            <Typography
-              key={index}
-              className={classes.message}
-              variant="body1"
-              component="p"
-            >
-              <b>{roleDisplay}:</b> {message.content}
-            </Typography>
-          );
-        })}
-      </div>
-
-      {aiResponse && (
-        <Typography variant="body1" component="p">
-          <b>LocalBoost AI:</b> {aiResponse}
+    <Container maxWidth="md">
+    {messages.map((message, index) => {
+      if (message.role === 'system') {
+        return null; // Do not render system messages
+      }
+      const roleDisplay = message.role === 'user' ? 'You' : 'AI';
+      return (
+        <Typography key={index} variant="body1">
+          <b>{roleDisplay}:</b> {message.content}
         </Typography>
-      )}
+      );
+    })}
 
-      {isLoading && <LinearProgress />}
+    {aiResponse && (
+      <Typography variant="body1">
+        <b>LocalBoost AI:</b> {aiResponse}
+      </Typography>
+    )}
 
-      <form onSubmit={handleSubmit}>
-        <TextField value={input} onChange={handleChange} />
-        <Button type="submit" variant="contained">
-          Send
-        </Button>
-      </form>
-    </div>
+    {isLoading && <LinearProgress />}
+
+    <form onSubmit={handleSubmit}>
+      <TextField value={input} onChange={handleChange}  sx={{height:'48px'}}/>
+      <Button type="submit" variant="contained" sx={{height:'48px'}}>
+        Send
+      </Button>
+    </form>
+  </Container>
+
   );
 };
 
