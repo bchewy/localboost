@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, LinearProgress } from '@mui/material';
+import firebase from './firebase';
 
 const App = () => {
     const systemMessage = {role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and  can be found on the LocalBoost platform. .'};
