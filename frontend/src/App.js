@@ -107,12 +107,12 @@ const App = () => {
 
 
   return (
+    
     <div>
-      <form onSubmit={handleSubmit}>
-        <TextField value={input} onChange={handleChange} />
-        <Button type="submit" variant="contained">Send</Button>
-      </form>
-      {isLoading && <LinearProgress />}
+      <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+
+      
       <div>
         {/* {messages.map((message, index) => (
                     <p key={index}><b>You:</b> {message.content}</p>
@@ -131,6 +131,14 @@ const App = () => {
 
       </div>
       {aiResponse && <p><b>LocalBoost AI:</b> {aiResponse}</p>}
+
+      {isLoading && <LinearProgress />}
+      <form onSubmit={handleSubmit}>
+        <TextField value={input} onChange={handleChange} />
+        <Button type="submit" variant="contained">Send</Button>
+      </form>
+
+
     </div>
   );
 };
