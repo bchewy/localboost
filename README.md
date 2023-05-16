@@ -27,9 +27,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-```js
-Replace .env-sample with the proper values, and rename it as `.env`
 ```
+Replace .env-sample with the proper values, and rename it as `.env`
+```env
 REACT_APP_API_KEY=
 REACT_APP_AUTH_DOMAIN=
 REACT_APP_PROJECT_ID=
