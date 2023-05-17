@@ -25,6 +25,8 @@ import RegistrationStudent from './views/registration-student'
 import ProjectDashboardStudent from './views/project-dashboard-student'
 import AssignmentsMilestoneReview from './views/assignments-milestone-review'
 
+import ChatWidget from './components/chat-widget'
+
 const App = () => {
   return (
     <Router>
@@ -101,6 +103,11 @@ const App = () => {
           component={AssignmentsMilestoneReview}
           exact
           path="/assignments-milestone-review"
+        />
+        <Route
+          component={ChatWidget}
+          exact
+          path="/chat-widget"
         />
       </div>
     </Router>
