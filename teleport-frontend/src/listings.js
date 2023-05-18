@@ -34,77 +34,80 @@ import {
 import "./App.css";
 
 function App() {
-  const productNameRef = useRef();
-  const productSizeRef = useRef();
-  const [products, setProducts] = useState();
+  const listingsNameRef = useRef();
+  const listingsCategoryRef = useRef();
+  const listingsDescRef = useRef();
+  const [listings, setListings] = useState();
 
-  const productsCollectionRef = collection(db, "products");
+  const listingsCollectionRef = collection(db, "listings");
 
-  const createProduct = async () => {
-    const name = productNameRef.current.value;
-    const size = productSizeRef.current.value;
+  const createListings = async () => {
+    const name = listingsNameRef.current.value;
+    const size = listingsCategoryRef.current.value;
 
-    await addDoc(productsCollectionRef, {
-      productName: name,
-      productSize: size,
+    await addDoc(listingsCollectionRef, {
+      listingsName: name,
+      listingsCategory: category,
+      listingsDesc: description,
     });
   };
 
-  const updateProduct = async (id, size) => {
-    const productDoc = doc(db, "products", id);
+//   const updateProduct = async (id, size) => {
+//     const productDoc = doc(db, "products", id);
 
-    await updateDoc(productDoc, {
-      productSize: size + 1,
-    });
-  };
+//     await updateDoc(productDoc, {
+//       productSize: size + 1,
+//     });
+//   };
 
-  const deleteProduct = async (id) => {
-    const productDoc = doc(db, "products", id);
-    await deleteDoc(productDoc);
-  };
+//   const deleteProduct = async (id) => {
+//     const productDoc = doc(db, "products", id);
+//     await deleteDoc(productDoc);
+//   };
 
   useEffect(() => {
-    const getAllProducts = async () => {
-      const data = await getDocs(productsCollectionRef);
-      setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const getAllListings = async () => {
+      const data = await getDocs(listingsCollectionRef);
+      setListings(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
-    getAllProducts();
+    getAllListings();
   }, []);
 
-  console.log(products);
+  console.log(listings);
 
-  if (!products) {
+  if (!listings) {
     return <>Loading...</>;
   }
 
   return (
     <div className="App">
-      Product Name
-      <input type="text" ref={productNameRef} />
+      Listing Name
+      <input type="text" ref={listingsNameRef} />
       <br />
-      Product Size
-      <input type="text" ref={productSizeRef} />
-      <button onClick={createProduct}>Submit</button>
-      <p>Products</p>
-      {products.map((product) => (
-        <div key={product.id}>
-          Name : {product.productName}
-          Size : {product.productSize}
-          <button
-            onClick={() => {
-              updateProduct(product.id, product.productSize);
-            }}
-          >
-            + 1
-          </button>
-          <button
-            onClick={() => {
-              deleteProduct(product.id);
-            }}
-          >
-            delete
-          </button>
+      Listing Category
+      <input type="text" ref={listingsCategoryRef} />
+      <button onClick={createListings}>Post!</button>
+      <p>Listings</p>
+      {listings.map((listings) => (
+        <div key={listings.id}>
+          Name : {listings.listingsName}
+          Category : {listings.listingsCategory}
+          Description : {listings.listingsDesc}
+//           <button
+//             onClick={() => {
+//               updateProduct(product.id, product.productSize);
+//             }}
+//           >
+//             + 1
+//           </button>
+//           <button
+//             onClick={() => {
+//               deleteProduct(product.id);
+//             }}
+//           >
+//             delete
+//           </button>
         </div>
       ))}
     </div>
