@@ -24,6 +24,9 @@ import ProjectDashboardBiz from './views/project-dashboard-biz'
 import RegistrationStudent from './views/registration-student'
 import ProjectDashboardStudent from './views/project-dashboard-student'
 import AssignmentsMilestoneReview from './views/assignments-milestone-review'
+import VerifyTimeline from './views/verify-timeline'
+
+import ChatWidget from './components/chat-widget'
 
 const App = () => {
   return (
@@ -101,6 +104,16 @@ const App = () => {
           component={AssignmentsMilestoneReview}
           exact
           path="/assignments-milestone-review"
+        />
+        <Route
+          component={VerifyTimeline}
+          exact
+          path="/verify-timeline"
+        />
+        <Route
+          component={ChatWidget}
+          exact
+          path="/chat-widget"
         />
       </div>
     </Router>
