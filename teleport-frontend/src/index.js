@@ -26,6 +26,8 @@ import ProjectDashboardStudent from './views/project-dashboard-student'
 import AssignmentsMilestoneReview from './views/assignments-milestone-review'
 import VerifyTimeline from './views/verify-timeline'
 
+import ChatWidget from './components/chat-widget'
+
 const App = () => {
   return (
     <Router>
@@ -107,6 +109,11 @@ const App = () => {
           component={VerifyTimeline}
           exact
           path="/verify-timeline"
+        />
+        <Route
+          component={ChatWidget}
+          exact
+          path="/chat-widget"
         />
       </div>
     </Router>
