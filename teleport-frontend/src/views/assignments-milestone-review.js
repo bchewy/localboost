@@ -1,12 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useRef } from "react";
 
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
 
-import NavigationLinks3 from '../components/navigation-links3'
-import './assignments-milestone-review.css'
+import NavigationLinks3 from "../components/navigation-links3";
+import "./assignments-milestone-review.css";
 
 const AssignmentsMilestoneReview = (props) => {
+  const updateTitleRef = useRef();
+  const updateDescriptionRef = useRef();
+  const updateFileRef = useRef();
   return (
     <div className="assignments-milestone-review-container">
       <Helmet>
@@ -92,9 +96,13 @@ const AssignmentsMilestoneReview = (props) => {
           </div>
         </div>
       </header>
+      <div>
+      <label htmlFor="title">Input Title</label>
+        <input type="text" required id="title" ref={updateTitleRef} placeholder="enter suitable title" />
+      </div>
       <textarea
         placeholder="add a comment that explains your updates to the code. Add instructions to guide the Business on how to deploy the code"
-        className="assignments-milestone-review-textarea textarea"
+        className="assignments-milestone-review-textarea textarea" ref={updateDescriptionRef}
       ></textarea>
       <Link
         to="/assignments-milestone"
@@ -104,7 +112,7 @@ const AssignmentsMilestoneReview = (props) => {
       </Link>
       <button className="button">upload file</button>
     </div>
-  )
-}
+  );
+};
 
-export default AssignmentsMilestoneReview
+export default AssignmentsMilestoneReview;

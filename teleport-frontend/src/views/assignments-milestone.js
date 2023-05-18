@@ -129,6 +129,12 @@ const AssignmentsMilestone = (props) => {
         <button className="assignments-milestone-button button">
           Download
         </button>
+        <Link
+          to="/verify-timeline"
+          className="assignments-milestone-verify button"
+        >
+          Verify Milestone
+        </Link>
       </form>
     </div>
   )
