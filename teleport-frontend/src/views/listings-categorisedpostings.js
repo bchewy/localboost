@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import GalleryCard1 from './gallery-card1'
-import projectStyles from '.style.module.css'
-import styles from './listings-categorisedpostings.module.css'
+import GalleryCard1 from '../components/gallery-card1'
+import projectStyles from '../style.css'
+import styles from './listings-categorisedpostings.css'
 
 const ListingsCategorisedpostings = (props) => {
   return (
@@ -182,13 +182,13 @@ const ListingsCategorisedpostings = (props) => {
 
 export default ListingsCategorisedpostings
 
-##import React from 'react'
-##import { Link } from 'react-router-dom'
+// import React from 'react'
+// import { Link } from 'react-router-dom'
 
-##import { Helmet } from 'react-helmet'
+// import { Helmet } from 'react-helmet'
 
-##import GalleryCard1 from '../components/gallery-card1'
-##import './listings-categorisedpostings.css'
+// import GalleryCard1 from '../components/gallery-card1'
+// import './listings-categorisedpostings.css'
 
 // const ListingsCategorisedpostings = (props) => {
 //   return (
