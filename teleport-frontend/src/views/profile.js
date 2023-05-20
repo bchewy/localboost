@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
-import galgadotImage from '../../images/galgadot.jpg';
-import './Profile.css'
+import galgadotImage from '../images/galgadot.jpg';
+import './profile.css'
 import { useNavigate } from 'react-router-dom';
 import { getDatabase, ref, child, get, set } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";

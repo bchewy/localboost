@@ -3,12 +3,14 @@ import { getStorage } from "firebase/storage";
 
 // Initialize Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyDbfsx4MhDSAmRLznoQETMnpMlWKbMbGGs",
-    authDomain: "demotest-6cff8.firebaseapp.com",
-    projectId: "demotest-6cff8",
-    storageBucket: "demotest-6cff8.appspot.com/",
-    messagingSenderId: "603633691382",
-    appId: "1:603633691382:web:12d706f23e67f9a81b5ad7"
+    apiKey: "AIzaSyA1TAYeKq8j8o3IEJNf-RSDAhgd-ooSLLs",
+    authDomain: "localboost-f9623.firebaseapp.com",
+    databaseURL: "https://localboost-f9623-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "localboost-f9623",
+    storageBucket: "localboost-f9623.appspot.com",
+    messagingSenderId: "280142981800",
+    appId: "1:280142981800:web:25847523674a98600ef09d",
+    measurementId: "G-K8MTLCTCZF"
 };
 
 export const app = firebase.initializeApp(firebaseConfig);
