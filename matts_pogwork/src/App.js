@@ -9,7 +9,7 @@ import ChatAI from './pages/chatAI';
 import SignIn from "./pages/SignIn";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import RegistrationStudent from "./pages/RegistrationStudent";
-
+import TimelineTest from "./pages/timeline-test";
 
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
         <Route path="/test-fetch" element={<TestFetch />} />
         {/*  Add a route here, change path and element to link a new page */}
         <Route path="/chatai" element={<ChatAI />} />
+        <Route path="/timeline-test" element={<TimelineTest />} />
       </Routes>
       </Layout>
     </div>
