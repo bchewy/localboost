@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Helmet } from 'react-helmet'
 import NavigationLinks from '../components/navigation-links'
 import './gp-chat-sample-interaction.css'
-
+import '../backend/gpt'
 
 // Form component
 function MyForm({ onSubmit }) {
@@ -372,4 +372,4 @@ async function searchWithChat4(user_query) {
 }
 
 
-export default GPTChatSampleInteraction
+export default GPT
