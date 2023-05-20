@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, TextField, Button, LinearProgress, Typography } from '@mui/material';
+import { app } from "./firebase";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
+
+
 // import database from '../backend/firebase';
 // import { getDatabase, ref, push, set } from "firebase/database";
 
@@ -47,6 +51,28 @@ const ChatAI = () => {
       setMessages(prevMessages => [...prevMessages, userMessage, aiMessage]);
 
       // Save data to Firebase
+      console.log('Saving messages into firebase')
+      const url = `${process.env.REACT_APP_DATABASEURL}/messages.json`
+      console.log('Database URL:'+url);
+
+      function addMessages(messageData) {
+        const database = getFirestore(app);
+        fetch(
+          `${process.env.REACT_APP_DATABASEURL}/messages.json`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              content: messageData,
+              timestamp: new Date().toISOString()
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+      addMessages(messages);
+
       // const messagesRef = ref(database, 'messages');
       // const newMessageRef = push(messagesRef); // Generates a new unique key
       // set(newMessageRef, {
@@ -54,6 +80,8 @@ const ChatAI = () => {
       //   timestamp: new Date().toISOString()
       // });
       // console.log("Saved message into Firebase");
+
+
 
     } catch (error) {
       console.error("Error occurred while calling OpenAI API: ", error);
@@ -89,8 +117,8 @@ const ChatAI = () => {
       {isLoading && <LinearProgress />}
 
       <form onSubmit={handleSubmit}>
-        <TextField value={input} onChange={handleChange} sx={{ width: '200px', height: '48px' }} />
-        <Button type="submit" variant="contained" sx={{ height: '48px' }}>
+        <TextField value={input} onChange={handleChange} sx={{ width: '42rem', height: '48px' }} />
+        <Button type="submit" variant="contained" sx={{ width: '10rem', height: '55px' }}>
           Send
         </Button>
       </form>
