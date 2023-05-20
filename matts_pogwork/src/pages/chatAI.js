@@ -22,9 +22,9 @@ import { useState, useEffect } from "react";
 //   },
 // ];
 
-function chatAI() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
+function chatai() {
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [loadedMeetups, setLoadedMeetups] = useState([]);
 
 //   useEffect(() => {
 //     setIsLoading(true);
