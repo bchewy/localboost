@@ -10,7 +10,7 @@ function MainNavigation(){
                     <Link to= '/'> All Listings </Link>
                 </li>
                 <li>
-                    <Link to= '/new-meetups'> Add New Listings</Link>
+                    <Link to= '/new-project'> Add New Listings</Link>
                   
                 </li>
                
