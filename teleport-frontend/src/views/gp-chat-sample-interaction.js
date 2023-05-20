@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Helmet } from 'react-helmet'
 import NavigationLinks from '../components/navigation-links'
-import './gp-chat-sample-interaction.css'
+import GPT from './gp-chat-sample-interaction.css'
 import '../backend/gpt'
 
 // Form component
