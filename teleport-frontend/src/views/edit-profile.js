@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { BrowserRouter, useNavigate } from 'react-router-dom'
 import ReactDOM from "react-dom";
-import galgadotImage from '../../images/galgadot.jpg';
+import galgadotImage from '../images/galgadot.jpg';
 import { useHistory } from 'react-router-dom';
-import './EditProfile.css'
+import './edit-profile.css'
 import { getDatabase, ref, child, get, set } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from 'react';
