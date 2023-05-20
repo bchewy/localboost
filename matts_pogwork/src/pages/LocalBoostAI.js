@@ -11,7 +11,7 @@ import UserAvatar from './image1.jpeg';
 import AIAvatar from './image2.png';
 
 // Main app component
-const ChatAI = () => {
+const LocalBoostAI = () => {
   const systemMessage = { role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and can be found on the LocalBoost platform. Ask users for more information if you require more to make your decisions. If you list any items in the form of lists, render them in HTML.' };
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([systemMessage]);
@@ -291,4 +291,4 @@ const ChatAI = () => {
   );
 };
 
-export default ChatAI;
+export default LocalBoostAI;

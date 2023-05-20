@@ -18,7 +18,7 @@ function MainNavigation(){
                     <Link to="/favorites">Milestones</Link>
                 </li>
                 <li>
-                    <Link to="/chatai">Chat</Link>
+                    <Link to="/localboost-ai">Chat</Link>
                 </li>
                 <li>
                     <Link to="/timeline-test">Timeline Test</Link>
@@ -33,7 +33,7 @@ function MainNavigation(){
                     <Link to="/profile">Profile</Link>
                 </li>
 
-
+                {/* Other navigation stuff */}
                 {/* <li>
                     <Link to="/test-upload">Test an Upload</Link>
                 </li>
