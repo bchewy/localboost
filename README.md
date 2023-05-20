@@ -1,4 +1,4 @@
-### LocalBoost
+# LocalBoost
 a SMUChamps project
 
 ## Problem we’re solving:
@@ -10,6 +10,7 @@ Small local businesses have to browse through a myriad of information on the int
     
     Why are small local businesses not digitising? What services do they require?
 
+## What is LocalBoost?
 LocalBoost Is an online local platform that connects small local businesses with skilled freelancers and students seeking real world projects. 
 
 Facilitates digital transformations, tailored solutions (Project Mgmt Tool - super simple to use)
