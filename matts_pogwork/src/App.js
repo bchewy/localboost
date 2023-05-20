@@ -30,6 +30,7 @@ function App() {
         <Route path="/test-fetch" element={<TestFetch />} />
         {/*  Add a route here, change path and element to link a new page */}
         <Route path="/chatai" element={<ChatAI />} />
+        <Route path="/timeline-test" element={<TimelineTest />} />
       </Routes>
       </Layout>
     </div>

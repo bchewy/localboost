@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import {Container, TextField, Button, LinearProgress, Typography } from '@mui/material';
-import database from '../backend/firebase';
-import { getDatabase, ref, push, set } from "firebase/database";
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import {Container, TextField, Button, LinearProgress, Typography } from '@mui/material';
+// import database from '../backend/firebase';
+// import { getDatabase, ref, push, set } from "firebase/database";
 
 // Main app component
 const GPT = () => {
@@ -12,23 +12,23 @@ const GPT = () => {
   const [aiResponse, setAiResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (event) => {
-    setInput(event.target.value);
-  };
+//   const handleChange = (event) => {
+//     setInput(event.target.value);
+//   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+//     setIsLoading(true);
 
-    // Add user's message to the messages list
-    // const updatedMessages = [...messages, {role: 'user', content: input}];
+//     // Add user's message to the messages list
+//     // const updatedMessages = [...messages, {role: 'user', content: input}];
 
-    // setMessages(updatedMessages);
-    // setInput('');
+//     // setMessages(updatedMessages);
+//     // setInput('');
 
-    // Prep user message
-    const userMessage = { role: 'user', content: input };
-    setInput('');
+//     // Prep user message
+//     const userMessage = { role: 'user', content: input };
+//     setInput('');
 
     // Call OpenAI API
     try {
@@ -49,18 +49,18 @@ const GPT = () => {
         }
       );
 
-      console.log("Received response from OpenAI API: ", response);
+//       console.log("Received response from OpenAI API: ", response);
 
-      // Add AI's response to the messages list
-      // const aiMessage = response.data.choices[0].message.content;
-      // setAiResponse(aiMessage);
-      // setMessages([...updatedMessages, {role: 'assistant', content: aiMessage}]);
+//       // Add AI's response to the messages list
+//       // const aiMessage = response.data.choices[0].message.content;
+//       // setAiResponse(aiMessage);
+//       // setMessages([...updatedMessages, {role: 'assistant', content: aiMessage}]);
 
-      // Prepare AI's response
-      const aiMessage = { role: 'assistant', content: response.data.choices[0].message.content };
+//       // Prepare AI's response
+//       const aiMessage = { role: 'assistant', content: response.data.choices[0].message.content };
 
-      // Add user's message and AI's response to the messages list
-      setMessages(prevMessages => [...prevMessages, userMessage, aiMessage]);
+//       // Add user's message and AI's response to the messages list
+//       setMessages(prevMessages => [...prevMessages, userMessage, aiMessage]);
 
       // Save data to Firebase
       const messagesRef = ref(database, 'messages');
@@ -71,38 +71,38 @@ const GPT = () => {
       });
       console.log("Saved message into Firebase");
 
-    } catch (error) {
-      console.error("Error occurred while calling OpenAI API: ", error);
-    } finally {
-      setIsLoading(false);
-    }
+//     } catch (error) {
+//       console.error("Error occurred while calling OpenAI API: ", error);
+//     } finally {
+//       setIsLoading(false);
+//     }
 
 
-  };
+//   };
 
 
 
-  return (
-    <Container maxWidth="md">
-    {messages.map((message, index) => {
-      if (message.role === 'system') {
-        return null; // Do not render system messages
-      }
-      const roleDisplay = message.role === 'user' ? 'You' : 'AI';
-      return (
-        <Typography key={index} variant="body1">
-          <b>{roleDisplay}:</b> {message.content}
-        </Typography>
-      );
-    })}
+//   return (
+//     <Container maxWidth="md">
+//     {messages.map((message, index) => {
+//       if (message.role === 'system') {
+//         return null; // Do not render system messages
+//       }
+//       const roleDisplay = message.role === 'user' ? 'You' : 'AI';
+//       return (
+//         <Typography key={index} variant="body1">
+//           <b>{roleDisplay}:</b> {message.content}
+//         </Typography>
+//       );
+//     })}
 
-    {aiResponse && (
-      <Typography variant="body1">
-        <b>LocalBoost AI:</b> {aiResponse}
-      </Typography>
-    )}
+//     {aiResponse && (
+//       <Typography variant="body1">
+//         <b>LocalBoost AI:</b> {aiResponse}
+//       </Typography>
+//     )}
 
-    {isLoading && <LinearProgress />}
+//     {isLoading && <LinearProgress />}
 
     <form onSubmit={handleSubmit}>
       <TextField value={input} onChange={handleChange}  sx={{width: '200px', height:'48px'}}/>
@@ -112,7 +112,7 @@ const GPT = () => {
     </form>
   </Container>
 
-  );
-};
+//   );
+// };
 
-export default GPT;
+// export default GPT;
