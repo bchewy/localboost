@@ -20,7 +20,7 @@ function MainNavigation(){
                 <li>
                     <Link to="/chatai">Chat</Link>
                 </li>
-                {/* <li>
+                <li>
                     <Link to="/test-upload">Test an Upload</Link>
                 </li>
                 <li>
@@ -36,7 +36,7 @@ function MainNavigation(){
                     <Link to="/">Join</Link>
                 </li>
                 
-                </li> */}
+
             </ul>
         </nav>
     </header>;
