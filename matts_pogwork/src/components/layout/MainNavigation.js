@@ -18,6 +18,17 @@ function MainNavigation(){
                 <li>
                     <Link to="/chatai">Chat</Link>
                 </li>
+                <li>
+                    <Link to="/timeline-test">Timeline Test</Link>
+                </li>
+                <li>
+                    <Link to="/sign-in">Sign In</Link>
+                </li>
+                <li>
+                    <Link to="/register">Register</Link>
+                </li>
+
+
                 {/* <li>
                     <Link to="/test-upload">Test an Upload</Link>
                 </li>

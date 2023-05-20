@@ -10,6 +10,7 @@ import SignIn from "./pages/SignIn";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import RegistrationStudent from "./pages/RegistrationStudent";
 import TimelineTest from "./pages/timeline-test";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         {/*  Add a route here, change path and element to link a new page */}
         <Route path="/chatai" element={<ChatAI />} />
         <Route path="/timeline-test" element={<TimelineTest />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
       </Layout>
     </div>

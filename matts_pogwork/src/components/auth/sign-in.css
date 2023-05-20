@@ -8,7 +8,6 @@
   border-color: var(--dl-color-gray-black);
   border-width: 1px;
   flex-direction: column;
-  justify-content: center;
 }
 .sign-in-form {
   width: 760px;
@@ -25,6 +24,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-size: small;
+  margin-left: 6px;
 }
 .sign-in-text05 {
   align-self: flex-start;
