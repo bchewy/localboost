@@ -46,7 +46,7 @@ function MainNavigation(){
                 <li>
                     <Link to="/">Join</Link>
                 </li>
-                
+*/}
 
             </ul>
         </nav>
