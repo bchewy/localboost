@@ -241,6 +241,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: -15px;
+
 }
 .profile-container10 {
   flex: 0 0 auto;
@@ -263,7 +265,6 @@
 }
 .profile-text08 {
   align-self: flex-start;
-  margin-bottom: var(--dl-space-space-halfunit);
 }
 .profile-text09 {
   align-self: flex-start;
@@ -278,7 +279,6 @@
 .profile-text15 {
   align-self: flex-start;
   margin-top: 10px;
-
 }
 .profile-container12 {
   flex: 0 0 auto;
@@ -332,9 +332,8 @@
   display: flex;
   justify-content: center;
   align-items:center;
-  right: -14px;
   flex-direction: column;
-  margin-left: 10px;
+  margin-top: 50px;
 }
 .profile-text22 {
   align-self: flex-start;
@@ -347,7 +346,7 @@
   text-align: center;
 }
 .profile-container16 {
-  margin-top: 60px;
+  margin-top: 10px;
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
@@ -357,11 +356,9 @@
 .profile-text28 {
   align-self: flex-start;
   margin-top: var(--dl-space-space-twounits);
-  margin-left: var(--dl-space-space-threeunits);
 }
 .profile-text29 {
-  padding-left: var(--dl-space-space-unit);
-  padding-right: var(--dl-space-space-unit);
+
 }
 .profile-text32 {
   padding-left: var(--dl-space-space-unit);

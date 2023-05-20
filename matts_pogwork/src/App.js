@@ -11,6 +11,8 @@ import RegistrationCompany from "./pages/RegistrationCompany";
 import RegistrationStudent from "./pages/RegistrationStudent";
 import TimelineTest from "./pages/timeline-test";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile"
+import EditProfile from "./pages/EditProfile"
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/chatai" element={<ChatAI />} />
         <Route path="/timeline-test" element={<TimelineTest />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
         {/* <Route path="/timeline-test" element={<TimelineTest />} /> */}
       </Routes>
       </Layout>
