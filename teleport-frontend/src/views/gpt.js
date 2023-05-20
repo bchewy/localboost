@@ -6,7 +6,7 @@ import { getDatabase, ref, push, set } from "firebase/database";
 
 // Main app component
 const GPT = () => {
-  const systemMessage = { role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and  can be found on the LocalBoost platform. .' };
+  const systemMessage = { role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and can be found on the LocalBoost platform. .' };
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([systemMessage]);
   const [aiResponse, setAiResponse] = useState('');
@@ -39,7 +39,7 @@ const GPT = () => {
           model: 'gpt-4',
           // messages: updatedMessages,
           messages: [...messages, userMessage],
-          max_tokens: 10
+          max_tokens: 120
         },
         {
           headers: {
@@ -64,11 +64,12 @@ const GPT = () => {
 
       // Save data to Firebase
       const messagesRef = ref(database, 'messages');
-      set(messagesRef, {
+      const newMessageRef = push(messagesRef); // Generates a new unique key
+      set(newMessageRef, {
         content: messages,
         timestamp: new Date().toISOString()
       });
-      console.log("Saved messages into firebase");
+      console.log("Saved message into Firebase");
 
     } catch (error) {
       console.error("Error occurred while calling OpenAI API: ", error);
@@ -79,32 +80,6 @@ const GPT = () => {
 
   };
 
-  // function SaveDataComponent() {
-  //   useEffect(() => {
-  //     const saveData = () => {
-  //       const database = firebase.database();
-  //       const dataRef = database.ref('data'); // Replace 'data' with your desired data path
-
-  //       const newData = {
-  //         // Your data object
-  //       };
-
-  //       dataRef
-  //         .push(newData)
-  //         .then(() => {
-  //           console.log('Data saved successfully.');
-  //         })
-  //         .catch((error) => {
-  //           console.error('Error saving data:', error);
-  //         });
-  //     };
-
-  //     // Call saveData function when component mounts
-  //     saveData();
-  //   }, []);
-
-  //   return <></>; // Empty fragment since we don't render anything
-  // }
 
 
   return (
@@ -130,7 +105,7 @@ const GPT = () => {
     {isLoading && <LinearProgress />}
 
     <form onSubmit={handleSubmit}>
-      <TextField value={input} onChange={handleChange}  sx={{height:'48px'}}/>
+      <TextField value={input} onChange={handleChange}  sx={{width: '200px', height:'48px'}}/>
       <Button type="submit" variant="contained" sx={{height:'48px'}}>
         Send
       </Button>

@@ -25,6 +25,7 @@ import RegistrationStudent from './views/registration-student'
 import ProjectDashboardStudent from './views/project-dashboard-student'
 import AssignmentsMilestoneReview from './views/assignments-milestone-review'
 import VerifyTimeline from './views/verify-timeline'
+import GPT from './views/gpt'
 
 import ChatWidget from './components/chat-widget'
 
@@ -114,6 +115,11 @@ const App = () => {
           component={ChatWidget}
           exact
           path="/chat-widget"
+        />
+        <Route
+          component={GPT}
+          exact
+          path="/gpt"
         />
       </div>
     </Router>
