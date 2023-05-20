@@ -8,6 +8,7 @@ import TestFetch from "./pages/TestFetch";
 import SignIn from "./pages/SignIn";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import RegistrationStudent from "./pages/RegistrationStudent";
+import ChatAI from "./pages/chatai";
 
 function App() {
   return (
@@ -23,6 +24,12 @@ function App() {
         <Route path="/chatai" element={<TestFetch />} />
         <Route path="/registration-company" element={<RegistrationCompany />} />
         <Route path="/registration-student" element={<RegistrationStudent />} />
+        <Route path="/new-project" element={<NewProjectPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/test-upload" element={<TestUpload />} />
+        <Route path="/test-fetch" element={<TestFetch />} />
+        {/*  Add a route here, change path and element to link a new page */}
+        <Route path="/chatai" element={<ChatAI />} />
       </Routes>
       </Layout>
     </div>
