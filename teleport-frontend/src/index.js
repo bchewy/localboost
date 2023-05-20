@@ -27,6 +27,7 @@ import AssignmentsMilestoneReview from './views/assignments-milestone-review'
 import VerifyTimeline from './views/verify-timeline'
 
 import ChatWidget from './components/chat-widget'
+import TimelineTest from './views/timeline-test'
 
 const App = () => {
   return (
@@ -114,6 +115,11 @@ const App = () => {
           component={ChatWidget}
           exact
           path="/chat-widget"
+        />
+        <Route
+          component={TimelineTest}
+          exact
+          path="/timeline-test"
         />
       </div>
     </Router>
