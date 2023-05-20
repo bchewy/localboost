@@ -17,6 +17,7 @@ function App() {
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/test-upload" element={<TestUpload />} />
         <Route path="/test-fetch" element={<TestFetch />} />
+        {/*  Add a route here, change path and element to link a new page */}
         <Route path="/chatai" element={<ChatAI />} />
       </Routes>
       </Layout>
