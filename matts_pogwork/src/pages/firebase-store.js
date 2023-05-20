@@ -46,3 +46,6 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 export default db;
+// const app = firebase.initializeApp(firebaseConfig);
+
+// export const db = getFirestore(app);
