@@ -8,7 +8,7 @@ import TestFetch from "./pages/TestFetch";
 import SignIn from "./pages/SignIn";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import RegistrationStudent from "./pages/RegistrationStudent";
-import ChatAI from "./pages/chatai";
+import ChatAI from "./pages/chatAI";
 
 function App() {
   return (
