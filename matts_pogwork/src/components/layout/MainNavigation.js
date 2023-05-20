@@ -3,17 +3,19 @@ import classes from './MainNavigation.module.css';
 
 function MainNavigation(){
     return <header className={classes.header}>
-        <div className ={classes.logo}>ProjectX</div>
+        <div className ={classes.logo}>LocalBoost</div>
         <nav>
             <ul>
                 <li>
-                    <Link to= '/'> All Projects </Link>
+                    <Link to= '/'> All Listings </Link>
                 </li>
                 <li>
-                    <Link to= '/new-project'> Add New Project</Link>
+                    <Link to= '/new-project'> Add New Listings</Link>
+                  
                 </li>
+               
                 <li>
-                    <Link to="/favorites">My Favorites</Link>
+                    <Link to="/favorites">Milestones</Link>
                 </li>
                 <li>
                     <Link to="/chatai">Chat</Link>
@@ -34,7 +36,18 @@ function MainNavigation(){
                 </li>
                 <li>
                     <Link to="/test-fetch">Test Fetch</Link>
-                </li> */}
+                </li>
+                <li>
+                    <Link to="/">How it works</Link>
+                </li>
+                <li>
+                    <Link to="/">Login</Link>
+                </li>
+                <li>
+                    <Link to="/">Join</Link>
+                </li>
+                
+
             </ul>
         </nav>
     </header>;
