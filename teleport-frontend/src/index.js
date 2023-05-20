@@ -7,6 +7,7 @@ import ListingsCreatebusinesslisting from './views/listings-createbusinesslistin
 import ListingsBusinesslistings from './views/listings-businesslistings'
 import ListingsStudentsaved from './views/listings-studentsaved'
 import Profile from './views/profile'
+import EditProfile from './views/edit-profile'
 import AssignmentsMilestone from './views/assignments-milestone'
 import ListingsFulldesc from './views/listings-fulldesc'
 import RegistrationCompany from './views/registration-company'
@@ -25,6 +26,7 @@ import RegistrationStudent from './views/registration-student'
 import ProjectDashboardStudent from './views/project-dashboard-student'
 import AssignmentsMilestoneReview from './views/assignments-milestone-review'
 import VerifyTimeline from './views/verify-timeline'
+import GPT from './views/gpt'
 
 import ChatWidget from './components/chat-widget'
 import TimelineTest from './views/timeline-test'
@@ -48,6 +50,7 @@ const App = () => {
           exact
           path="/listings-studentsaved"
         />
+        <Route component={EditProfile} exact path="/edit-profile" />
         <Route component={Profile} exact path="/profile" />
         <Route
           component={AssignmentsMilestone}
@@ -115,6 +118,11 @@ const App = () => {
           component={ChatWidget}
           exact
           path="/chat-widget"
+        />
+        <Route
+          component={GPT}
+          exact
+          path="/gpt"
         />
         <Route
           component={TimelineTest}

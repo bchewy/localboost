@@ -4,7 +4,7 @@
   overflow: auto;
   min-height: 100vh;
   align-items: center;
-  padding-top: var(--dl-space-space-twounits);
+  /* padding-top: var(--dl-space-space-twounits); */
   border-color: var(--dl-color-gray-black);
   border-width: 1px;
   flex-direction: column;
@@ -12,12 +12,12 @@
 }
 .registration-company-form {
   width: 760px;
-  height: 399px;
+  height: 780px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
 }
-.registration-company-container01 {
+.registration-company-container1 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
@@ -25,70 +25,66 @@
   align-items: center;
   flex-direction: column;
 }
-.registration-company-container02 {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-.registration-company-container03 {
+.registration-company-container2 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-.registration-company-container04 {
-  flex: 0 0 auto;
-  width: auto;
-  height: auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.registration-company-text01 {
-  align-self: flex-start;
-  margin-top: var(--dl-space-space-halfunit);
-  margin-left: var(--dl-space-space-unit);
-  margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
-}
-.registration-company-text02 {
-  align-self: flex-start;
-  margin-top: var(--dl-space-space-twounits);
-  margin-left: var(--dl-space-space-unit);
-  margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-company-text03 {
   align-self: flex-start;
-  margin-top: 28px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-company-text04 {
   align-self: flex-start;
-  margin-top: 26px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-company-text05 {
   align-self: flex-start;
-  margin-top: 20px;
+  margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
-.registration-company-text09 {
+.registration-company-text06 {
   align-self: flex-start;
-  margin-top: 20px;
+  margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
-.registration-company-container05 {
+.registration-company-text07 {
+  align-self: flex-start;
+  margin-top: 3px;
+  margin-left: var(--dl-space-space-unit);
+  margin-right: var(--dl-space-space-unit);
+}
+.registration-company-text11 {
+  align-self: flex-start;
+  margin-top: 3px;
+  margin-left: var(--dl-space-space-unit);
+  margin-right: var(--dl-space-space-unit);
+}
+.registration-company-text15 {
+  align-self: flex-start;
+  margin-top: 50px;
+  margin-left: var(--dl-space-space-unit);
+  margin-right: var(--dl-space-space-unit);
+}
+.registration-company-text21 {
+  align-self: flex-start;
+  margin-top: 3px;
+  margin-left: var(--dl-space-space-unit);
+  margin-right: var(--dl-space-space-unit);
+}
+.registration-company-text27 {
+  align-self: flex-start;
+  margin-left: var(--dl-space-space-unit);
+  margin-right: var(--dl-space-space-unit);
+}
+.registration-company-container3 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
@@ -96,7 +92,7 @@
   align-items: center;
   flex-direction: column;
 }
-.registration-company-container06 {
+.registration-company-container4 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
@@ -104,7 +100,7 @@
   align-items: center;
   flex-direction: column;
 }
-.registration-company-container07 {
+.registration-company-container5 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
@@ -112,7 +108,7 @@
   align-items: center;
   flex-direction: column;
 }
-.registration-company-container08 {
+.registration-company-container6 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
@@ -120,7 +116,7 @@
   align-items: center;
   flex-direction: column;
 }
-.registration-company-container09 {
+.registration-company-container7 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
@@ -128,7 +124,7 @@
   align-items: center;
   flex-direction: column;
 }
-.registration-company-container10 {
+.registration-company-container8 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
@@ -151,4 +147,21 @@
 .registration-company-select {
   width: 100%;
   margin-top: var(--dl-space-space-unit);
+}
+.registration-company-textarea {
+  width: 100%;
+  height: 129px;
+}
+.registration-company-textinput3 {
+  margin-top: var(--dl-space-space-oneandhalfunits);
+}
+.registration-company-textarea1 {
+  width: 100%;
+  height: 129px;
+  margin-top: var(--dl-space-space-unit);
+}
+.registration-company-file{
+  margin-top: var(--dl-space-space-unit);
+  margin-left: 0px;
+  padding-left: 110px;
 }

@@ -35,10 +35,9 @@
 }
 .sign-in-text06 {
   align-self: flex-start;
-  margin-top: var(--dl-space-space-twounits);
+  margin-top: 27px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .sign-in-container2 {
   flex: 0 0 auto;
