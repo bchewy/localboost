@@ -5,7 +5,7 @@ import { Container, TextField, Button, LinearProgress, Typography } from '@mui/m
 // import { getDatabase, ref, push, set } from "firebase/database";
 
 // Main app component
-const GPT = () => {
+const chatAI = () => {
   const systemMessage = { role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and can be found on the LocalBoost platform. .' };
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([systemMessage]);
@@ -99,4 +99,4 @@ const GPT = () => {
   );
 };
 
-export default GPT;
+export default chatAI;
