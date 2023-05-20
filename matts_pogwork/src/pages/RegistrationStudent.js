@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
-import './registration-student.css'
+import { app } from './firebase';
+import { getAuth } from "firebase/auth";
+import '../components/auth/registration-student.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { getDatabase, ref, set } from "firebase/database";
@@ -13,6 +14,7 @@ const RegistrationStudent = () => {
     const [error, setError] = useState(''); // State for storing errors
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const auth = getAuth(app);
     const skillOptions = [
         { value: 'Website Design', label: 'Website Design' },
         { value: 'Mobile App Design', label: 'Mobile App Design' },

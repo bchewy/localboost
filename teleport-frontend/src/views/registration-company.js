@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth } from '../firebase';
 import './registration-company.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';

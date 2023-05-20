@@ -11,11 +11,16 @@ function MainNavigation(){
                 </li>
                 <li>
                     <Link to= '/new-meetups'> Add New Listings</Link>
+                  
                 </li>
+               
                 <li>
                     <Link to="/favorites">Milestones</Link>
                 </li>
                 <li>
+                    <Link to="/chatai">Chat</Link>
+                </li>
+                {/* <li>
                     <Link to="/test-upload">Test an Upload</Link>
                 </li>
                 <li>
@@ -31,6 +36,7 @@ function MainNavigation(){
                     <Link to="/">Join</Link>
                 </li>
                 
+                </li> */}
             </ul>
         </nav>
     </header>;
