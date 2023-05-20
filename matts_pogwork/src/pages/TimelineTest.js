@@ -17,94 +17,52 @@ const TimelineTest = (props) => {
 
   const [items, setItems] = useState([]);
 
-  const docRef = doc(db, "projects", projectID);
-
-  const q = query(
-    collection(docRef, "milestones"),
-    where("milestone_number", "==", currentMilestone),
-    orderBy("timestamp", "asc"));
-
-  const getChangelog = async () => {
+  const fetchData = async () => {
+    const docRef = doc(db, "projects", projectID);
+    const q = query(
+      collection(docRef, "milestones"),
+      where("milestone_number", "==", currentMilestone),
+      orderBy("timestamp", "asc")
+    );
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(item => {
-      setItems(items => [...items, {
-        title: item.data().timestamp,
-        cardTitle: item.data().subject,
-        cardDetailedText: "something"}]);
-    });
+    const newItems = querySnapshot.docs.map(item => ({
+      title: item.data().timestamp.toDate().toLocaleString(),
+      cardTitle: item.data().subject,
+      cardDetailedText: "something"
+    }));
+    setItems(newItems);
   };
-
+  
   useEffect(() => {
-    getChangelog();
-  }, []);
+    fetchData();
+  }, [projectID, currentMilestone]);
+  // OLD METHOD, TIMESTAMP TYPE NEEDS TO BE SAME AS ABOVE
+  // const docRef = doc(db, "projects", projectID);
 
+  // const q = query(
+  //   collection(docRef, "milestones"),
+  //   where("milestone_number", "==", currentMilestone),
+  //   orderBy("timestamp", "asc"));
 
   // const getChangelog = async () => {
   //   const querySnapshot = await getDocs(q);
   //   querySnapshot.forEach(item => {
-  //     const data = [];
-  // for(const key in )
   //     setItems(items => [...items, {
-  //       title: item.data().timestamp,
+  //       title: item.data().timestamp.,
   //       cardTitle: item.data().subject,
-  //       cardDetailedText: "something"
-  //     }]);
+  //       cardDetailedText: "something"}]);
   //   });
   // };
 
-  // useEffect(() => {
-  //   getChangelog();
-  // }, []);
-
-  // onSnapshot(q, (snapshot) => {
-  //   const arr = [];
-  //   snapshot.forEach((doc) => {
-  //     console.log(doc.id, '=>', doc.data());
-  //     arr.push(doc.data());
-  //   });
-  //   setItems(arr);
-  // });
-
-
-  // useEffect(() => {
-  //   getDocs(q, (snapshot) => {
-  //     const arr = [];
-  //     snapshot.forEach((doc) => {
-  //       console.log(doc.id, '=>', doc.data());
-  //       arr.push(doc.data());
-  //     });
-
-  //     setItems(arr);
-  //   });
-  // }, []);
 
 
 
-  //   return arr;
-  //   setItems(items => [...items, {
-  //     title: doc.data().timestamp,
-  //     cardTitle: doc.data().title}]);
-  // });
 
-  
+  console.log('items arr:', items);
 
-  // const items = [{
-  //   title: "May 1940",
-  //   cardTitle: "Dunkirk",
-  //   url: "http://www.history.com",
-  //   cardSubtitle:"Men of the British Expeditionary Force (BEF) wade out to..",
-  //   cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-  //   media: {
-  //     type: "IMAGE",
-  //     source: {
-  //       url: "http://someurl/image.jpg"
-  //     }
-  //   }
-  // }];
-  console.log(items);
   return (
     <div style={{ width: '500px', height: '950px' }}>
-      <Chrono items={items} mode="VERTICAL" />
+      {items.length > 0 && <Chrono items={items} mode="VERTICAL" />}
     </div>
   )
 }
