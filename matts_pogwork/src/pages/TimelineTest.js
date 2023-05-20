@@ -13,7 +13,7 @@ import { getFirestore, collection, getDocs, query, serverTimestamp, onSnapshot, 
 const TimelineTest = (props) => {
 
   const systemMessage = { role: 'system', content: `
-  You are LocalBoost AI GPT, you only respond with an items array.
+  You are LocalBoost AI GPT, you only respond with an milestones array.
   We want you to Generate and return ONLY the milestones array as a response, for a web development project
 
   const milestones = [{
