@@ -10,9 +10,9 @@ from "firebase/firestore";
 
 const TimelineTest = (props) => {
   // TODO: use authentication to check the current user uid
-  const postUser = "a0001";
-  
+  const user = "a0001";
 
+  
 
   const items = [{
     title: "May 1940",
