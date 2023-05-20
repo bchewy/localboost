@@ -30,7 +30,7 @@ function App() {
         <Route path="/registration-student" element={<RegistrationStudent />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         {/*  Add a route here, change path and element to link a new page */}
-        <Route path="/chatai" element={<ChatAI />} />
+        <Route path="/chat-ai" element={<ChatAI />} />
         <Route path="/timeline-test" element={<TimelineTest />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
