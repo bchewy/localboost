@@ -29,7 +29,7 @@ function AllMeetupsPage() {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      "https://demotest-6cff8-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json"
+      "https://localboost-f9623-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json"
     )
       .then((response) => {
         return response.json();
