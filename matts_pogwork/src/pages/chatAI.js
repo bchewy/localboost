@@ -22,7 +22,7 @@ import { useState, useEffect } from "react";
 //   },
 // ];
 
-function chatai() {
+function ChatAI() {
   // const [isLoading, setIsLoading] = useState(true);
   // const [loadedMeetups, setLoadedMeetups] = useState([]);
 

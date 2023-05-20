@@ -5,6 +5,7 @@ import FavoritesPage from "./pages/Favorites";
 import Layout from './components/layout/Layout';
 import TestUpload from "./pages/TestUpload";
 import TestFetch from "./pages/TestFetch";
+import ChatAI from "./pages/chatai";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/test-upload" element={<TestUpload />} />
         <Route path="/test-fetch" element={<TestFetch />} />
-        <Route path="/chatai" element={<TestFetch />} />
+        <Route path="/chatai" element={<ChatAI />} />
       </Routes>
       </Layout>
     </div>
