@@ -29,6 +29,7 @@ import VerifyTimeline from './views/verify-timeline'
 import GPT from './views/gpt'
 
 import ChatWidget from './components/chat-widget'
+import TimelineTest from './views/timeline-test'
 
 const App = () => {
   return (
@@ -122,6 +123,11 @@ const App = () => {
           component={GPT}
           exact
           path="/gpt"
+        />
+        <Route
+          component={TimelineTest}
+          exact
+          path="/timeline-test"
         />
       </div>
     </Router>
