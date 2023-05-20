@@ -62,13 +62,16 @@ const App = () => {
       // Add user's message and AI's response to the messages list
       setMessages(prevMessages => [...prevMessages, userMessage, aiMessage]);
 
-      // Save data to Firebase
+      // Save data to Firebase Realtime db
       const messagesRef = ref(database, 'messages');
       set(messagesRef, {
         content: messages,
         timestamp: new Date().toISOString()
       });
       console.log("Saved messages into firebase");
+
+
+      
 
     } catch (error) {
       console.error("Error occurred while calling OpenAI API: ", error);

@@ -116,7 +116,7 @@ const Home = (props) => {
           <div className="home-container06">
             <div className="home-container07">
               <Link
-                to="/gp-chat-sample-interaction"
+                to="/gpt"
                 className="home-navlink2 button"
               >
                 Ask our AI Chatbot!

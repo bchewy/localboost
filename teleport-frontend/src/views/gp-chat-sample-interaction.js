@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Helmet } from 'react-helmet'
 import NavigationLinks from '../components/navigation-links'
 import GPT from './gp-chat-sample-interaction.css'
-import '../backend/gpt'
+import './gpt'
 
 // Form component
 function MyForm({ onSubmit }) {
