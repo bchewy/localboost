@@ -35,7 +35,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        {/* <Route path="/timeline-test" element={<TimelineTest />} /> */}
       </Routes>
       </Layout>
     </div>
