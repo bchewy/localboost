@@ -7,10 +7,10 @@ function MainNavigation(){
         <nav>
             <ul>
                 <li>
-                    <Link to= '/'> All Meetups </Link>
+                    <Link to= '/'> All Projects </Link>
                 </li>
                 <li>
-                    <Link to= '/new-meetups'> Add New Meetup</Link>
+                    <Link to= '/new-project'> Add New Project</Link>
                 </li>
                 <li>
                     <Link to="/favorites">My Favorites</Link>
