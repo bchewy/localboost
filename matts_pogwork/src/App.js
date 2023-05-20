@@ -12,7 +12,7 @@ function App() {
      <Layout>
       <Routes>
         <Route path="/" element={<AllProjectsPage />} />
-        <Route path="/new-Project" element={<NewProjectPage />} />
+        <Route path="/new-project" element={<NewProjectPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/test-upload" element={<TestUpload />} />
         <Route path="/test-fetch" element={<TestFetch />} />
