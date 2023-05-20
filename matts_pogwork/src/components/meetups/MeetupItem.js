@@ -13,6 +13,7 @@ function MeetupItem(props) {
       </div>
       <div className={classes.actions}>
         <button>To Favorites</button>
+        
       </div>
     </li>
   );
