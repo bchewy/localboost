@@ -9,7 +9,7 @@ import ChatAI from './pages/ChatAI';
 import SignIn from "./pages/SignIn";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import RegistrationStudent from "./pages/RegistrationStudent";
-import TimelineTest from "./pages/timeline-test";
+import TimelineTest from "./pages/TimelineTest";
 
 function App() {
   return (
