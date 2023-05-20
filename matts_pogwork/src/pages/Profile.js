@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
-import galgadotImage from '../../images/galgadot.jpg';
-import './Profile.css'
+import galgadotImage from '../components/profile/galgadot.jpg';
+import '../components/profile/Profile.css'
 import { useNavigate } from 'react-router-dom';
 import { getDatabase, ref, child, get, set } from "firebase/database";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -171,7 +171,7 @@ const Profile = () => {
                 </div>
             </div>
             <div className="profile-container16">
-                <h2 className="profile-text28">Skills</h2>
+                <h2>Skills</h2>
                 <span className="profile-text29">
                         {/* display the skills, which is an array*/}
                         <span className="profile-text29">
