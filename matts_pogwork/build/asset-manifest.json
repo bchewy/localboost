@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.12d84e4f.css",
+    "main.js": "/static/js/main.ca7187fa.js",
+    "static/media/galgadot.jpg": "/static/media/galgadot.a4f22f5e3303adfbbafc.jpg",
+    "index.html": "/index.html",
+    "main.12d84e4f.css.map": "/static/css/main.12d84e4f.css.map",
+    "main.ca7187fa.js.map": "/static/js/main.ca7187fa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.12d84e4f.css",
+    "static/js/main.ca7187fa.js"
+  ]
+}
