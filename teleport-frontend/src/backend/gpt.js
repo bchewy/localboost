@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Container, TextField, Button, LinearProgress, Typography } from '@mui/material';
-import database from './firebase';
+import database from '../backend/firebase';
 import { getDatabase, ref, push, set } from "firebase/database";
 
 // Main app component
