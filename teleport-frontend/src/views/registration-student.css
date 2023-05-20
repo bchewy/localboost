@@ -4,7 +4,7 @@
   overflow: auto;
   min-height: 100vh;
   align-items: center;
-  padding-top: var(--dl-space-space-twounits);
+  /* padding-top: var(--dl-space-space-twounits); */
   border-color: var(--dl-color-gray-black);
   border-width: 1px;
   flex-direction: column;
@@ -35,66 +35,54 @@
 }
 .registration-student-text03 {
   align-self: flex-start;
-  margin-top: var(--dl-space-space-halfunit);
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-student-text04 {
   align-self: flex-start;
-  margin-top: var(--dl-space-space-twounits);
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-student-text05 {
   align-self: flex-start;
-  margin-top: 28px;
+  margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-student-text06 {
   align-self: flex-start;
-  margin-top: 26px;
+  margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-student-text07 {
   align-self: flex-start;
-  margin-top: 20px;
+  margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-student-text11 {
   align-self: flex-start;
-  margin-top: 20px;
+  margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-student-text15 {
   align-self: flex-start;
-  margin-top: var(--dl-space-space-threeunits);
+  margin-top: 50px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-twounits);
 }
 .registration-student-text21 {
   align-self: flex-start;
-  margin-top: 54px;
+  margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-student-text27 {
   align-self: flex-start;
-  margin-top: var(--dl-space-space-twounits);
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
-  margin-bottom: var(--dl-space-space-unit);
 }
 .registration-student-container3 {
   flex: 0 0 auto;
@@ -159,16 +147,22 @@
 .registration-student-select {
   width: 100%;
   margin-top: var(--dl-space-space-unit);
+  margin-bottom: 14px;
 }
 .registration-student-textarea {
   width: 100%;
   height: 129px;
 }
 .registration-student-textinput3 {
-  margin-top: var(--dl-space-space-threeunits);
+  margin-top: var(--dl-space-space-oneandhalfunits);
 }
 .registration-student-textarea1 {
   width: 100%;
   height: 129px;
   margin-top: var(--dl-space-space-unit);
+}
+.registration-student-file{
+  margin-top: var(--dl-space-space-unit);
+  margin-left: 0px;
+  padding-left: 110px;
 }

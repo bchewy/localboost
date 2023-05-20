@@ -7,6 +7,7 @@ import ListingsCreatebusinesslisting from './views/listings-createbusinesslistin
 import ListingsBusinesslistings from './views/listings-businesslistings'
 import ListingsStudentsaved from './views/listings-studentsaved'
 import Profile from './views/profile'
+import EditProfile from './views/edit-profile'
 import AssignmentsMilestone from './views/assignments-milestone'
 import ListingsFulldesc from './views/listings-fulldesc'
 import RegistrationCompany from './views/registration-company'
@@ -47,6 +48,7 @@ const App = () => {
           exact
           path="/listings-studentsaved"
         />
+        <Route component={EditProfile} exact path="/edit-profile" />
         <Route component={Profile} exact path="/profile" />
         <Route
           component={AssignmentsMilestone}

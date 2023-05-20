@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 import './sign-in.css'
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(''); // State for storing errors
+    const auth = getAuth();
+    const navigate = useNavigate();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+        }
+    });
     const signIn = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
-                setError('');
+                const user = userCredential.user;
+                setError('Signed in successfully!');
+                navigate("/profile");
             }).catch((error) => {
                 console.log(error);
                 setError(error.message);
