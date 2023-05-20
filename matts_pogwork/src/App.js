@@ -12,7 +12,7 @@ import TimelineTest from "./pages/TimelineTest";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile"
 import EditProfile from "./pages/EditProfile"
-import ChatAI from "./pages/ChatAI";
+import {ChatAI} from "./pages/ChatAI";
 
 function App() {
   return (
