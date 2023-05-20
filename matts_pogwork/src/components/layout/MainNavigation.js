@@ -15,7 +15,7 @@ function MainNavigation(){
                 </li>
                
                 <li>
-                    <Link to="/favorites">Milestones</Link>
+                    <Link to="/Milestone-review">Milestones</Link>
                 </li>
                 <li>
                     <Link to="/chatai">Chat</Link>
