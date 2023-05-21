@@ -17,10 +17,13 @@ const db = getFirestore(app);
 const MilestoneDetails = (props) => {
   const { state } = useLocation();
 
-  const milestoneID = state?.data;
+  const data = state?.data;
+
+  const user = data?.user;
+  const chatRecipient = data?.recipientUser;
+  const milestoneID = data?.milestoneID;
 
   // TODO: use authentication to check the current user uid
-  const user = "a0001";
   const projectID = "gdbn3vGcDHgrsz3mbJin";
   const projectName = "Create delivery system";
   const currentMilestone = 1;

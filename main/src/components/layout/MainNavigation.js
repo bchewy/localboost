@@ -14,13 +14,10 @@ function MainNavigation(){
                   
                 </li>   
                 <li>
-                    <Link to="/Milestone">Milestones</Link>
+                    <Link to="/milestone-overview">Milestones</Link>
                 </li>
                 <li>
                     <Link to="/localboost-ai">Chat</Link>
-                </li>
-                <li>
-                    <Link to="/milestone-details">Timeline Test</Link>
                 </li>
                 <li>
                     <Link to="/sign-in">Sign In</Link>

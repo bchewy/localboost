@@ -3,16 +3,18 @@ import { Widget, addResponseMessage, addUserMessage } from 'react-chat-widget';
 
 import 'react-chat-widget/lib/styles.css';
 
-import { db } from './firebase-store';
-import {collection, addDoc, query, serverTimestamp, onSnapshot, orderBy, doc}
+import { app } from "../pages/firebase";
+import {collection, addDoc, query, serverTimestamp, onSnapshot, orderBy, doc, getFirestore}
 from "firebase/firestore";
 
-const ChatWidget = () => {
+const db = getFirestore(app);
 
-  const currentUser = "a0001"; // TODO: use authentication to check the current user uid
-  const recipientUser = "a0002"; //TODO: use the current project to get the recipient user uid
+const ChatWidget = (props) => {
 
-  var documentId = [currentUser, recipientUser].sort().join("-"); // Chatroom ID is the concatenation of the two user IDs, sorted alphabetically separated by a hyphen
+  const senderUser = props.sender;
+  const recipientUser = props.recipient;
+
+  var documentId = [senderUser, recipientUser].sort().join("-"); // Chatroom ID is the concatenation of the two user IDs, sorted alphabetically separated by a hyphen
 
   const docRef = doc(db, "messages", documentId);
 
@@ -29,7 +31,7 @@ const ChatWidget = () => {
       if (!chatHistoryLoaded) {
         snapshot.docChanges().forEach((change) => {
           if (change.type === "added") {
-            if (change.doc.data().user !== currentUser) {
+            if (change.doc.data().user !== senderUser) {
               addResponseMessage(change.doc.data().text);
             }else{
               addUserMessage(change.doc.data().text);
@@ -41,7 +43,7 @@ const ChatWidget = () => {
       }else{
         snapshot.docChanges().forEach((change) => {
           if (change.type === "added") {
-            if (change.doc.data().user !== currentUser) {
+            if (change.doc.data().user !== senderUser) {
               addResponseMessage(change.doc.data().text);
             }
           }
@@ -56,16 +58,22 @@ const ChatWidget = () => {
   const handleNewUserMessage = (newMessage) => {
     // Save new message to Firestore
     addDoc(collection(docRef, "history"), {
-      user: currentUser,
+      user: senderUser,
       text: newMessage,
       timestamp: serverTimestamp()
     });
   };
 
-return (
+  const title = "Chat with " + recipientUser;
+
+  return (
     <div className="ChatWidget">
         <Widget
             handleNewUserMessage={handleNewUserMessage}
+            title={title}
+            subtitle=""
+            emojis="false"
+            showBadge="false"
         />
     </div>
   );
