@@ -14,7 +14,7 @@ import DownloadButton from "../components/FileDownloadButton";
 
 const db = getFirestore(app);
 
-const TimelineTest = (props) => {
+const MilestoneDetails = (props) => {
   // TODO: use authentication to check the current user uid
   const user = "a0001";
   const projectID = "gdbn3vGcDHgrsz3mbJin";
@@ -151,7 +151,7 @@ const TimelineTest = (props) => {
       newItems.push({
         title: item.data().timestamp.toDate().toLocaleString(),
         cardTitle: item.data().subject,
-        timelineContent: <Content />
+        timelineContent: <Content />,
       });
     });
     setItems(newItems);
@@ -186,11 +186,11 @@ const TimelineTest = (props) => {
         {items.length > 0 && <Chrono
           items={items}
           mode="VERTICAL"
-          cardHeight="500"
+          cardHeight="600"
           />}
       </div>
     </div>
   );
 };
 
-export default TimelineTest;
+export default MilestoneDetails;

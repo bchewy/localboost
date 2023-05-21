@@ -9,7 +9,7 @@ import ChatAI from './pages/ChatAI';
 import SignIn from "./pages/SignIn";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import RegistrationStudent from "./pages/RegistrationStudent";
-import TimelineTest from "./pages/TimelineTest";
+import MilestoneDetails from "./pages/MilestoneDetails";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile"
 import EditProfile from "./pages/EditProfile"
@@ -31,11 +31,10 @@ function App() {
         <Route path="/favorites" element={<FavoritesPage />} />
         {/*  Add a route here, change path and element to link a new page */}
         <Route path="/chatai" element={<ChatAI />} />
-        <Route path="/timeline-test" element={<TimelineTest />} />
+        <Route path="/milestone-details" element={<MilestoneDetails />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        {/* <Route path="/timeline-test" element={<TimelineTest />} /> */}
       </Routes>
       </Layout>
     </div>
