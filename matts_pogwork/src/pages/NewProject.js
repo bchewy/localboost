@@ -27,7 +27,7 @@ function NewProjectPage() {
   // }
   return (
     <section>
-      <h1>Add New Meetup</h1>
+      <h1>Add New Listing</h1>
       <NewMeetupForm onAddMeetup={addMeetupHandler} />
     </section>
   );

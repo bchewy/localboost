@@ -1,8 +1,10 @@
-import Card from "../ui/Card";
-import classes from "./NewMeetupForm.module.css";
+// export default FavoritesPage;
+
+import Card from "../components/ui/Card";
+import classes from "./Milestone-review.css";
 import { useRef } from "react";
 
-function NewMeetupForm(props) {
+function Milestone_review(props) {
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
   const addressInputRef = useRef();
@@ -25,30 +27,25 @@ function NewMeetupForm(props) {
 }
   return (
     <div>
+        <h1>Milestone</h1>
       <Card>
         <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.control}>
-            <label htmlFor="title">Listing Name</label>
-            <input type="text" required id="title" ref={titleInputRef} />
-          </div>
-          {/* <div className={classes.control}>
-            <label htmlFor="title">Listing Image</label>
+            <label htmlFor="title">Upload File</label>
             <input type="url" required id="image" ref={imageInputRef}/>
-          </div> */}
-          <div className={classes.control}>
-            <label htmlFor="address">Category / Skills</label>
-            <input type="text" required id="address" ref={addressInputRef}/>
+          </div>
             <div className={classes.control}>
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description">Type In Updates</label>
               <textarea required id="description" rows="5"ref={descriptionInputRef}></textarea>
             </div>
             <div className={classes.actions}>
-              <button>Add Listing</button>
+              <button>View Milestones</button>
+              {/* <Link to="/Milestone">View Milestones</Link> */}
             </div>
-          </div>
         </form>
       </Card>
     </div>
   );
 }
-export default NewMeetupForm;
+export default Milestone_review;
+// export default Milestone_review;
