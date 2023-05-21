@@ -1,8 +1,10 @@
-import Card from "../ui/Card";
-import classes from "./NewMeetupForm.module.css";
+import Card from "../components/ui/Card";
+import classes from "./Milestone.css";
 import { useRef } from "react";
+import "../style.css";
+import { Chrono } from "react-chrono";
 
-function NewMeetupForm(props) {
+function Milestone(props) {
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
   const addressInputRef = useRef();
@@ -22,33 +24,45 @@ function NewMeetupForm(props) {
     
   }
   props.onAddMeetup(meetupData)
+  
 }
+    const items = [{
+        title: "May 1940",
+        cardTitle: "Dunkirk",
+        url: "http://www.history.com",
+        cardSubtitle:"Men of the British Expeditionary Force (BEF) wade out to..",
+        cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
+        media: {
+        type: "IMAGE",
+        source: {
+            url: "http://someurl/image.jpg"
+        }
+        }
+    }];
   return (
     <div>
+        <h1>Milestones</h1>
       <Card>
         <form className={classes.form} onSubmit={submitHandler}>
-          <div className={classes.control}>
-            <label htmlFor="title">Listing Name</label>
-            <input type="text" required id="title" ref={titleInputRef} />
-          </div>
           {/* <div className={classes.control}>
-            <label htmlFor="title">Listing Image</label>
+            <label htmlFor="title">Upload File</label>
             <input type="url" required id="image" ref={imageInputRef}/>
-          </div> */}
-          <div className={classes.control}>
-            <label htmlFor="address">Category / Skills</label>
-            <input type="text" required id="address" ref={addressInputRef}/>
+          </div>
             <div className={classes.control}>
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description">Type In Updates</label>
               <textarea required id="description" rows="5"ref={descriptionInputRef}></textarea>
             </div>
             <div className={classes.actions}>
-              <button>Add Listing</button>
+              <button>View Milestones</button>
+            </div> */}
+            <div style={{ width: '500px', height: '950px' }}>
+            <Chrono items={items} mode="VERTICAL" />
             </div>
-          </div>
         </form>
       </Card>
     </div>
   );
 }
-export default NewMeetupForm;
+export default Milestone;
+
+
