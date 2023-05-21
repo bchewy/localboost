@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# LocalBoost
+## A project by SMUChamps
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Problem Statement:
+Small local businesses often face hurdles in digitizing their operations due to overwhelming information, a lack of necessary digital skills, and resource constraints. Our goal is to understand why these businesses are not digitizing and what services they require to facilitate this transition.
 
-## Available Scripts
+### About LocalBoost:
+LocalBoost is an online platform designed to assist small local businesses in overcoming digital obstacles. By connecting these businesses with skilled freelancers and students looking for real-world projects, we facilitate digital transformations through tailored solutions. 
 
-In the project directory, you can run:
+Services provided by LocalBoost include:
 
-### `npm start`
+- Digital stock counting solutions (e.g., setting up Excel, barcode systems)
+- Website creation (using Wordpress, self-coded HTML, etc.)
+- Setting up Google review websites and pre-booking services
+- Implementing digital payment or POS systems
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In doing so, LocalBoost aims to foster a community of digital enthusiasts and businesses working together to innovate and grow at the local level.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Unique Selling Point:
+LocalBoost focuses on aiding small local businesses such as hawkers, small restaurants, home-based businesses, and "mama shops." By empowering students and offering them the opportunity to work on these projects as case studies, we create a mutually beneficial situation.
 
-### `npm test`
+### Technical Details:
+LocalBoost is built with React and NodeJS and is deployed on Vercel for scalability. Potential integration with VM Tanzu as a sandbox system for development work is also under consideration.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Here's a brief overview of our project directories:
 
-### `npm run build`
+- `AI_prototype`: Our initial tests with OpenAI's GPT-4 API.
+- `teleport_frontend`: Our planned frontend, elements of which can be seen in the final MVP.
+- `yiji_aith`: Authentication files created during the prototyping stage.
+- `main`: The root of our MVP from where the project is deployed live.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We hope this README provides a clear understanding of our project, LocalBoost, and its commitment to supporting small local businesses and digital enthusiasts.
