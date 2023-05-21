@@ -31,10 +31,10 @@ function NewMeetupForm(props) {
             <label htmlFor="title">Listing Name</label>
             <input type="text" required id="title" ref={titleInputRef} />
           </div>
-          {/* <div className={classes.control}>
+          <div className={classes.control}>
             <label htmlFor="title">Listing Image</label>
             <input type="url" required id="image" ref={imageInputRef}/>
-          </div> */}
+          </div>
           <div className={classes.control}>
             <label htmlFor="address">Category / Skills</label>
             <input type="text" required id="address" ref={addressInputRef}/>
