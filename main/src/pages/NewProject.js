@@ -25,14 +25,22 @@ function NewProjectPage() {
   // firestore alternative, works!
   async function addMeetupHandler(meetupData) {
     try {
-      const meetupCollection = collection(db, "projects"); // change "meetups" to your collection id
-      const docRef = await addDoc(meetupCollection, meetupData);
+      const meetupCollection = collection(db, "projects");
+      const docRef = doc(meetupCollection); // Create a new doc reference with a generated ID
+  
+      // Add the document ID to meetupData
+      meetupData.docId = docRef.id;
+  
+      // Set the document data
+      await setDoc(docRef, meetupData);
+  
       console.log("Document written with ID: ", docRef.id);
       navigate("/", { replace: true });
     } catch (error) {
       console.error("Error adding document: ", error);
     }
   }
+  
 
 
   return (
