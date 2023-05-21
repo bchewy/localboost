@@ -204,6 +204,15 @@
   align-items: center;
   flex-direction: column;
 }
+.profile-container07 {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
 .profile-text06 {
   font-size: 32px;
   align-self: flex-start;
@@ -233,6 +242,10 @@
 }
 .profile-button1 {
   margin-left: 20px;
+}
+.profile-button3{
+  margin-left: 20px;
+  white-space: nowrap;
 }
 .profile-container09 {
   flex: 0 0 auto;

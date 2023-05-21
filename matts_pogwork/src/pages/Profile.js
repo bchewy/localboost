@@ -100,6 +100,9 @@ const Profile = () => {
         navigate('/edit-profile');
     };
 
+    function ViewActiveProjects() {
+        navigate('/active-projects');
+    }
 
     return (
         <div className="profile-container">
@@ -119,6 +122,7 @@ const Profile = () => {
                             <div className="profile-container08">
                                 <button className="profile-button2 button">Resume</button>
                                 <button className="profile-button1 button">Contact</button>
+                                <button className="profile-button3 button" onClick = {ViewActiveProjects}>View Active Projects</button>
                             </div>
                         </div>
                     </div>
