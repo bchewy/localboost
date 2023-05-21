@@ -17,10 +17,10 @@ function MainNavigation(){
                     <Link to="/Milestone">Milestones</Link>
                 </li>
                 <li>
-                    <Link to="/localboost-ai">Chat</Link>
+                    <Link to="/localboost-ai">AI</Link>
                 </li>
                 <li>
-                    <Link to="/timeline-test">Timeline Test</Link>
+                    <Link to="/timeline-test">Timeline</Link>
                 </li>
                 <li>
                     <Link to="/sign-in">Sign In</Link>
