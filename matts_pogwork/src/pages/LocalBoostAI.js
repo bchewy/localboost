@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Container, TextField, Button, LinearProgress, Typography } from '@mui/material';
+import { Grid, Container, TextField, Button, LinearProgress, Typography, MenuItem, Select } from '@mui/material';
 import { app } from "./firebase";
 // import TypeIt from 'typeit';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,14 +9,50 @@ import { app } from "./firebase";
 import { getDatabase, ref, push, set } from "firebase/database";
 import UserAvatar from '../components/images/image1.jpeg';
 import AIAvatar from '../components/images/image2.png';
+import { getFirestore, collection, getDocs, query, serverTimestamp, addDoc, orderBy, doc, where, onSnapshot } from "firebase/firestore";
+import DownloadButton from "../components/FileDownloadButton";
+
 
 // Main app component
 const LocalBoostAI = () => {
   const systemMessage = { role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and can be found on the LocalBoost platform. Ask users for more information if you require more to make your decisions. If you list any items in the form of lists, render them in HTML.' };
+  const systemMessageMile = {
+    role: 'system', content: `
+  You are LocalBoost AI GPT, you only respond with an JSON milestones array.
+  We want you to Generate and return ONLY the milestones array as a JSON response, for a {category} project.
+
+  const milestones = [{
+    title: "Name of the milestone",
+    cardTitle: "Milestone Title",
+    url: "milestone url, if any",
+    cardSubtitle:"Milestone subtitle",
+    cardDetailedText: "Milestone description",
+    media: {
+      type: "IMAGE",
+      source: {
+        url: "http://someurl/image.jpg"
+      }
+    }
+  }];
+  ONLY CREATE 4 milestones.
+  Do not reply with anything else, but a JSON array with all the fields as shown above. Remember to close the JSON file.
+  ` };
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([systemMessage]);
+  const [messagesMile, setMessagesMile] = useState([systemMessageMile]);
   const [aiResponse, setAiResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMile, setIsLoadingMile] = useState(false);
+
+  // Milestone Feature Variables
+  // OLD SYSTEM PROMPT
+  const [parsedContent, setParsedContent] = useState([]);
+  const [items, setItems] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('');
+  const user = "a0001";   // TODO: use authentication to check the current user uid
+  const projectID = "gdbn3vGcDHgrsz3mbJin";
+  const currentMilestone = 1;
+  const db = getFirestore(app);
 
 
   // Method 1 of trying out TypeIt for React
@@ -164,11 +200,63 @@ const LocalBoostAI = () => {
 
   };
 
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  // Handle milestone submit API Call
+  const handleSubmitMile = async (event) => {
+    event.preventDefault();
+    setIsLoadingMile(true);
+    try {
+      console.log("Sending request to OpenAI API...");
+
+      const requestBody = {
+        model: 'gpt-3.5-turbo',
+        messages: [
+          ...messagesMile,
+          { role: 'system', content: messagesMile[0].content.replace('{category}', selectedOption) }
+        ],
+        max_tokens: 600
+      };
+
+      // console.log('replaced category message: '+messagesMile[0].content.replace('{category}', selectedOption))
+
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        requestBody,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`
+          },
+  
+        }
+      );
+
+      console.log("Received response from OpenAI API: ", response);
+
+      const aiMessageMile = { role: 'assistant', content: response.data.choices[0].message.content };
+      const f_content = aiMessageMile.content
+      // console.log("f_content:", f_content)
+      const parsedContent = JSON.parse(f_content);
+      setParsedContent(parsedContent);
+
+    } catch (error) {
+      console.error("Error occurred while calling OpenAI API: ", error);
+    } finally {
+      setIsLoadingMile(false);
+    }
+
+
+  };
+
+
 
   return (
     <div>
-      <h1>Chat with LocalBoost AI</h1>
-      <h3>LocalBoost AI provides you with a solution to digitally empower you.</h3>
+      <h1>LocalBoost AI</h1>
+      <h3>Chat with LocalBoost AI.</h3>
       <p>Here are some things you can ask it:
         <ul>
           <li>What services does LocalBoost offer?</li>
@@ -286,6 +374,44 @@ const LocalBoostAI = () => {
           </Button>
         </form>
       </Container>
+
+
+      <div>
+        <h2>Generate project milestones with our AI.</h2>
+        <Typography variant="body1" gutterBottom> (IN BETA*) Settle on what you need for your project. Use Generative AI to help you come up with ideas. Edit after. </Typography>
+      {isLoadingMile && <LinearProgress />}
+      <form onSubmit={handleSubmitMile}>
+        <Select
+          value={selectedOption}
+          onChange={handleOptionChange}
+          sx={{ width: '80%', height: '48px' }}
+        >
+          <MenuItem value="" disabled>---Select a Project Category---</MenuItem>
+          <MenuItem value="website design">Website Design</MenuItem>
+          <MenuItem value="graphic design">Graphic Design</MenuItem>
+          <MenuItem value="digitalisation">Digitalisation</MenuItem>
+          <MenuItem value="marketing">Marketing</MenuItem>
+          <MenuItem value="web development">Website Dev</MenuItem>
+          <MenuItem value="app development">Mobile App Dev</MenuItem>
+        </Select>
+        <Button type="submit" variant="contained" sx={{ width: '20%', height: '55px' }}>
+          Generate
+        </Button>
+      </form>
+      <div style={{ backgroundColor: 'lightgray', padding: '5rem' }}>
+      {parsedContent.map((item, index) => (
+          <div key={index}>
+            <h3>Title: {item.title}</h3>
+            <p>Card Title: {item.cardTitle}</p>
+            <p>URL: {item.url}</p>
+            <p>Card Subtitle: {item.cardSubtitle}</p>
+            <p>Card Detailed Text: {item.cardDetailedText}</p>
+            <p>Media Source URL: {item.media.source.url}</p>
+          </div>
+        ))}
+      </div>
+      </div>
+
 
     </div>
   );
