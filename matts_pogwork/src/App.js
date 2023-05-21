@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import AllProjectsPage from "./pages/AllProjects";
 import NewProjectPage from "./pages/NewProject";
-import FavoritesPage from "./pages/Favorites";
+import MilestoneReview from "./pages/MilestoneReview";
+import Milestone from "./pages/Milestone";
 import Layout from './components/layout/Layout';
 import TestUpload from "./pages/TestUpload";
 import TestFetch from "./pages/TestFetch";
@@ -24,7 +25,7 @@ function App() {
         {/* Project Routes */}
         <Route path="/" element={<AllProjectsPage />} />
         <Route path="/new-project" element={<NewProjectPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/Milestones" element={<Milestone />} />
 
         {/* End user Authentication Routes */}
         <Route path="/register" element={<Register />} />
@@ -33,6 +34,7 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/registration-company" element={<RegistrationCompany />} />
         <Route path="/registration-student" element={<RegistrationStudent />} />
+        <Route path="/Milestone-review" element={<MilestoneReview />} />
 
         {/* Other Routes */}
         <Route path="/localboost-ai" element={<LocalBoostAI />} />

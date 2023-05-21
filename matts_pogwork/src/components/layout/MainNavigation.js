@@ -12,10 +12,9 @@ function MainNavigation(){
                 <li>
                     <Link to= '/new-project'> Add New Listings</Link>
                   
-                </li>
-               
+                </li>   
                 <li>
-                    <Link to="/favorites">Milestones</Link>
+                    <Link to="/Milestone">Milestones</Link>
                 </li>
                 <li>
                     <Link to="/localboost-ai">Chat</Link>

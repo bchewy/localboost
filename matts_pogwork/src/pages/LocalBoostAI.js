@@ -7,8 +7,8 @@ import { app } from "./firebase";
 // import { doc, getDocs, setDoc, getFirestore, collection, updateDoc } from "firebase/firestore";
 // import db from '../pages/firebase-store';
 import { getDatabase, ref, push, set } from "firebase/database";
-import UserAvatar from './image1.jpeg';
-import AIAvatar from './image2.png';
+import UserAvatar from '../components/images/image1.jpeg';
+import AIAvatar from '../components/images/image2.png';
 
 // Main app component
 const LocalBoostAI = () => {
