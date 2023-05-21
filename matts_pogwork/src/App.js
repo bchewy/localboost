@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import AllProjectsPage from "./pages/AllProjects";
 import NewProjectPage from "./pages/NewProject";
-import Milestone_review from "./pages/Milestone-review";
-import Milestone from "./pages/Milestone";
+import FavoritesPage from "./pages/Favorites";
 import Layout from './components/layout/Layout';
 import TestUpload from "./pages/TestUpload";
 import TestFetch from "./pages/TestFetch";
