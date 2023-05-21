@@ -4,7 +4,7 @@ import Card from "../components/ui/Card";
 import classes from "./Milestone-review.css";
 import { useRef } from "react";
 
-function Milestone_review(props) {
+function MilestoneReview(props) {
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
   const addressInputRef = useRef();
@@ -47,5 +47,5 @@ function Milestone_review(props) {
     </div>
   );
 }
-export default Milestone_review;
+export default MilestoneReview;
 // export default Milestone_review;

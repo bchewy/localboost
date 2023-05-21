@@ -15,7 +15,7 @@ function MainNavigation(){
                 </li>
                
                 <li>
-                    <Link to="/Milestone-review">Milestones</Link>
+                    <Link to="/Milestone">Milestones</Link>
                 </li>
                 <li>
                     <Link to="/localboost-ai">Chat</Link>
