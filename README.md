@@ -1,37 +1,32 @@
 # LocalBoost
-a SMUChamps project
+## A project by SMUChamps
 
-## Problem we’re solving:
-Small local businesses have to browse through a myriad of information on the internet to achieve what they’re trying to do. Have no knowledge/skills or are digitally illiterate, and sometimes have no time to learn. 
+### Problem Statement:
+Small local businesses often face hurdles in digitizing their operations due to overwhelming information, a lack of necessary digital skills, and resource constraints. Our goal is to understand why these businesses are not digitizing and what services they require to facilitate this transition.
 
-- Overlord of Information
-- No Knowledge or skills
-- Resource Limitation
-    
-    Why are small local businesses not digitising? What services do they require?
+### About LocalBoost:
+LocalBoost is an online platform designed to assist small local businesses in overcoming digital obstacles. By connecting these businesses with skilled freelancers and students looking for real-world projects, we facilitate digital transformations through tailored solutions. 
 
-## What is LocalBoost?
-LocalBoost Is an online local platform that connects small local businesses with skilled freelancers and students seeking real world projects. 
+Services provided by LocalBoost include:
 
-Facilitates digital transformations, tailored solutions (Project Mgmt Tool - super simple to use)
+- Digital stock counting solutions (e.g., setting up Excel, barcode systems)
+- Website creation (using Wordpress, self-coded HTML, etc.)
+- Setting up Google review websites and pre-booking services
+- Implementing digital payment or POS systems
 
-- Digitalise stock counting (set up excel, barcode system etc)
-- Website creation (Wordpress, self coded, html etc)
-- Setting up google review website, pre-booking service
-- Digital payment (or POS) system
+In doing so, LocalBoost aims to foster a community of digital enthusiasts and businesses working together to innovate and grow at the local level.
 
-Fosters a community of digital enthusiast and businesses working together to drive innovation and growth at a local level
+### Unique Selling Point:
+LocalBoost focuses on aiding small local businesses such as hawkers, small restaurants, home-based businesses, and "mama shops." By empowering students and offering them the opportunity to work on these projects as case studies, we create a mutually beneficial situation.
 
-## Unique Selling Point:
+### Technical Details:
+LocalBoost is built with React and NodeJS and is deployed on Vercel for scalability. Potential integration with VM Tanzu as a sandbox system for development work is also under consideration.
 
-focuses on small local businesses like hawkers, small restaurants, mama shops, home-based businesses, empowering students, possibly model it as a case-study service to incentivise students.
+Here's a brief overview of our project directories:
 
+- `AI_prototype`: Our initial tests with OpenAI's GPT-4 API.
+- `teleport_frontend`: Our planned frontend, elements of which can be seen in the final MVP.
+- `yiji_aith`: Authentication files created during the prototyping stage.
+- `main`: The root of our MVP from where the project is deployed live.
 
-## Technical Mumbo Jumbo
-React, NodeJS. Deployed on Vercel to scale, possible integration with VM Tanzu as a sandbox system for development work!
-
-Understanding our directories:
---AI_prototype : where we first tested our API call to OpenAI's GPT4 access by our team
---teleport_frontend : our intended frontend that we weren't able to make full use of, but you'll see bits and pieces there in our final MVP.
---yiji_aith : authentication files by one of our team_members prototyping work
---main : The root of our MVP, the project is deployed live from here. 
+We hope this README provides a clear understanding of our project, LocalBoost, and its commitment to supporting small local businesses and digital enthusiasts.
