@@ -28,22 +28,22 @@ function NewMeetupForm(props) {
       <Card>
         <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.control}>
-            <label htmlFor="title">Listing Name</label>
+            <label htmlFor="title">Meetup title</label>
             <input type="text" required id="title" ref={titleInputRef} />
           </div>
-          {/* <div className={classes.control}>
-            <label htmlFor="title">Listing Image</label>
-            <input type="url" required id="image" ref={imageInputRef}/>
-          </div> */}
           <div className={classes.control}>
-            <label htmlFor="address">Category / Skills</label>
+            <label htmlFor="title">Meetup image</label>
+            <input type="url" required id="image" ref={imageInputRef}/>
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="address">Meetup Address</label>
             <input type="text" required id="address" ref={addressInputRef}/>
             <div className={classes.control}>
               <label htmlFor="description">Description</label>
               <textarea required id="description" rows="5"ref={descriptionInputRef}></textarea>
             </div>
             <div className={classes.actions}>
-              <button>Add Listing</button>
+              <button>Add Meetup</button>
             </div>
           </div>
         </form>
