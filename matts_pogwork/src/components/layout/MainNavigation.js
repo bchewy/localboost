@@ -12,8 +12,7 @@ function MainNavigation(){
                 <li>
                     <Link to= '/new-project'> Add New Listings</Link>
                   
-                </li>
-               
+                </li>   
                 <li>
                     <Link to="/Milestone">Milestones</Link>
                 </li>
