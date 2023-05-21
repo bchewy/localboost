@@ -29,3 +29,9 @@ focuses on small local businesses like hawkers, small restaurants, mama shops, h
 
 ## Technical Mumbo Jumbo
 React, NodeJS. Deployed on Vercel to scale, possible integration with VM Tanzu as a sandbox system for development work!
+
+Understanding our directories:
+--AI_prototype : where we first tested our API call to OpenAI's GPT4 access by our team
+--teleport_frontend : our intended frontend that we weren't able to make full use of, but you'll see bits and pieces there in our final MVP.
+--yiji_aith : authentication files by one of our team_members prototyping work
+--main : The root of our MVP, the project is deployed live from here. 
