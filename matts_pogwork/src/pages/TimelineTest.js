@@ -29,7 +29,7 @@ const TimelineTest = (props) => {
       }
     }
   }];
-
+  Only create 4 milestones.
   Do not reply with anything else, but a JSON array with all the fields as shown above. Remember to close the JSON file.
   ` };
   const [messages, setMessages] = useState([systemMessage]);
@@ -50,7 +50,7 @@ const TimelineTest = (props) => {
     const q = query(
       collection(docRef, "milestones"),
       where("milestone_number", "==", currentMilestone),
-      orderBy("timestamp", "asc")
+      orderBy("timestamp", "desc")
     );
     const querySnapshot = await getDocs(q);
     const newItems = querySnapshot.docs.map(item => ({
@@ -111,7 +111,7 @@ const TimelineTest = (props) => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`
           },
-          responseType: 'arraybuffer'
+  
         }
       );
 
