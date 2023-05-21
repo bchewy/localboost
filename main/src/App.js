@@ -14,6 +14,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile"
 import EditProfile from "./pages/EditProfile"
 import LocalBoostAI from "./pages/LocalBoostAI";
+import ViewActiveProjects from "./pages/ViewActiveProjects";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/registration-company" element={<RegistrationCompany />} />
         <Route path="/registration-student" element={<RegistrationStudent />} />
         <Route path="/Milestone-review" element={<MilestoneReview />} />
+        <Route path="/active-projects" element={<ViewActiveProjects />} />
 
         {/* Other Routes */}
         <Route path="/localboost-ai" element={<LocalBoostAI />} />
