@@ -88,16 +88,13 @@ const TimelineTest = (props) => {
         timelineContent: <Content />
         
       });
-    
-    setItems(newItems);
     });
+    setItems(newItems);
   };
   
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(items.length);
 
   return (
     <div style={{ width: '1200px', height: '800px' }}>
