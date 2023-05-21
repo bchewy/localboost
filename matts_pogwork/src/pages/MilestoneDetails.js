@@ -1,13 +1,13 @@
 import React from "react";
 import { Grid, Button, TextField } from '@mui/material';
+import { Link, useLocation } from "react-router-dom";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "../style.css";
-import "./styles.css";
 import { Chrono } from "react-chrono";
 
 import { app } from './firebase';
-import { getFirestore, collection, getDocs, query, serverTimestamp, addDoc, orderBy, doc, where, onSnapshot }
+import { getFirestore, collection, getDocs, query, serverTimestamp, addDoc, orderBy, doc, where, onSnapshot, updateDoc }
   from "firebase/firestore";
 
 import DownloadButton from "../components/FileDownloadButton";
@@ -15,10 +15,16 @@ import DownloadButton from "../components/FileDownloadButton";
 const db = getFirestore(app);
 
 const MilestoneDetails = (props) => {
+  const { state } = useLocation();
+
+  const milestoneID = state?.data;
+
   // TODO: use authentication to check the current user uid
   const user = "a0001";
   const projectID = "gdbn3vGcDHgrsz3mbJin";
+  const projectName = "Create delivery system";
   const currentMilestone = 1;
+  const isStudent = false;
 
   const [items, setItems] = useState([]);
 
@@ -161,6 +167,52 @@ const MilestoneDetails = (props) => {
     fetchCardData();
   }, []);
 
+  const TopBar = () => {
+    const handleComplete = () => {
+      const docRef = doc(db, "projects", projectID);
+
+      const unsubscribe = onSnapshot(docRef, (doc) => {
+        if (doc.data().current_milestone > currentMilestone) {
+          alert("This milestone has already been completed");
+        }else if (doc.data().current_milestone < currentMilestone) {
+          alert("You have not completed the previous milestone");
+        }else{
+          updateDoc(docRef, {
+          current_milestone: currentMilestone + 1
+          });
+          alert("Milestone completed!");
+        };
+        // console.log(doc.data().current_milestone);
+      });
+
+      unsubscribe();
+    };
+
+    if (isStudent) {
+      return (
+        <div>
+          <Button component={Link} variant="contained" to="/milestone-overview">
+            Back to Overview
+          </Button>
+          <Button component={Link} variant="contained" to="/add-update">
+            Add New Update
+          </Button>
+        </div>
+      )
+    }else{
+      return (
+        <div>
+          <Button component={Link} variant="contained" to="/milestone-overview">
+            Back to Overview
+          </Button>
+          <Button component={Link} variant="contained" onClick={handleComplete}>
+            Complete Milestone
+          </Button>
+        </div>
+      )
+    }
+  };
+
   // const cardRefs = useRef([]);
 
   // const cardRefsCallback = (ref) => {
@@ -181,14 +233,13 @@ const MilestoneDetails = (props) => {
 
   return (
     <div style={{ width: '1200px', height: '850px' }}>
-      <h1>Project {projectID}: Milestone {currentMilestone}</h1>
-      <div className="card-wrapper">
-        {items.length > 0 && <Chrono
-          items={items}
-          mode="VERTICAL"
-          cardHeight="600"
-          />}
-      </div>
+      <h1>{projectName}: Milestone {currentMilestone}</h1>
+      <TopBar />
+      {items.length > 0 && <Chrono
+        items={items}
+        mode="VERTICAL"
+        cardHeight="600"
+        />}
     </div>
   );
 };

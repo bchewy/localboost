@@ -10,6 +10,7 @@ import SignIn from "./pages/SignIn";
 import RegistrationCompany from "./pages/RegistrationCompany";
 import RegistrationStudent from "./pages/RegistrationStudent";
 import MilestoneDetails from "./pages/MilestoneDetails";
+import MilestoneOverview from "./pages/MilestoneOverview";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile"
 import EditProfile from "./pages/EditProfile"
@@ -31,6 +32,7 @@ function App() {
         <Route path="/favorites" element={<FavoritesPage />} />
         {/*  Add a route here, change path and element to link a new page */}
         <Route path="/chatai" element={<ChatAI />} />
+        <Route path="/milestone-overview" element={<MilestoneOverview />} />
         <Route path="/milestone-details" element={<MilestoneDetails />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />

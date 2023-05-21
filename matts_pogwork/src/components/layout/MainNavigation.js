@@ -21,7 +21,7 @@ function MainNavigation(){
                     <Link to="/chatai">Chat</Link>
                 </li>
                 <li>
-                    <Link to="/timeline-test">Timeline Test</Link>
+                    <Link to="/milestone-details">Timeline Test</Link>
                 </li>
                 <li>
                     <Link to="/sign-in">Sign In</Link>
