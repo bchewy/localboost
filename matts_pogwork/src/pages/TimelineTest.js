@@ -14,7 +14,6 @@ import DownloadButton from "../components/FileDownloadButton";
 const TimelineTest = (props) => {
 
 
-
   const [items, setItems] = useState([]);
   const user = "a0001";   // TODO: use authentication to check the current user uid
   const projectID = "gdbn3vGcDHgrsz3mbJin";
@@ -155,16 +154,6 @@ const TimelineTest = (props) => {
       });
     });
     setItems(newItems);
-  };
-
-  // Handle option changes.
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  // Handle custom option changes.
-  const handleCustomOptionChange = (event) => {
-    setCustomOption(event.target.value);
   };
 
 
