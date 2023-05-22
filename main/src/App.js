@@ -22,7 +22,7 @@ function App() {
   return (
     <div>
       <Layout>
-        <AuthContextProvider>
+        {/* <AuthContextProvider> */}
           <Routes>
             {/*  Add a route here, change path and element to link a new page */}
             <Route path="/" element={<SignIn />} />
@@ -53,7 +53,7 @@ function App() {
             <Route path="/test-fetch" element={<TestFetch />} />
 
           </Routes>
-        </AuthContextProvider>
+        {/* </AuthContextProvider> */}
       </Layout>
     </div>
   );
