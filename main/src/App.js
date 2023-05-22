@@ -3,7 +3,6 @@ import AllListings from "./pages/AllListings";
 import MyProjects from "./pages/MyProjects";
 import NewProjectPage from "./pages/NewProject";
 import MilestoneReview from "./pages/MilestoneReview";
-import Milestone from "./pages/Milestone";
 import MilestoneOverview from "./pages/MilestoneOverview";
 import MilestoneDetails from "./pages/MilestoneDetails";
 import Layout from './components/layout/Layout';
@@ -24,59 +23,39 @@ import { AuthContextProvider } from "./components/auth/AuthContext";
 function App() {
   return (
     <div>
-     <Layout>
-      
-      <Routes>
-        {/*  Add a route here, change path and element to link a new page */}
-        {/* Project Routes */}
-        <Route path="/" element={<AllListings />} />
-        <Route path="/new-project" element={<NewProjectPage />} />
-        <Route path="/milestones" element={<Milestone />} />
 
-        {/* End user Authentication Routes */}
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/registration-company" element={<RegistrationCompany />} />
-        <Route path="/registration-student" element={<RegistrationStudent />} />
-        <Route path="/milestone-review" element={<MilestoneReview />} />
-        <Route path="/milestone-overview" element={<MilestoneOverview />} />
-        <Route path="/milestone-details" element={<MilestoneDetails />} />
-        <Route path="/projects" element={<MyProjects />} />
       <Layout>
-        {/* <AuthContextProvider> */}
+        <AuthContextProvider>
           <Routes>
             {/*  Add a route here, change path and element to link a new page */}
-            <Route path="/" element={<SignIn />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/edit-profile" element={<EditProfile />} />
-            <Route path="/Milestone-review" element={<MilestoneReview />} />
-            <Route path="/active-projects" element={<ViewActiveProjects />} />
-            {/* Authentication Routes */}
+            {/* Frontend routes */}
+            <Route path="/" element={<AllListings />} />
             <Route path="/register" element={<Register />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/registration-company" element={<RegistrationCompany />} />
             <Route path="/registration-student" element={<RegistrationStudent />} />
+            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+            <Route path="/edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
+
+            {/* Milestone Reviews */}
+            <Route path="/milestone-overview" element={<MilestoneOverview />} />             {/* Show milestones */}
+            <Route path="/milestone-review" element={<MilestoneReview />} />             {/* Add additional milestones only as a student */}
+            <Route path="/milestone-details" element={<MilestoneDetails />} />              {/* Show milestone details*/}
 
             {/* Project Routes */}
-            <Route path="/all-projects" element={<AllProjectsPage />} />
+            <Route path="/all-projects" element={< AllListings />} /> 
             <Route path="/new-project" element={<NewProjectPage />} />
-            <Route path="/Milestones" element={<Milestone />} />
-            <Route path="/Milestone-review" element={<MilestoneReview />} />
+            <Route path="/projects" element={<MyProjects />} />
 
             {/* Other Routes */}
             <Route path="/localboost-ai" element={<LocalBoostAI />} />
-            <Route path="/timeline-test" element={<TimelineTest />} />
-            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-            <Route path="/edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
 
             {/* Test Routes */}
             <Route path="/test-upload" element={<TestUpload />} />
             <Route path="/test-fetch" element={<TestFetch />} />
 
           </Routes>
-        {/* </AuthContextProvider> */}
+        </AuthContextProvider>
       </Layout>
     </div>
   );
