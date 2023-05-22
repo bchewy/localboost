@@ -14,37 +14,42 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile"
 import EditProfile from "./pages/EditProfile"
 import LocalBoostAI from "./pages/LocalBoostAI";
+import PrivateRoute from "./components/auth/PrivateRoute";
+import { AuthContextProvider } from "./components/auth/AuthContext";
 
 function App() {
   return (
     <div>
-     <Layout>
-      
-      <Routes>
-        {/*  Add a route here, change path and element to link a new page */}
-        {/* Project Routes */}
-        <Route path="/" element={<AllProjectsPage />} />
-        <Route path="/new-project" element={<NewProjectPage />} />
-        <Route path="/Milestones" element={<Milestone />} />
+      <Layout>
+        <AuthContextProvider>
+          <Routes>
+            {/*  Add a route here, change path and element to link a new page */}
+            <Route path="/" element={<SignIn />} />
 
-        {/* End user Authentication Routes */}
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/registration-company" element={<RegistrationCompany />} />
-        <Route path="/registration-student" element={<RegistrationStudent />} />
-        <Route path="/Milestone-review" element={<MilestoneReview />} />
+            {/* Authentication Routes */}
+            <Route path="/register" element={<Register />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/registration-company" element={<RegistrationCompany />} />
+            <Route path="/registration-student" element={<RegistrationStudent />} />
 
-        {/* Other Routes */}
-        <Route path="/localboost-ai" element={<LocalBoostAI />} />
-        <Route path="/timeline-test" element={<TimelineTest />} />
+              {/* Project Routes */}
+              <Route path="/all-projects" element={<AllProjectsPage />} />
+              <Route path="/new-project" element={<NewProjectPage />} />
+              <Route path="/Milestones" element={<Milestone />} />
+              <Route path="/Milestone-review" element={<MilestoneReview />} />
 
-        {/* Test Routes */}
-        <Route path="/test-upload" element={<TestUpload />} />
-        <Route path="/test-fetch" element={<TestFetch />} />
+              {/* Other Routes */}
+              <Route path="/localboost-ai" element={<LocalBoostAI />} />
+              <Route path="/timeline-test" element={<TimelineTest />} />
+              <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+              <Route path="/edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
 
-      </Routes>
+            {/* Test Routes */}
+            <Route path="/test-upload" element={<TestUpload />} />
+            <Route path="/test-fetch" element={<TestFetch />} />
+
+          </Routes>
+        </AuthContextProvider>
       </Layout>
     </div>
   );

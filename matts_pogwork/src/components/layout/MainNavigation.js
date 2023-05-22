@@ -10,11 +10,10 @@ function MainNavigation(){
                     <Link to= '/'> All Listings </Link>
                 </li>
                 <li>
-                    <Link to= '/new-project'> Add New Listings</Link>
-                  
+                    <Link to= '/new-project'>Add New Listings</Link>
                 </li>   
                 <li>
-                    <Link to="/Milestone">Milestones</Link>
+                    <Link to="/Milestones">Milestones</Link>
                 </li>
                 <li>
                     <Link to="/localboost-ai">Chat</Link>
@@ -23,15 +22,8 @@ function MainNavigation(){
                     <Link to="/timeline-test">Timeline Test</Link>
                 </li>
                 <li>
-                    <Link to="/sign-in">Sign In</Link>
-                </li>
-                <li>
-                    <Link to="/register">Register</Link>
-                </li>
-                <li>
                     <Link to="/profile">Profile</Link>
                 </li>
-
                 {/* Other navigation stuff */}
                 {/* <li>
                     <Link to="/test-upload">Test an Upload</Link>

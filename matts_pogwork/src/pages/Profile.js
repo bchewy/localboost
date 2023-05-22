@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 
 const Profile = () => {
     // get signed-in user
-    const auth = getAuth();
     const [firstName, setFirstName] = useState(""); // useState hook to store firstName
     const [lastName, setLastName] = useState("");
     const [availability, setAvailability] = useState("");

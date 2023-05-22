@@ -40,6 +40,7 @@ const RegistrationStudent = () => {
                     transcripts: transcripts
                 }
                 set(ref(db, 'students/' + userCredential.user.uid), newStudent);
+                setError("Successfully created account!")
             }).catch((error) => {
                 console.log(error);
                 setError(error.message);
