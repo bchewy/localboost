@@ -317,7 +317,7 @@ const EditProfile = () => {
                     </span>
                 </div>
                 <div className="profile-container15">
-                    <h2 className="profile-text28">Skills</h2>
+                    <h2 className="profile-text22">Skills</h2>
                     <span className="profile-text29">
                         <Select 
                         required
