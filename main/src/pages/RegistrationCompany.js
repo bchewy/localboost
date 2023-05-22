@@ -6,8 +6,10 @@ import '../components/auth/registration-company.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { getDatabase, ref, set } from "firebase/database";
+import { useNavigate, Link } from 'react-router-dom';
 
 const RegistrationCompany = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(''); // State for storing errors
@@ -33,6 +35,7 @@ const RegistrationCompany = () => {
                     skills: skillOptions //don't know how to get this to work properly
                 }
                 set(ref(db, 'companies/' + userCredential.user.uid), newCompany);
+                navigate("/");
             }).catch((error) => {
                 console.log(error);
                 setError(error.message);

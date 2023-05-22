@@ -47,10 +47,12 @@ const MyProjects = (props) => {
     return (
         <div>
             <h1>My Projects</h1>
+            <p>Click into the project to view milestones</p>
             <Grid container spacing={2}>
             {items.map((card, index) => (
                 <Grid key={index} item xs={12} sm={6} md={4}>
                     <Card>
+                        {/* Project has status */}
                         <CardActionArea component={Link} to="/milestone-overview" state={{id: card.projectID, user: user}}>
                             <CardHeader title={card.name} />
                             <CardContent><p>{card.description}</p></CardContent>

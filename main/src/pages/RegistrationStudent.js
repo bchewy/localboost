@@ -6,9 +6,10 @@ import '../components/auth/registration-student.css'
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { getDatabase, ref, set } from "firebase/database";
-
+import { useNavigate, Link } from 'react-router-dom';
 
 const RegistrationStudent = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(''); // State for storing errors
@@ -41,6 +42,7 @@ const RegistrationStudent = () => {
                 }
                 set(ref(db, 'students/' + userCredential.user.uid), newStudent);
                 setError("Successfully created account!")
+                navigate("/");
             }).catch((error) => {
                 console.log(error);
                 setError(error.message);
