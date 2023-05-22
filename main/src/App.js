@@ -23,9 +23,8 @@ import { AuthContextProvider } from "./components/auth/AuthContext";
 function App() {
   return (
     <div>
-
-      <Layout>
-        <AuthContextProvider>
+      <AuthContextProvider>
+        <Layout>
           <Routes>
             {/*  Add a route here, change path and element to link a new page */}
             {/* Frontend routes */}
@@ -43,7 +42,7 @@ function App() {
             <Route path="/milestone-details" element={<MilestoneDetails />} />              {/* Show milestone details*/}
 
             {/* Project Routes */}
-            <Route path="/all-projects" element={< AllListings />} /> 
+            <Route path="/all-projects" element={< AllListings />} />
             <Route path="/new-project" element={<NewProjectPage />} />
             <Route path="/projects" element={<MyProjects />} />
 
@@ -55,8 +54,9 @@ function App() {
             <Route path="/test-fetch" element={<TestFetch />} />
 
           </Routes>
-        </AuthContextProvider>
-      </Layout>
+        </Layout>
+      </AuthContextProvider>
+
     </div>
   );
 }
