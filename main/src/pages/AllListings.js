@@ -25,7 +25,7 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 //   },
 // ];
 
-function AllMeetupsPage() {
+function AllListings() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedProjs, setLoadedProjs] = useState([]);
   const db = getFirestore(app);
@@ -61,4 +61,4 @@ function AllMeetupsPage() {
     </div>
   );
 }
-export default AllMeetupsPage;
+export default AllListings;

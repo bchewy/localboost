@@ -13,17 +13,24 @@ function MainNavigation(){
                     <Link to= '/new-project'>Add New Listings</Link>
                 </li>   
                 <li>
-                    <Link to="/Milestones">Milestones</Link>
+                    <Link to="/milestone-overview">Milestones</Link>
                 </li>
                 <li>
                     <Link to="/localboost-ai">AI</Link>
                 </li>
                 <li>
-                    <Link to="/timeline-test">Timeline</Link>
+                    <Link to="/sign-in">Sign In</Link>
+                </li>
+                <li>
+                    <Link to="/register">Register</Link>
                 </li>
                 <li>
                     <Link to="/profile">Profile</Link>
                 </li>
+                <li>
+                    <Link to="/projects">My Projects</Link>
+                </li>
+
                 {/* Other navigation stuff */}
                 {/* <li>
                     <Link to="/test-upload">Test an Upload</Link>
