@@ -169,7 +169,9 @@ const EditProfile = () => {
     return (
         <div className="profile-container">
             <form className="edit-profile-form" onSubmit={handleSubmit}>
+            <div className="profile-container15">
                 <h1>Edit Profile</h1>
+            </div>
                 <div className="profile-container03">
                     <div className="profile-container04">
                         <div className="profile-container01">
