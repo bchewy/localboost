@@ -81,6 +81,7 @@ const MilestoneOverview = (props) => {
 
     return (
         <div style={{ display:'flex', justifyContent:'center', alignItems: 'center' }}>
+            <RedirectButton data={null} link="/projects" text="Back to projects"/>
             <h1>Milestone Overview</h1>
             {items.length > 0 && <Chrono
             items={items}
