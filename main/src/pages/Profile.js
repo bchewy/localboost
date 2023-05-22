@@ -74,7 +74,6 @@ const Profile = () => {
                                 }
                                 const skillsValue = snapshot.val().skills;
                                 setSkills(skillsValue);
-                                console.log(skillsValue);
                                 if (skillsValue == null) {
                                     setSkills("Website Creation");
                                 }
