@@ -22,7 +22,7 @@ import MeetupList from "../components/meetups/MeetupList";
 //   },
 // ];
 
-function AllMeetupsPage() {
+function AllListings() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedMeetups, setLoadedMeetups] = useState([]);
 
@@ -64,4 +64,4 @@ function AllMeetupsPage() {
     </div>
   );
 }
-export default AllMeetupsPage;
+export default AllListings;

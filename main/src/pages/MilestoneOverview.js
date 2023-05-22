@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Button, TextField } from '@mui/material';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import "../style.css";
@@ -16,8 +16,11 @@ import { getFirestore, collection, getDocs, query, getDoc, orderBy, doc }
 const db = getFirestore(app);
 
 const MilestoneOverview = (props) => {
-    const user = "a0001";
-    const projectID = "ryD3vfpxfmg7lzuSgak6";
+    const location = useLocation();
+    const { id, user } = location.state;
+
+    const projectID = id;
+    // const projectID = "ryD3vfpxfmg7lzuSgak6";
     const [items, setItems] = useState([]);    
     const [users, setUsers] = useState([]);
 

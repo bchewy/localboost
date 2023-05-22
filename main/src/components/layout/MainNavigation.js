@@ -28,6 +28,9 @@ function MainNavigation(){
                 <li>
                     <Link to="/profile">Profile</Link>
                 </li>
+                <li>
+                    <Link to="/projects">My Projects</Link>
+                </li>
 
                 {/* Other navigation stuff */}
                 {/* <li>

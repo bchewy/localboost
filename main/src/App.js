@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import AllProjectsPage from "./pages/AllProjects";
+import AllListings from "./pages/AllListings";
+import MyProjects from "./pages/MyProjects";
 import NewProjectPage from "./pages/NewProject";
 import MilestoneReview from "./pages/MilestoneReview";
 import Milestone from "./pages/Milestone";
@@ -25,7 +26,7 @@ function App() {
       <Routes>
         {/*  Add a route here, change path and element to link a new page */}
         {/* Project Routes */}
-        <Route path="/" element={<AllProjectsPage />} />
+        <Route path="/" element={<AllListings />} />
         <Route path="/new-project" element={<NewProjectPage />} />
         <Route path="/milestones" element={<Milestone />} />
 
@@ -39,6 +40,7 @@ function App() {
         <Route path="/milestone-review" element={<MilestoneReview />} />
         <Route path="/milestone-overview" element={<MilestoneOverview />} />
         <Route path="/milestone-details" element={<MilestoneDetails />} />
+        <Route path="/projects" element={<MyProjects />} />
 
         {/* Other Routes */}
         <Route path="/localboost-ai" element={<LocalBoostAI />} />

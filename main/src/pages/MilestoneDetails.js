@@ -11,6 +11,7 @@ import { getFirestore, collection, getDocs, query, serverTimestamp, addDoc, orde
   from "firebase/firestore";
 
 import DownloadButton from "../components/FileDownloadButton";
+import ChatWidget from "../components/ChatWidget";
 
 const db = getFirestore(app);
 
@@ -243,6 +244,7 @@ const MilestoneDetails = (props) => {
         mode="VERTICAL"
         cardHeight="600"
         />}
+      <ChatWidget sender={user} recipient={chatRecipient}/>
     </div>
   );
 };
