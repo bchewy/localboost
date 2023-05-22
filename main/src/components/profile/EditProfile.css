@@ -266,21 +266,21 @@
 }
 .profile-text08 {
   align-self: flex-start;
-  margin-bottom: var(--dl-space-space-halfunit);
+  margin-top: 10px;
 }
 .profile-text09 {
   align-self: flex-start;
-  margin-top: 13px;
+  margin-top: 14px;
 
 }
 .profile-text12 {
   align-self: flex-start;
-  margin-top: 13px;
+  margin-top: 14px;
 
 }
 .profile-text15 {
   align-self: flex-start;
-  margin-top: 13px;
+  margin-top: 14px;
 
 }
 .profile-container12 {
@@ -335,7 +335,6 @@
 
 }
 .profile-container15 {
-  margin-top: 60px;
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
