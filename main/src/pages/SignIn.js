@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from './firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../components/auth/sign-in.css'
 
 const SignIn = () => {
@@ -10,6 +10,12 @@ const SignIn = () => {
     const [error, setError] = useState(''); // State for storing errors
     const auth = getAuth(app);
     const navigate = useNavigate();
+    const handleJoinNowCompany = () => {
+        navigate("/registration-company");
+    }
+    const handleJoinNowStudent = () => {
+        navigate("/registration-student");
+    }
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const uid = user.uid;
@@ -87,7 +93,10 @@ const SignIn = () => {
                         }}
                     />
                 </span>
-                <span className="sign-in-text11">Join Now</span>
+                <span className>Join Now as a&nbsp;
+                    <Link to="/registration-student" className="sign-in-text10" onClick={handleJoinNowStudent}>Student</Link>
+                    &nbsp;or a&nbsp;
+                    <Link to="/registration-company" className="sign-in-text11" onClick={handleJoinNowCompany}>Company</Link></span>
             </span>
         </div>
     )

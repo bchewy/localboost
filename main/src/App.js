@@ -1,8 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import AllProjectsPage from "./pages/AllProjects";
+import AllListings from "./pages/AllListings";
+import MyProjects from "./pages/MyProjects";
 import NewProjectPage from "./pages/NewProject";
 import MilestoneReview from "./pages/MilestoneReview";
-import Milestone from "./pages/Milestone";
+import MilestoneOverview from "./pages/MilestoneOverview";
+import MilestoneDetails from "./pages/MilestoneDetails";
 import Layout from './components/layout/Layout';
 import TestUpload from "./pages/TestUpload";
 import TestFetch from "./pages/TestFetch";
@@ -14,39 +16,50 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile"
 import EditProfile from "./pages/EditProfile"
 import LocalBoostAI from "./pages/LocalBoostAI";
+import ViewActiveProjects from "./pages/ViewActiveProjects";
+import PrivateRoute from "./components/auth/PrivateRoute";
+import { AuthContextProvider } from "./components/auth/AuthContext";
+
 
 function App() {
   return (
     <div>
-     <Layout>
-      
-      <Routes>
-        {/*  Add a route here, change path and element to link a new page */}
-        {/* Project Routes */}
-        <Route path="/" element={<AllProjectsPage />} />
-        <Route path="/new-project" element={<NewProjectPage />} />
-        <Route path="/Milestones" element={<Milestone />} />
+      <AuthContextProvider>
+        <Layout>
+          <Routes>
+            {/*  Add a route here, change path and element to link a new page */}
+            {/* Frontend routes */}
+            <Route path="/" element={<AllListings />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/registration-company" element={<RegistrationCompany />} />
+            <Route path="/registration-student" element={<RegistrationStudent />} />
+            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+            <Route path="/edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
 
-        {/* End user Authentication Routes */}
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/registration-company" element={<RegistrationCompany />} />
-        <Route path="/registration-student" element={<RegistrationStudent />} />
-        <Route path="/Milestone-review" element={<MilestoneReview />} />
+            {/* Milestone Reviews */}
+            <Route path="/milestone-overview" element={<MilestoneOverview />} />             {/* Show milestones */}
+            <Route path="/milestone-review" element={<MilestoneReview />} />             {/* Add additional milestones only as a student */}
+            <Route path="/milestone-details" element={<MilestoneDetails />} />              {/* Show milestone details*/}
 
-        {/* Other Routes */}
-        <Route path="/localboost-ai" element={<LocalBoostAI />} />
-        <Route path="/timeline-test" element={<TimelineTest />} />
+            {/* Project Routes */}
+            <Route path="/all-projects" element={< AllListings />} />
+            <Route path="/new-project" element={<NewProjectPage />} />
+            <Route path="/projects" element={<MyProjects />} />
 
-        {/* Test Routes */}
-        <Route path="/test-upload" element={<TestUpload />} />
-        <Route path="/test-fetch" element={<TestFetch />} />
+            {/* Other Routes */}
+            <Route path="/localboost-ai" element={<LocalBoostAI />} />
 
-      </Routes>
-      </Layout>
+            {/* Test Routes */}
+            <Route path="/test-upload" element={<TestUpload />} />
+            <Route path="/test-fetch" element={<TestFetch />} />
+
+          </Routes>
+        </Layout>
+      </AuthContextProvider>
+      <div style={{paddingLeft: '50px', paddingBottom: '20px', fontSize: '12px', color: '#878787'}}>developed with 🩸😓😭 by team smuchamps 2023</div>
     </div>
+    
   );
 }
 

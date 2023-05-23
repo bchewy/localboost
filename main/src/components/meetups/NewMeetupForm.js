@@ -5,21 +5,21 @@ import { useRef } from "react";
 function NewMeetupForm(props) {
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
-  const addressInputRef = useRef();
+  const tagsInputRef = useRef();
   const imageInputRef = useRef();
   function submitHandler(event) {
     event.preventDefault();
     const enteredTitle = titleInputRef.current.value;
     const enteredImage = imageInputRef.current.value;
-    const enteredAddress = addressInputRef.current.value;
+    const enteredTags = tagsInputRef.current.value;
     const enteredDescription = descriptionInputRef.current.value;
 
     const meetupData= {
-        title: enteredTitle,
+        name: enteredTitle,
         image: enteredImage,
-        address: enteredAddress,
-        description: enteredDescription
-    
+        address: enteredTags,
+        description: enteredDescription,
+        status: "unmatched"
   }
   props.onAddMeetup(meetupData)
 }
@@ -29,15 +29,15 @@ function NewMeetupForm(props) {
         <form className={classes.form} onSubmit={submitHandler}>
           <div className={classes.control}>
             <label htmlFor="title">Listing Name</label>
-            <input type="text" required id="title" ref={titleInputRef} />
+            <input type="text" required id="name" ref={titleInputRef} />
           </div>
-          {/* <div className={classes.control}>
-            <label htmlFor="title">Listing Image</label>
-            <input type="url" required id="image" ref={imageInputRef}/>
-          </div> */}
           <div className={classes.control}>
-            <label htmlFor="address">Category / Skills</label>
-            <input type="text" required id="address" ref={addressInputRef}/>
+            <label htmlFor="image">Listing Image</label>
+            <input type="url" required id="image" ref={imageInputRef}/>
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="tags">Category / Skills</label>
+            <input type="text" required id="tags" ref={tagsInputRef}/>
             <div className={classes.control}>
               <label htmlFor="description">Description</label>
               <textarea required id="description" rows="5"ref={descriptionInputRef}></textarea>

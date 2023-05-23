@@ -40,7 +40,6 @@ Here's a brief overview of our project directories:
 
 - `AI_prototype`: Our initial tests with OpenAI's GPT-4 API.
 - `teleport_frontend`: Our planned frontend, elements of which can be seen in the final MVP.
-- `yiji_aith`: Authentication files created during the prototyping stage.
 - `main`: The root of our MVP from where the project is deployed live.
 
 We hope this README provides a clear understanding of our project, LocalBoost, and its commitment to supporting small local businesses and digital enthusiasts.

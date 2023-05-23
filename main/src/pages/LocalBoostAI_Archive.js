@@ -16,6 +16,22 @@ import DownloadButton from "../components/FileDownloadButton";
 // Main app component
 const LocalBoostAI = () => {
   const systemMessage = { role: 'system', content: 'You are localboost AI, an AI focused on helping small businesses with their problems. You are to provide them with a suitable student whom may help them solve their problem, and can be found on the LocalBoost platform. Ask users for more information if you require more to make your decisions. If you list any items in the form of lists, render them in HTML.' };
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([systemMessage]);
+  const [aiResponse, setAiResponse] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMile, setIsLoadingMile] = useState(false);
+
+  // Milestone Feature Variables
+  // OLD SYSTEM PROMPT
+  const [parsedContent, setParsedContent] = useState([]);
+  const [items, setItems] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('');
+  const user = "a0001";   // TODO: use authentication to check the current user uid
+  const projectID = "gdbn3vGcDHgrsz3mbJin";
+  const currentMilestone = 1;
+  const db = getFirestore(app);
+
   const systemMessageMile = {
     role: 'system', content: `
   You are LocalBoost AI GPT, you only respond with an JSON milestones array.
@@ -37,22 +53,6 @@ const LocalBoostAI = () => {
   ONLY CREATE 4 milestones.
   Do not reply with anything else, but a JSON array with all the fields as shown above. Remember to close the JSON file.
   ` };
-  const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([systemMessage]);
-  const [messagesMile, setMessagesMile] = useState([systemMessageMile]);
-  const [aiResponse, setAiResponse] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingMile, setIsLoadingMile] = useState(false);
-
-  // Milestone Feature Variables
-  // OLD SYSTEM PROMPT
-  const [parsedContent, setParsedContent] = useState([]);
-  const [items, setItems] = useState([]);
-  const [selectedOption, setSelectedOption] = useState('');
-  const user = "a0001";   // TODO: use authentication to check the current user uid
-  const projectID = "gdbn3vGcDHgrsz3mbJin";
-  const currentMilestone = 1;
-  const db = getFirestore(app);
 
 
   // Method 1 of trying out TypeIt for React
@@ -210,17 +210,22 @@ const LocalBoostAI = () => {
     setIsLoadingMile(true);
     try {
       console.log("Sending request to OpenAI API...");
+      // console.log("messages:", messages);
+      // console.log("system message:", messages[0].content);
+      // console.log("end of messages:");
 
       const requestBody = {
         model: 'gpt-3.5-turbo',
         messages: [
-          ...messagesMile,
-          { role: 'system', content: messagesMile[0].content.replace('{category}', selectedOption) }
+          ...messages,
+          { role: 'system', content: messages[0].content.replace('{category}', selectedOption) }
         ],
-        max_tokens: 600
+        max_tokens: 600,
+        // suffix: '}];', //Close the array
+        // stream: true
       };
 
-      // console.log('replaced category message: '+messagesMile[0].content.replace('{category}', selectedOption))
+      console.log('replaced cat'+messages[0].content.replace('{category}', selectedOption))
 
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
@@ -236,11 +241,20 @@ const LocalBoostAI = () => {
 
       console.log("Received response from OpenAI API: ", response);
 
-      const aiMessageMile = { role: 'assistant', content: response.data.choices[0].message.content };
-      const f_content = aiMessageMile.content
-      // console.log("f_content:", f_content)
+      const aiMessage = { role: 'assistant', content: response.data.choices[0].message.content };
+      const f_content = aiMessage.content
+      console.log("f_content:", f_content)
       const parsedContent = JSON.parse(f_content);
       setParsedContent(parsedContent);
+
+      // parsedContent.forEach((item) => {
+      //   console.log("Title:", item.title);
+      //   console.log("Card Title:", item.cardTitle);
+      //   console.log("URL:", item.url);
+      //   console.log("Card Subtitle:", item.cardSubtitle);
+      //   console.log("Card Detailed Text:", item.cardDetailedText);
+      //   console.log("Media Source URL:", item.media.source.url);
+      // });
 
     } catch (error) {
       console.error("Error occurred while calling OpenAI API: ", error);
@@ -379,7 +393,7 @@ const LocalBoostAI = () => {
       <div>
         <h2>Generate project milestones with our AI.</h2>
         <Typography variant="body1" gutterBottom> (IN BETA*) Settle on what you need for your project. Use Generative AI to help you come up with ideas. Edit after. </Typography>
-      {isLoadingMile && <LinearProgress />}
+      {isLoading && <LinearProgress />}
       <form onSubmit={handleSubmitMile}>
         <Select
           value={selectedOption}
@@ -401,12 +415,12 @@ const LocalBoostAI = () => {
       <div style={{ backgroundColor: 'lightgray', padding: '5rem' }}>
       {parsedContent.map((item, index) => (
           <div key={index}>
-            <h3>Milestone name: {item.title}</h3>
-            <p>Title: {item.cardTitle}</p>
-            {/* <p>URL: {item.url}</p> */}
-            <p>Subtitle: {item.cardSubtitle}</p>
-            <p>Detailed Text: {item.cardDetailedText}</p>
-            {/* <p>Media Source URL: {item.media.source.url}</p> */}
+            <h3>Title: {item.title}</h3>
+            <p>Card Title: {item.cardTitle}</p>
+            <p>URL: {item.url}</p>
+            <p>Card Subtitle: {item.cardSubtitle}</p>
+            <p>Card Detailed Text: {item.cardDetailedText}</p>
+            <p>Media Source URL: {item.media.source.url}</p>
           </div>
         ))}
       </div>

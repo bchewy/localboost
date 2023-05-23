@@ -37,47 +37,55 @@
   align-self: flex-start;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-top: 8px;
 }
 .registration-student-text04 {
   align-self: flex-start;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-top: 32px;
 }
 .registration-student-text05 {
   align-self: flex-start;
   margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-top: 38px;
 }
 .registration-student-text06 {
   align-self: flex-start;
   margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-top: 38px;
 }
 .registration-student-text07 {
   align-self: flex-start;
   margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-top: 32px;
 }
 .registration-student-text11 {
   align-self: flex-start;
   margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-top: 32px;
 }
 .registration-student-text15 {
   align-self: flex-start;
-  margin-top: 50px;
+  margin-top: 57px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-bottom: 27px;
 }
 .registration-student-text21 {
   align-self: flex-start;
   margin-top: 3px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-bottom: 20px;
 }
 .registration-student-text27 {
   align-self: flex-start;

@@ -126,9 +126,18 @@
   flex-direction: row;
   margin-left: 60px;
 }
+.profile-container98 {
+  flex: 0 0 auto;
+  width: auto;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  align-items: center;
+  flex-direction: row;
+  margin-left: 60px;
+}
 .profile-edit-button{
   margin-left: 200px;
-  display: inline;
+  display: flex;
 }
 .profile-login1 {
   margin-right: var(--dl-space-space-twounits);
@@ -189,11 +198,12 @@
 }
 .profile-container06 {
   flex: 0 0 auto;
-  width: 248px;
+  width: fit-content;
   height: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding:50px;
 }
 .profile-container07 {
   flex: 0 0 auto;
@@ -201,6 +211,15 @@
   height: auto;
   display: flex;
   align-self: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.profile-container07a {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-self: left;
   align-items: center;
   flex-direction: column;
 }
@@ -234,6 +253,10 @@
 .profile-button1 {
   margin-left: 20px;
 }
+.profile-button3{
+  margin-left: 20px;
+  white-space: nowrap;
+}
 .profile-container09 {
   flex: 0 0 auto;
   width: auto;
@@ -242,7 +265,15 @@
   align-items: center;
   flex-direction: column;
   margin-top: -15px;
-
+}
+.profile-text99 {
+  font-size: 32px;
+  align-self: flex-start;
+  font-style: normal;
+  margin-top: -5px;
+  font-weight: 700;
+  margin-left: 30px;
+  color: #A764B7;
 }
 .profile-container10 {
   flex: 0 0 auto;
@@ -261,6 +292,7 @@
   display: flex;
   align-items: center;
   margin-left: var(--dl-space-space-oneandhalfunits);
+  margin-top: 0px !important;
   flex-direction: column;
 }
 .profile-text08 {
@@ -303,6 +335,7 @@
   display: flex;
   align-items: center;
   margin-left: var(--dl-space-space-unit);
+  margin-top: 13px;
   flex-direction: column;
 }
 .profile-text18 {
@@ -313,18 +346,18 @@
 .profile-text19 {
   align-self: flex-start;
   margin-left: 4px;
-  margin-top: 10px !important;
+  margin-top: 13px !important;
 }
 .profile-text20 {
   align-self: flex-start;
   margin-left: 4px;
-  margin-top: 10px !important;
+  margin-top: 14px !important;
 
 }
 .profile-text21 {
   align-self: flex-start;
   margin-left: 4px;
-  margin-top: 10px !important;
+  margin-top: 13px !important;
 
 }
 .profile-container15 {
@@ -356,9 +389,6 @@
 .profile-text28 {
   align-self: flex-start;
   margin-top: var(--dl-space-space-twounits);
-}
-.profile-text29 {
-
 }
 .profile-text32 {
   padding-left: var(--dl-space-space-unit);
