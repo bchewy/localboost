@@ -8,6 +8,11 @@ Meet the team!
 - https://www.linkedin.com/in/brian-chew/
 - https://www.linkedin.com/in/matthias-lee-a404a3146
 
+# DEMO
+https://localboost.vercel.app/
+user: pls@work.com
+pass: pls@work.com
+
 ### Problem Statement:
 Small local businesses often face hurdles in digitizing their operations due to overwhelming information, a lack of necessary digital skills, and resource constraints. Our goal is to understand why these businesses are not digitizing and what services they require to facilitate this transition.
 
