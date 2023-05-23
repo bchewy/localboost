@@ -263,6 +263,7 @@
   align-items: center;
   margin-left: var(--dl-space-space-oneandhalfunits);
   flex-direction: column;
+  margin-top: 13px;
 }
 .profile-text08 {
   align-self: flex-start;
@@ -418,7 +419,7 @@
 }
 
 .age {
-  width: 30px;
+  width: 60px;
 }
 .input-about {
   width: 900px;

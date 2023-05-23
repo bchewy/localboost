@@ -401,12 +401,12 @@ const LocalBoostAI = () => {
       <div style={{ backgroundColor: 'lightgray', padding: '5rem' }}>
       {parsedContent.map((item, index) => (
           <div key={index}>
-            <h3>Title: {item.title}</h3>
-            <p>Card Title: {item.cardTitle}</p>
-            <p>URL: {item.url}</p>
-            <p>Card Subtitle: {item.cardSubtitle}</p>
-            <p>Card Detailed Text: {item.cardDetailedText}</p>
-            <p>Media Source URL: {item.media.source.url}</p>
+            <h3>Milestone name: {item.title}</h3>
+            <p>Title: {item.cardTitle}</p>
+            {/* <p>URL: {item.url}</p> */}
+            <p>Subtitle: {item.cardSubtitle}</p>
+            <p>Detailed Text: {item.cardDetailedText}</p>
+            {/* <p>Media Source URL: {item.media.source.url}</p> */}
           </div>
         ))}
       </div>

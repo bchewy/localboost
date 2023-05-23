@@ -57,6 +57,7 @@ function AllListings() {
   return (
     <div>
       <h1>All Listings</h1>
+      <p>Browse listings for a suitable project to work on, as a student, or as a business - network!</p>
       <MeetupList meetups={loadedProjs} />
     </div>
   );

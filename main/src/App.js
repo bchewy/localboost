@@ -20,6 +20,7 @@ import ViewActiveProjects from "./pages/ViewActiveProjects";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import { AuthContextProvider } from "./components/auth/AuthContext";
 
+
 function App() {
   return (
     <div>
@@ -56,8 +57,9 @@ function App() {
           </Routes>
         </Layout>
       </AuthContextProvider>
-
+      <div style={{paddingLeft: '50px', paddingBottom: '20px', fontSize: '12px', color: '#878787'}}>developed with 🩸😓😭 by team smuchamps 2023</div>
     </div>
+    
   );
 }
 

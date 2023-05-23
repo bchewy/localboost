@@ -1,6 +1,6 @@
 {
-  "name": "tutorial",
-  "version": "0.1.0",
+  "name": "localboost",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -21,6 +21,9 @@
     "react-select": "^5.7.3",
     "typeit": "^8.7.1",
     "web-vitals": "^2.1.4"
+  },
+  "resolutions": {
+    "react": "^18.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,4 +49,5 @@
       "last 1 safari version"
     ]
   }
+  
 }
