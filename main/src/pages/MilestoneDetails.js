@@ -23,43 +23,88 @@ const MilestoneDetails = (props) => {
   const chatRecipient = location.state.recipientUser;
   const milestoneID = location.state.milestoneID;
   const projectID = location.state.projectID;
+  const isCompany = location.state.isCompany;
 
-  console.log(chatRecipient);
-  console.log(milestoneID);
-  console.log(projectID);
+  console.log("MDetails User is", user);
+  console.log("MDetails Recipient is", chatRecipient);
+  // console.log(milestoneID);
+  // console.log(projectID);
 
   // TODO: use authentication to check the current user uid
   // const projectID = "gdbn3vGcDHgrsz3mbJin";
-  const projectName = "Create delivery system";
-  const currentMilestone = 1;
   const isStudent = false;
 
+  const milestoneDocRef = doc(db, "projects", projectID, "milestones", milestoneID);
+  const updatesColRef = collection(milestoneDocRef, "updates");
+  const q_updates = query(updatesColRef, orderBy("timestamp", "desc"));
+
   const [items, setItems] = useState([]);
+  const [projectName, setProjectName] = useState("");
+  const [milestoneName, setMilestoneName] = useState("");
+  const [currentMilestone, setCurrentMilestone] = useState(0);
+  const [previousMilestoneCompleted, setPreviousMilestoneCompleted] = useState(false);
+
+  useEffect(() => {
+    const projectDocRef = doc(db, "projects", projectID);
+    const unsubscribe = onSnapshot(projectDocRef, (doc) => {
+      setProjectName(doc.data().name);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(milestoneDocRef, (doc) => {
+      setMilestoneName(doc.data().name);
+      setCurrentMilestone(doc.data().seq_number);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const previousMilestoneRef = query(
+      collection(db, "projects", projectID, "milestones"),
+      where("seq_number", "==", currentMilestone - 1));
+
+    const unsubscribe = onSnapshot(previousMilestoneRef, (q) => {
+      q.forEach((doc) => {
+        setPreviousMilestoneCompleted(doc.data().completed);
+      });
+    });
+    return () => unsubscribe();
+  }, []);
+
+  console.log(previousMilestoneCompleted);
 
   const fetchCardData = async () => {
-    const milestoneDocRef = doc(db, "projects", projectID, "milestones", milestoneID);
-    const updatesColRef = collection(milestoneDocRef, "updates");
-    const q_updates = query(updatesColRef, orderBy("timestamp", "desc"));
+
+    // const milestoneDocRef = doc(db, "projects", projectID, "milestones", milestoneID);
+    // const updatesColRef = collection(milestoneDocRef, "updates");
+    // const q_updates = query(updatesColRef, orderBy("timestamp", "desc"));
 
     const querySnapshot = await getDocs(q_updates);
  
     const newItems = [];
     querySnapshot.forEach(update => {
       // const urlArray = update.data().upload_url;
-      const urlArray = [1,2];
+      const urlArray = update.data().uploads;
+      const thumbnail = update.data().thumbnail;
       const description = update.data().description;
 
       const Content = () => {
         const [comment, setComment] = useState("");
 
-        const handleSubmit = () => {
+        const handleSubmit = async () => {
           // Save new comment to Firestore
+          const commentData = {
+            user: user,
+            text: comment,
+            timestamp: serverTimestamp()
+          }
+
+          const commentsColRef = collection(updatesColRef, update.id, "comments");
+
           if (comment !== "") {
-            addDoc((updatesColRef, update.id, "comments"), {
-              user: user,
-              text: comment,
-              timestamp: serverTimestamp()
-            });
+            await addDoc(commentsColRef, commentData);
             setComment("");
           }
         };
@@ -91,15 +136,16 @@ const MilestoneDetails = (props) => {
           const unsubscribe = onSnapshot(q, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
               if (change.type === "added") {
-                setStoredComments({
+                setStoredComments([...storedComments,
+                {
                   text:change.doc.data().text,
                   user:change.doc.data().user
-                });
+                }]);
               }
             });
           });
 
-          return unsubscribe();
+          return () => unsubscribe();
         };
 
         useEffect(() => {
@@ -122,10 +168,17 @@ const MilestoneDetails = (props) => {
           );
         };
 
+        const LoadThumbnail = ({ thumbnail }) => {
+          if (thumbnail === undefined) return null;
+          return (
+            <Grid item><img style={{ maxWidth: "100%", height:"auto" }} src="https://www.swhf.sg/wp-content/uploads/2014/03/Halimah-Yacob.jpg"></img></Grid>
+          )
+        };
+
         return (
         <Grid container spacing={2} sx={{ width:700, height:"100%" }}>
           <Grid item xs={4} sx={{ mt:3 }}>
-            <Grid item><img style={{ maxWidth: "100%", height:"auto" }} src="https://www.swhf.sg/wp-content/uploads/2014/03/Halimah-Yacob.jpg"></img></Grid>
+            <LoadThumbnail thumbnail={thumbnail} />
             <Grid item sx={{ mb:1 }}><DownloadButton arr={urlArray} /></Grid>
             <Grid item><Button variant="contained" onClick={handleSubmit}>Add Comment</Button></Grid>
           </Grid>
@@ -147,8 +200,6 @@ const MilestoneDetails = (props) => {
         );
       };
 
-      console.log(update.data());
-
       newItems.push({
         title: update.data().timestamp.toDate().toLocaleString(),
         cardTitle: update.data().subject,
@@ -163,33 +214,28 @@ const MilestoneDetails = (props) => {
   }, []);
 
   const TopBar = () => {
+
     const handleComplete = () => {
-      return () => {
-
-        const docRef = doc(db, "projects", projectID);
-
-        const unsubscribe = onSnapshot(docRef, (doc) => {
-          if (doc.data().current_milestone > currentMilestone) {
-            alert("This milestone has already been completed");
-          }else if (doc.data().current_milestone < currentMilestone) {
-            alert("You have not completed the previous milestone");
-          }else{
-            updateDoc(docRef, {
-            current_milestone: currentMilestone + 1
-            });
-            alert("Milestone completed!");
-          };
-          // console.log(doc.data().current_milestone);
-        });
-        unsubscribe();
-      }
+      const unsubscribe = onSnapshot(milestoneDocRef, (doc) => {
+        if (doc.data().completed) {
+          alert("This milestone has already been completed");
+        }else if (previousMilestoneCompleted === false) {
+          alert("You have not completed the previous milestone");
+        }else{
+          updateDoc(milestoneDocRef, {
+          completed: true
+          });
+          alert("Milestone completed!");
+        };
+      });
+      return () => unsubscribe();
     };
 
-    if (isStudent) {
+    if (!isCompany) {
       return (
         <div>
           <RedirectButton link="/milestone-overview" text="Back to Overview" data={{ projectID:projectID, user:user }} />
-          <Button component={Link} variant="contained" to="/add-update">
+          <Button component={Link} variant="contained" to="/add-update" sx={{ ml:2 }}>
             Add New Update
           </Button>
         </div>
@@ -198,7 +244,7 @@ const MilestoneDetails = (props) => {
       return (
         <div>
           <RedirectButton link="/milestone-overview" text="Back to Overview" data={{ projectID:projectID, user:user }} />
-          <Button component={Link} variant="contained" onClick={handleComplete}>
+          <Button variant="contained" onClick={handleComplete} sx={{ ml:2 }}>
             Complete Milestone
           </Button>
         </div>
@@ -208,7 +254,7 @@ const MilestoneDetails = (props) => {
 
   return (
     <div style={{ width: '1200px', height: '850px' }}>
-      <h1>{projectName}: Milestone {currentMilestone}</h1>
+      <h1>{projectName}: {milestoneName}</h1>
       <TopBar />
       {items.length > 0 && <Chrono
         items={items}

@@ -34,12 +34,14 @@ const MainNavigation = ({ isUserSignedIn }) => {
                         <Link to="/all-projects">Home</Link>
                     </li>
                     <li>
-                        <Link to="/localboost-ai">AI</Link>
+                        <Link to="/localboost-ai">Localboost AI</Link>
                     </li>
                     <li>
                         <Link to='/new-project'>Add New Listings</Link>
                     </li>
-
+                    <li>
+                        <Link to='/projects'>My Projects</Link>
+                    </li>
                     <li>
                         <Link to="/profile">Profile</Link>
                     </li>
