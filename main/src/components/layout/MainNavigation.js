@@ -9,7 +9,7 @@ const MainNavigation = ({ isUserSignedIn }) => {
         <header className={classes.header}>
             <div className={classes.logo}>
                 LocalBoost 🇸🇬
-            {/* <img src={Logo} alt="" style={{ width: '125px', height: '5rem' }} /> */}
+            {/* <img src={Logo} alt="" style={{ width: '260px', height: '3rem' }} /> */}
             </div>
             {/* Navigation links for unregistered users */}
             <nav>
