@@ -46,6 +46,7 @@ function NewProjectPage() {
   return (
     <section>
       <h1>Add New Listing</h1>
+      <p>As a small, home-based or even a micro enterprise, create a project listing, and get recommended a student. Nuture your next future employee!</p>
       <NewMeetupForm onAddMeetup={addMeetupHandler} />
     </section>
   );

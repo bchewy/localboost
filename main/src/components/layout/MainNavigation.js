@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
 import classes from './MainNavigation.module.css';
+import Logo from '../images/localboost_logonew.png';
+
+
 
 const MainNavigation = ({ isUserSignedIn }) => {
     const unregisteredNavBar = (
         <header className={classes.header}>
-            <div className={classes.logo}>LocalBoost</div>
+            <div className={classes.logo}>
+                LocalBoost 🇸🇬
+            {/* <img src={Logo} alt="" style={{ width: '125px', height: '5rem' }} /> */}
+            </div>
             {/* Navigation links for unregistered users */}
             <nav>
                 <ul>
