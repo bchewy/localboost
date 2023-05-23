@@ -12,20 +12,24 @@ import { getFirestore, collection, getDocs, query, serverTimestamp, addDoc, orde
 
 import DownloadButton from "../components/FileDownloadButton";
 import ChatWidget from "../components/ChatWidget";
+import RedirectButton from "../components/RedirectButton";
 
 const db = getFirestore(app);
 
 const MilestoneDetails = (props) => {
-  const { state } = useLocation();
+  const location = useLocation();
 
-  const data = state?.data;
+  const user = location.state.senderUser;
+  const chatRecipient = location.state.recipientUser;
+  const milestoneID = location.state.milestoneID;
+  const projectID = location.state.projectID;
 
-  const user = data?.user;
-  const chatRecipient = data?.recipientUser;
-  const milestoneID = data?.milestoneID;
+  console.log(chatRecipient);
+  console.log(milestoneID);
+  console.log(projectID);
 
   // TODO: use authentication to check the current user uid
-  const projectID = "gdbn3vGcDHgrsz3mbJin";
+  // const projectID = "gdbn3vGcDHgrsz3mbJin";
   const projectName = "Create delivery system";
   const currentMilestone = 1;
   const isStudent = false;
@@ -33,32 +37,17 @@ const MilestoneDetails = (props) => {
   const [items, setItems] = useState([]);
 
   const fetchCardData = async () => {
-    const docRef = doc(db, "projects", projectID);
-    const q = query(
-      collection(docRef, "milestones"),
-      where("milestone_number", "==", currentMilestone),
-      orderBy("timestamp", "desc")
-    );
-    const querySnapshot = await getDocs(q);
+    const milestoneDocRef = doc(db, "projects", projectID, "milestones", milestoneID);
+    const updatesColRef = collection(milestoneDocRef, "updates");
+    const q_updates = query(updatesColRef, orderBy("timestamp", "desc"));
 
+    const querySnapshot = await getDocs(q_updates);
+ 
     const newItems = [];
-    querySnapshot.forEach(item => {
-      const urlArray = item.data().upload_url;
-      const description = item.data().description;
-
-      // const Uploads = ({ urlArray }) => {
-      //   if (urlArray === undefined) return null;
-      //   return (
-      //   <div>
-      //     <p><b>Uploads</b></p>
-      //     {urlArray.map((url, index) => (
-      //       <p style={{align: "left"}} key={index}>
-      //         <a href={url}>{url}</a>
-      //       </p>
-      //     ))}
-      //   </div>
-      //   );
-      // };
+    querySnapshot.forEach(update => {
+      // const urlArray = update.data().upload_url;
+      const urlArray = [1,2];
+      const description = update.data().description;
 
       const Content = () => {
         const [comment, setComment] = useState("");
@@ -66,7 +55,7 @@ const MilestoneDetails = (props) => {
         const handleSubmit = () => {
           // Save new comment to Firestore
           if (comment !== "") {
-            addDoc(collection(docRef, "milestones", item.id, "comments"), {
+            addDoc((updatesColRef, update.id, "comments"), {
               user: user,
               text: comment,
               timestamp: serverTimestamp()
@@ -78,11 +67,11 @@ const MilestoneDetails = (props) => {
         const [storedComments, setStoredComments] = useState([]);
 
         const fetchCommentsHistory = async () => {
-          const q = query(
-            collection(docRef, "milestones", item.id, "comments"),
+          const q_comments = query(
+            collection(updatesColRef, update.id, "comments"),
             orderBy("timestamp", "asc")
           );
-          const querySnapshot = await getDocs(q);
+          const querySnapshot = await getDocs(q_comments);
           const newComments = [];
           querySnapshot.forEach(comment => {
             newComments.push({
@@ -95,7 +84,7 @@ const MilestoneDetails = (props) => {
 
         const fetchNewComments = () => {
           const q = query(
-            collection(docRef, "milestones", item.id, "comments"),
+            collection(updatesColRef, update.id, "comments"),
             orderBy("timestamp", "asc")
           );
 
@@ -138,7 +127,7 @@ const MilestoneDetails = (props) => {
           <Grid item xs={4} sx={{ mt:3 }}>
             <Grid item><img style={{ maxWidth: "100%", height:"auto" }} src="https://www.swhf.sg/wp-content/uploads/2014/03/Halimah-Yacob.jpg"></img></Grid>
             <Grid item sx={{ mb:1 }}><DownloadButton arr={urlArray} /></Grid>
-            <Grid item><Button variant="contained" onClick={handleSubmit}>Reply</Button></Grid>
+            <Grid item><Button variant="contained" onClick={handleSubmit}>Add Comment</Button></Grid>
           </Grid>
           <Grid item xs={8}>
             <p style={{alignSelf: "flex-start"}}>
@@ -158,9 +147,11 @@ const MilestoneDetails = (props) => {
         );
       };
 
+      console.log(update.data());
+
       newItems.push({
-        title: item.data().timestamp.toDate().toLocaleString(),
-        cardTitle: item.data().subject,
+        title: update.data().timestamp.toDate().toLocaleString(),
+        cardTitle: update.data().subject,
         timelineContent: <Content />,
       });
     });
@@ -173,31 +164,31 @@ const MilestoneDetails = (props) => {
 
   const TopBar = () => {
     const handleComplete = () => {
-      const docRef = doc(db, "projects", projectID);
+      return () => {
 
-      const unsubscribe = onSnapshot(docRef, (doc) => {
-        if (doc.data().current_milestone > currentMilestone) {
-          alert("This milestone has already been completed");
-        }else if (doc.data().current_milestone < currentMilestone) {
-          alert("You have not completed the previous milestone");
-        }else{
-          updateDoc(docRef, {
-          current_milestone: currentMilestone + 1
-          });
-          alert("Milestone completed!");
-        };
-        // console.log(doc.data().current_milestone);
-      });
+        const docRef = doc(db, "projects", projectID);
 
-      unsubscribe();
+        const unsubscribe = onSnapshot(docRef, (doc) => {
+          if (doc.data().current_milestone > currentMilestone) {
+            alert("This milestone has already been completed");
+          }else if (doc.data().current_milestone < currentMilestone) {
+            alert("You have not completed the previous milestone");
+          }else{
+            updateDoc(docRef, {
+            current_milestone: currentMilestone + 1
+            });
+            alert("Milestone completed!");
+          };
+          // console.log(doc.data().current_milestone);
+        });
+        unsubscribe();
+      }
     };
 
     if (isStudent) {
       return (
         <div>
-          <Button component={Link} variant="contained" to="/milestone-overview">
-            Back to Overview
-          </Button>
+          <RedirectButton link="/milestone-overview" text="Back to Overview" data={{ projectID:projectID, user:user }} />
           <Button component={Link} variant="contained" to="/add-update">
             Add New Update
           </Button>
@@ -206,9 +197,7 @@ const MilestoneDetails = (props) => {
     }else{
       return (
         <div>
-          <Button component={Link} variant="contained" to="/milestone-overview">
-            Back to Overview
-          </Button>
+          <RedirectButton link="/milestone-overview" text="Back to Overview" data={{ projectID:projectID, user:user }} />
           <Button component={Link} variant="contained" onClick={handleComplete}>
             Complete Milestone
           </Button>
@@ -216,24 +205,6 @@ const MilestoneDetails = (props) => {
       )
     }
   };
-
-  // const cardRefs = useRef([]);
-
-  // const cardRefsCallback = (ref) => {
-  //   if (ref) {
-  //     cardRefs.current.push(ref);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   // Calculate and set the height of each card dynamically
-  //   cardRefs.current.forEach((cardRef) => {
-  //     const contentHeight = cardRef.firstChild.offsetHeight;
-  //     cardRef.style.height = `${contentHeight}px`;
-  //   });
-  // }, [items]);
-
-  // console.log(cardRefs);
 
   return (
     <div style={{ width: '1200px', height: '850px' }}>

@@ -9,7 +9,7 @@ const RedirectButton = (props) => {
 
     const handleClick = () => {
       // Redirect to another page and pass the data as state
-      navigate(props.link, { data });
+      navigate(props.link, { state:data });
     };
   
     return (
