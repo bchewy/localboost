@@ -13,10 +13,11 @@ const RegistrationCompany = () => {
     const [error, setError] = useState(''); // State for storing errors
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [companyName, setCompanyName] = useState('');
     const animatedComponents = makeAnimated();
     const auth = getAuth(app);
     const skillOptions = [
-        { value: 'Website Design', label: 'Website Design' },
+        { value: 'Website Creation', label: 'Website Creation' },
         { value: 'Mobile App Design', label: 'Mobile App Design' },
         { value: 'Social Media Marketing', label: 'Social Media Marketing' }
     ];
@@ -29,10 +30,12 @@ const RegistrationCompany = () => {
                 const newCompany = {
                     firstName: firstName,
                     lastName: lastName,
+                    companyName: companyName,
                     email: email,
                     skills: skillOptions //don't know how to get this to work properly
                 }
                 set(ref(db, 'companies/' + userCredential.user.uid), newCompany);
+                setError("Successfully created account!")
             }).catch((error) => {
                 console.log(error);
                 setError(error.message);
@@ -51,6 +54,8 @@ const RegistrationCompany = () => {
                         <label className="registration-company-text03">First Name</label>
                         <br />
                         <label className="registration-company-text04">Last Name</label>
+                        <br />
+                        <label className="registration-company-text04">Company Name</label>
                         <br />
                         <label className="registration-company-text05">Email</label>
                         <br />
@@ -89,6 +94,15 @@ const RegistrationCompany = () => {
                                             name="lastName"
                                             value={lastName}
                                             onChange={(e) => setLastName(e.target.value)}
+                                        />
+                                        <br />
+                                        <input
+                                            type="text"
+                                            placeholder="Enter your company"
+                                            className="registration-company-textinput1 input"
+                                            name="companyName"
+                                            value={companyName}
+                                            onChange={(e) => setCompanyName(e.target.value)}
                                         />
                                         <br />
                                         <input
