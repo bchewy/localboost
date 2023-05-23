@@ -21,12 +21,14 @@ const Profile = () => {
     const [isCompany, setIsCompany] = useState(false);
     const [skillsHeader, setSkillsHeader] = useState("Skills");
     const [companyName, setCompanyName] = useState("");
+    const [uid, setUid] = useState(''); // useState hook to store userId
 
     useEffect(() => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
+                setUid(uid);
                 const db = ref(getDatabase());
                 console.log(uid);
                 get(child(db, `companies/${uid}`)).then((snapshot) => {
@@ -70,7 +72,8 @@ const Profile = () => {
                         setSkills(skillsValue);
                         if (skillsValue == null) {
                             setSkills("Website Creation");
-                        } else {
+                        }
+                     } else {
                             // If it is a student
                             get(child(db, `students/${uid}`)).then((snapshot) => {
                                 if (snapshot.exists()) {
@@ -106,8 +109,6 @@ const Profile = () => {
                                 }
                             })
                         }
-
-                    }
                 }).catch((error) => {
                     console.error(error);
                 });
@@ -124,7 +125,15 @@ const Profile = () => {
     const handleEditProfile = () => {
         navigate('/edit-profile');
     };
-
+    const handleSignOut = () => {
+        const auth = getAuth();
+        auth.signOut().then(() => {
+            // Sign-out successful.
+            navigate('/sign-in');
+        }).catch((error) => {
+            // An error happened.
+        });
+    };
 
     return (
         <div className="profile-container">
@@ -179,8 +188,11 @@ const Profile = () => {
                     </div>
                 </div>
                 <div>
-                    <div className="profile-container02">
+                    <div className="profile-container98">
                         <button className="profile-edit-button" onClick={handleEditProfile}>Edit Profile</button>
+                    </div>
+                    <div className="profile-container98">
+                        <button className="profile-edit-button" onClick={handleSignOut}>Sign Out</button>
                     </div>
                 </div>
             </div>

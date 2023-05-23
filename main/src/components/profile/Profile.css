@@ -126,9 +126,18 @@
   flex-direction: row;
   margin-left: 60px;
 }
+.profile-container98 {
+  flex: 0 0 auto;
+  width: auto;
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  align-items: center;
+  flex-direction: row;
+  margin-left: 60px;
+}
 .profile-edit-button{
   margin-left: 200px;
-  display: inline;
+  display: flex;
 }
 .profile-login1 {
   margin-right: var(--dl-space-space-twounits);
