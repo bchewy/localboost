@@ -22,6 +22,10 @@ const EditProfile = () => {
     const animatedComponents = makeAnimated();
     const [uid, setUid] = useState(''); // useState hook to store userId
     const [error, setError] = useState(''); // State for storing errors
+    const [skillsHeader, setSkillsHeader] = useState('Skills');
+    const [isCompany, setIsCompany] = useState(false);
+    const [companyName, setCompanyName] = useState('');
+
     const availabilityOptions = [
         { value: 'weekends-only', label: 'Weekends only' },
         { value: 'weekdays-only', label: 'Weekdays only' },
@@ -44,16 +48,95 @@ const EditProfile = () => {
                 const uid = user.uid;
                 setUid(uid);
                 const db = ref(getDatabase());
-                // if it is a student
-                get(child(db, `students/${uid}`)).then((snapshot) => {
+                console.log(uid);
+                get(child(db, `companies/${uid}`)).then((snapshot) => {
+                    // If it is a company
                     if (snapshot.exists()) {
-                        console.log("Is a student!");
+                        console.log("Is a company!");
+                        setIsCompany(true);
+                        setSkillsHeader("Skills Needed");
                         const firstNameValue = snapshot.val().firstName;
                         setFirstName(firstNameValue); // Assigning value to firstName state
                         const lastNameValue = snapshot.val().lastName;
                         setLastName(lastNameValue);
-                    }})
-    }});
+                        const companyNameValue = snapshot.val().companyName;
+                        setCompanyName(companyNameValue);
+                        const availabilityValue = snapshot.val().availability;
+                        setAvailability(availabilityValue);
+                        if (availabilityValue == null) {
+                            setAvailability("Not set yet!");
+                        };
+                        const ageValue = snapshot.val().age;
+                        setAge(ageValue);
+                        const locationValue = snapshot.val().location;
+                        setLocation(locationValue);
+                        if (locationValue == null) {
+                            setLocation("Not set yet!");
+                        };
+                        const yoeValue = snapshot.val().yoe;
+                        setYoe(yoeValue);
+                        const aboutValue = snapshot.val().about;
+                        setAbout(aboutValue);
+                        if (aboutValue == null) {
+                            setAbout("Not set yet!");
+                        }
+                        const skillsValue = snapshot.val().skills;
+                        setSkills(skillsValue);
+                        if (skillsValue == null) {
+                            setSkills("Website Creation");
+                        } else {
+                            // If it is a student
+                            get(child(db, `students/${uid}`)).then((snapshot) => {
+                                if (snapshot.exists()) {
+                                    console.log("Is a student!");
+                                    const firstNameValue = snapshot.val().firstName;
+                                    setFirstName(firstNameValue); // Assigning value to firstName state
+                                    const lastNameValue = snapshot.val().lastName;
+                                    setLastName(lastNameValue);
+                                    const availabilityValue = snapshot.val().availability;
+                                    setAvailability(availabilityValue);
+                                    if (availabilityValue == null) {
+                                        setAvailability("Not set yet!");
+                                    };
+                                    const ageValue = snapshot.val().age;
+                                    setAge(ageValue);
+                                    if (ageValue == null) {
+                                        setAge("Not set yet!");
+                                    };
+                                    const locationValue = snapshot.val().location;
+                                    setLocation(locationValue);
+                                    if (locationValue == null) {
+                                        setLocation("Not set yet!");
+                                    };
+                                    const yoeValue = snapshot.val().yoe;
+                                    setYoe(yoeValue);
+                                    if (yoeValue == null) {
+                                        setYoe("Not set yet!");
+                                    }
+                                    const aboutValue = snapshot.val().about;
+                                    setAbout(aboutValue);
+                                    if (aboutValue == null) {
+                                        setAbout("Not set yet!");
+                                    }
+                                    const skillsValue = snapshot.val().skills;
+                                    setSkills(skillsValue);
+                                    if (skillsValue == null) {
+                                        setSkills("Website Creation");
+                                    }
+                                }
+                            })
+                        }
+
+                    }
+                }).catch((error) => {
+                    console.error(error);
+                });
+                // ...
+            } else {
+                // User is signed out
+                // ...
+            }
+        });
     }, []);
 
     const handleAvailabilityChange = (e) => {
@@ -83,17 +166,33 @@ const EditProfile = () => {
         // setAbout("I am a student at SMU, and with a flair for web development!");
         // setSkills("Website Creation");
         const db = getDatabase();
-        const newStudent = {
-            firstName: firstName,
-            lastName: lastName,
-            availability: "Weekends only",
-            age: age,
-            location: location,
-            yoe: yoe,
-            about: about,
-            skills: "Website Creation"
+        // check if it is a student
+        if (isCompany) {
+            const newCompany = {
+                firstName: firstName,
+                lastName: lastName,
+                companyName: companyName,
+                availability: "Weekends only",
+                age: age,
+                location: location,
+                yoe: yoe,
+                about: about,
+                skills: "Website Creation"
+            }
+            set(ref(db, 'companies/' + uid), newCompany);
+        } else {
+            const newStudent = {
+                firstName: firstName,
+                lastName: lastName,
+                availability: "Weekends only",
+                age: age,
+                location: location,
+                yoe: yoe,
+                about: about,
+                skills: "Website Creation"
+            }
+            set(ref(db, 'students/' + uid), newStudent);
         }
-        set(ref(db, 'students/' + uid), newStudent);
         setError("Successfully updated profile!")
     };
     const navigate = useNavigate();
@@ -101,9 +200,9 @@ const EditProfile = () => {
     return (
         <div className="profile-container">
             <form className="edit-profile-form" onSubmit={handleSubmit}>
-            <div className="profile-container15">
-                <h1>Edit Profile</h1>
-            </div>
+                <div className="profile-container15">
+                    <h1>Edit Profile</h1>
+                </div>
                 <div className="profile-container03">
                     <div className="profile-container04">
                         <div className="profile-container01">
@@ -189,7 +288,7 @@ const EditProfile = () => {
                     </span>
                 </div>
                 <div className="profile-container15">
-                    <h2 className="profile-text22">Skills</h2>
+                    <h2 className="profile-text22">{skillsHeader}</h2>
                     <span className="profile-text29">
                         <Select
                             required
