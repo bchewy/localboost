@@ -27,7 +27,8 @@ function MeetupItem(props) {
         <p>{props.description}</p>
       </div>
       <div className={classes.actions}>
-        <button onClick={ApplyforProj}>Apply for this project</button>
+        <button>To Favorites</button>
+        
       </div>
     </li>
   );
