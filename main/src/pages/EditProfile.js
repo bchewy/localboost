@@ -21,6 +21,7 @@ const EditProfile = () => {
     const [skills, setSkills] = useState('');
     const animatedComponents = makeAnimated();
     const [uid, setUid] = useState(''); // useState hook to store userId
+    const [error, setError] = useState(''); // State for storing errors
     const availabilityOptions = [
         { value: 'weekends-only', label: 'Weekends only' },
         { value: 'weekdays-only', label: 'Weekdays only' },
@@ -41,70 +42,18 @@ const EditProfile = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 const uid = user.uid;
+                setUid(uid);
                 const db = ref(getDatabase());
-                // start of weird shit
-                get(child(db, `companies/${uid}`)).then((snapshot) => {
-                    // If it is a company
+                // if it is a student
+                get(child(db, `students/${uid}`)).then((snapshot) => {
                     if (snapshot.exists()) {
-                        console.log("Is a company!");
+                        console.log("Is a student!");
                         const firstNameValue = snapshot.val().firstName;
                         setFirstName(firstNameValue); // Assigning value to firstName state
                         const lastNameValue = snapshot.val().lastName;
                         setLastName(lastNameValue);
-                        const aboutValue = snapshot.val().about;
-                        setAbout(aboutValue);
-                        const skillsValue = snapshot.val().skills;
-                        setSkills(skillsValue);
-                    } else {
-                        // If it is a student
-                        get(child(db, `students/${uid}`)).then((snapshot) => {
-                            if (snapshot.exists()) {
-                                console.log("Is a student!");
-                                const firstNameValue = snapshot.val().firstName;
-                                setFirstName(firstNameValue); // Assigning value to firstName state
-                                const lastNameValue = snapshot.val().lastName;
-                                setLastName(lastNameValue);
-                                const availabilityValue = snapshot.val().availability;
-                                setAvailability(availabilityValue);
-                                if (availabilityValue == null) {
-                                    setAvailability("Not set yet!");
-                                };
-                                const ageValue = snapshot.val().age;
-                                setAge(ageValue);
-                                if (ageValue == null) {
-                                    setAge("Not set yet!");
-                                };
-                                const locationValue = snapshot.val().location;
-                                setLocation(locationValue);
-                                if (locationValue == null) {
-                                    setLocation("Not set yet!");
-                                };
-                                const yoeValue = snapshot.val().yoe;
-                                setYoe(yoeValue);
-                                if (yoeValue == null) {
-                                    setYoe("Not set yet!");
-                                }
-                                const aboutValue = snapshot.val().about;
-                                setAbout(aboutValue);
-                                if (aboutValue == null) {
-                                    setAbout("Not set yet!");
-                                }
-                                const skillsValue = snapshot.val().skills;
-                                setSkills(skillsValue);
-                                if (skillsValue == null) {
-                                    setSkills("Website Creation");
-                                }
-                            }
-                        })
-                    }
-                }).catch((error) => {
-                    console.error(error);
-                });
-            } else {
-                // User is signed out
-                // ...
-            }
-        });
+                    }})
+    }});
     }, []);
 
     const handleAvailabilityChange = (e) => {
@@ -127,42 +76,25 @@ const EditProfile = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        // update the database with the Availability, Age, Location, YOE, About, and Skills
+        setAvailability("Weekends only");
+        // setAge("22");
+        // setLocation("Singapore");
+        // setYoe("2");
+        // setAbout("I am a student at SMU, and with a flair for web development!");
+        // setSkills("Website Creation");
         const db = getDatabase();
-        const auth = getAuth();
-        const uid = auth.currentUser.uid;
-        // check if it is a company or student
-        get(child(db, `companies/${uid}`)).then((snapshot) => {
-            // If it is a company
-            if (snapshot.exists()) {
-                console.log("Is a company!");
-                const newCompany = {
-                    firstName: firstName,
-                    lastName: lastName,
-                    about: about,
-                    skills: skills
-                }
-                set(ref(db, 'companies/' + uid), newCompany);
-            } else {
-                // If it is a student
-                get(child(db, `students/${uid}`)).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        console.log("Is a student!");
-                        const newStudent = {
-                            firstName: firstName,
-                            lastName: lastName,
-                            availability: availability,
-                            age: age,
-                            location: location,
-                            yoe: yoe,
-                            about: about,
-                            skills: skills
-                        }
-                        set(ref(db, 'students/' + uid), newStudent);
-                    }
-                })
-            }
-        })
+        const newStudent = {
+            firstName: firstName,
+            lastName: lastName,
+            availability: "Weekends only",
+            age: age,
+            location: location,
+            yoe: yoe,
+            about: about,
+            skills: "Website Creation"
+        }
+        set(ref(db, 'students/' + uid), newStudent);
+        setError("Successfully updated profile!")
     };
     const navigate = useNavigate();
 
@@ -271,6 +203,10 @@ const EditProfile = () => {
                     </span>
                 </div>
             </form>
+            <br></br>
+            <br></br>
+            <br></br>
+            <p>{error}</p>
         </div>
     )
 }
