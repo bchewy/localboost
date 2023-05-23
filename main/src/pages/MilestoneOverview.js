@@ -19,28 +19,47 @@ const MilestoneOverview = (props) => {
     const location = useLocation();
     const projectID = location.state.projectID;
     const user = location.state.user;
-    // const projectID = "ryD3vfpxfmg7lzuSgak6";
+    const isCompany = location.state.isCompany;
+
     const [items, setItems] = useState([]);    
-    const [users, setUsers] = useState([]);
+    const [chatRecipient, setChatRecipient] = useState("");
+
+    const fetchRecipientUser = async () => {
+        const docRef = doc(db, "projects", projectID);
+        const userSnap = await getDoc(docRef);
+        const users = userSnap.data().users;
+
+        if (users[0] !== user) {
+            setChatRecipient(users[0]);
+        } else {
+            setChatRecipient(users[1]);
+        }
+    }
+
+    // console.log("Recipient is", chatRecipient);
 
     const fetchCardData = async () => {
         const docRef = doc(db, "projects", projectID);
 
-        const userSnap = await getDoc(docRef);
-        setUsers(userSnap.data().users);
+        // const userSnap = await getDoc(docRef);
+        // setUsers(userSnap.data().users);
 
-        let chatRecipient = null;
-        if (users[0] !== user) {
-            chatRecipient = users[0];
-        } else {
-            chatRecipient = users[1];
-        }
+        // let chatRecipient = null;
+        // if (users[0] !== user) {
+        //     chatRecipient = users[0];
+        // } else {
+        //     chatRecipient = users[1];
+        // }
+
+        // console.log(users);
 
         const q = query(
             collection(docRef, "milestones"),
             orderBy("seq_number", "asc"));
         
         const snapshot = await getDocs(q);
+
+        console.log(props.recipient);
 
         const newItems = [];
         snapshot.forEach(milestone => {
@@ -50,7 +69,8 @@ const MilestoneOverview = (props) => {
                 projectID: projectID,
                 milestoneID: milestone.id,
                 senderUser: user,
-                recipientUser: chatRecipient
+                recipientUser: chatRecipient,
+                isCompany: isCompany
             }
 
             newItems.push({
@@ -69,20 +89,14 @@ const MilestoneOverview = (props) => {
     };
 
     useEffect(() => {
+        fetchRecipientUser();
         fetchCardData();
     }, []);
 
-    let chatRecipient = null;
-    if (users[0] !== user) {
-        chatRecipient = users[0];
-    } else {
-        chatRecipient = users[1];
-    }
-
     return (
-        <div style={{ display:'flex', justifyContent:'center', alignItems: 'center' }}>
-            <RedirectButton data={null} link="/projects" text="Back to projects"/>
+        <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center' }}>
             <h1>Milestone Overview</h1>
+            <RedirectButton link="/projects" text="Back to projects"/>
             {items.length > 0 && <Chrono
             items={items}
             mode="HORIZONTAL"
