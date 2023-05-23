@@ -17,7 +17,7 @@ const MyProjects = (props) => {
     const [isCompany, setIsCompany] = useState(false);
     const [items, setItems] = useState([]);
     const [firstName, setFirstName] = useState(""); // useState hook to store firstName
-    const [userID, setUserID] = useState("");
+    const [userID, setUserID] = useState("kV3z0Pcn9pXuu4IlFnr0i1EHXYh2");
 
     const fetchCardData = async () => {
         console.log(userID);

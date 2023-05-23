@@ -11,8 +11,11 @@ const db = getFirestore(app);
 
 const ChatWidget = (props) => {
 
-  const senderUser = props.sender;
-  const recipientUser = props.recipient;
+  // const senderUser = props.sender;
+  const senderUser = "fcNBLrSf0Ma6alZfxUzSqcwlKTd2";
+  // const recipientUser = props.recipient;
+  const recipientUser = "1cGWAf7wuBeAX1bEvZ0FZ03FnH33";
+  const recipientFirstName = "Ah Soh";
 
   var documentId = [senderUser, recipientUser].sort().join("-"); // Chatroom ID is the concatenation of the two user IDs, sorted alphabetically separated by a hyphen
 
@@ -64,7 +67,7 @@ const ChatWidget = (props) => {
     });
   };
 
-  const title = "Chat with " + recipientUser;
+  const title = "Chat with " + recipientFirstName;
 
   return (
     <div className="ChatWidget">

@@ -35,7 +35,9 @@ function AllListings() {
     const fetchProjs = async () => {
       const meetupCollection = collection(db, "projects"); // change "meetups" to your collection id
       const meetupSnapshot = await getDocs(meetupCollection);
-      const meetupList = meetupSnapshot.docs.map(doc => ({
+      const meetupList = meetupSnapshot.docs
+        .filter(doc => doc.data().status === "unmatched")
+        .map(doc => ({
         id: doc.id, 
         ...doc.data()
       }));
