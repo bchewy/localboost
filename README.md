@@ -1,5 +1,12 @@
 # LocalBoost
 ## A project by SMUChamps
+SMU Champs consists of five freshmen SMU students majoring in Information Systems
+Meet the team!
+- https://www.linkedin.com/in/tanhaoen/
+- https://www.linkedin.com/in/yiji-yap/
+- https://www.linkedin.com/in/carissa-chia-398286242/
+- https://www.linkedin.com/in/brian-chew/
+- https://www.linkedin.com/in/matthias-lee-a404a3146
 
 ### Problem Statement:
 Small local businesses often face hurdles in digitizing their operations due to overwhelming information, a lack of necessary digital skills, and resource constraints. Our goal is to understand why these businesses are not digitizing and what services they require to facilitate this transition.
@@ -20,7 +27,14 @@ In doing so, LocalBoost aims to foster a community of digital enthusiasts and bu
 LocalBoost focuses on aiding small local businesses such as hawkers, small restaurants, home-based businesses, and "mama shops." By empowering students and offering them the opportunity to work on these projects as case studies, we create a mutually beneficial situation.
 
 ### Technical Details:
-LocalBoost is built with React and NodeJS and is deployed on Vercel for scalability. Potential integration with VM Tanzu as a sandbox system for development work is also under consideration.
+LocalBoost is built with React and is deployed on Vercel for scalability.
+The AI features seen on the site includes modified, exclusive access to GPT4 private request only API endpoint.
+
+### Beyond the hackathon:
+Beyond the hackathon, some of us would also like to explore
+> Sandbox environment for students to play/work on eg: Deploying test instances via VMWare Tanzu to work on their applications.
+> Add more suggestive and empowering features for users (eg: Simple PM tools, generative images for more.., accepting more auth logins, skillsfuture API usage... etc!)
+
 
 Here's a brief overview of our project directories:
 
