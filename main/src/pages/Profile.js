@@ -18,6 +18,9 @@ const Profile = () => {
     const [yoe, setYoe] = useState("");
     const [about, setAbout] = useState("");
     const [skills, setSkills] = useState("");
+    const [isCompany, setIsCompany] = useState(false);
+    const [skillsHeader, setSkillsHeader] = useState("Skills");
+    const [companyName, setCompanyName] = useState("");
 
     useEffect(() => {
         const auth = getAuth();
@@ -30,57 +33,81 @@ const Profile = () => {
                     // If it is a company
                     if (snapshot.exists()) {
                         console.log("Is a company!");
+                        setIsCompany(true);
+                        setSkillsHeader("Skills Needed");
                         const firstNameValue = snapshot.val().firstName;
                         setFirstName(firstNameValue); // Assigning value to firstName state
                         const lastNameValue = snapshot.val().lastName;
                         setLastName(lastNameValue);
+                        const companyName = snapshot.val().companyName;
+                        setCompanyName(companyName);
+                        const availabilityValue = snapshot.val().availability;
+                        setAvailability(availabilityValue);
+                        if (availabilityValue == null) {
+                            setAvailability("Not set yet!");
+                        };
+                        const ageValue = snapshot.val().age;
+                        setAge(ageValue);
+                        if (ageValue == null) {
+                            setAge("Not set yet!");
+                        };
+                        const locationValue = snapshot.val().location;
+                        setLocation(locationValue);
+                        if (locationValue == null) {
+                            setLocation("Not set yet!");
+                        };
+                        const yoeValue = snapshot.val().yoe;
+                        setYoe(yoeValue);
+                        if (yoeValue == null) {
+                            setYoe("Not set yet!");
+                        }
                         const aboutValue = snapshot.val().about;
                         setAbout(aboutValue);
+                        if (aboutValue == null) {
+                            setAbout("Not set yet!");
+                        }
                         const skillsValue = snapshot.val().skills;
                         setSkills(skillsValue);
-                    } else {
-                        // If it is a student
-                        get(child(db, `students/${uid}`)).then((snapshot) => {
-                            if (snapshot.exists()) {
-                                console.log("Is a student!");
-                                const firstNameValue = snapshot.val().firstName;
-                                setFirstName(firstNameValue); // Assigning value to firstName state
-                                const lastNameValue = snapshot.val().lastName;
-                                setLastName(lastNameValue);
-                                const availabilityValue = snapshot.val().availability;
-                                setAvailability(availabilityValue);
-                                if (availabilityValue == null) {
-                                    setAvailability("Not set yet!");
-                                };
-                                const ageValue = snapshot.val().age;
-                                setAge(ageValue);
-                                if (ageValue == null) {
-                                    setAge("Not set yet!");
-                                };
-                                const locationValue = snapshot.val().location;
-                                setLocation(locationValue);
-                                if (locationValue == null) {
-                                    setLocation("Not set yet!");
-                                };
-                                const yoeValue = snapshot.val().yoe;
-                                setYoe(yoeValue);
-                                if (yoeValue == null) {
-                                    setYoe("Not set yet!");
+                        if (skillsValue == null) {
+                            setSkills("Website Creation");
+                        } else {
+                            // If it is a student
+                            get(child(db, `students/${uid}`)).then((snapshot) => {
+                                if (snapshot.exists()) {
+                                    console.log("Is a student!");
+                                    const firstNameValue = snapshot.val().firstName;
+                                    setFirstName(firstNameValue); // Assigning value to firstName state
+                                    const lastNameValue = snapshot.val().lastName;
+                                    setLastName(lastNameValue);
+                                    const availabilityValue = snapshot.val().availability;
+                                    setAvailability(availabilityValue);
+                                    if (availabilityValue == null) {
+                                        setAvailability("Not set yet!");
+                                    };
+                                    const ageValue = snapshot.val().age;
+                                    setAge(ageValue);
+                                    const locationValue = snapshot.val().location;
+                                    setLocation(locationValue);
+                                    if (locationValue == null) {
+                                        setLocation("Not set yet!");
+                                    };
+                                    const yoeValue = snapshot.val().yoe;
+                                    setYoe(yoeValue);
+                                    const aboutValue = snapshot.val().about;
+                                    setAbout(aboutValue);
+                                    if (aboutValue == null) {
+                                        setAbout("Not set yet!");
+                                    }
+                                    const skillsValue = snapshot.val().skills;
+                                    setSkills(skillsValue);
+                                    if (skillsValue == null) {
+                                        setSkills("Website Creation");
+                                    }
                                 }
-                                const aboutValue = snapshot.val().about;
-                                setAbout(aboutValue);
-                                if (aboutValue == null) {
-                                    setAbout("Not set yet!");
-                                }
-                                const skillsValue = snapshot.val().skills;
-                                setSkills(skillsValue);
-                                if (skillsValue == null) {
-                                    setSkills("Website Creation");
-                                }
-                            }
-                        })
-                    }
+                            })
+                        }
 
+                    }
                 }).catch((error) => {
                     console.error(error);
                 });
@@ -114,6 +141,7 @@ const Profile = () => {
                         <div className="profile-container06">
                             <div className="profile-container07">
                                 <span className="profile-text06">{firstName} {lastName}</span>
+                                <span className="profile-text99">{companyName}</span>
                                 <span className="profile-text07">Website Creation</span>
                                 <br />
                             </div>
@@ -174,13 +202,13 @@ const Profile = () => {
                 </div>
             </div>
             <div className="profile-container16">
-                <h2>Skills</h2>
+                <h2>{skillsHeader}</h2>
                 <span className="profile-text29">
-                        {/* display the skills, which is an array*/}
-                        <span className="profile-text29">
-                            <span>Website Creation</span>
-                            <br></br>
-                        </span>
+                    {/* display the skills, which is an array*/}
+                    <span className="profile-text29">
+                        <span>Website Creation</span>
+                        <br></br>
+                    </span>
                     <br></br>
                 </span>
                 {/* <span className="profile-text29">
