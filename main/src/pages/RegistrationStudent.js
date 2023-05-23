@@ -16,7 +16,7 @@ const RegistrationStudent = () => {
     const [lastName, setLastName] = useState('');
     const auth = getAuth(app);
     const skillOptions = [
-        { value: 'Website Design', label: 'Website Design' },
+        { value: 'Website Creation', label: 'Website Creation' },
         { value: 'Mobile App Design', label: 'Mobile App Design' },
         { value: 'Social Media Marketing', label: 'Social Media Marketing' }
     ];
