@@ -189,11 +189,12 @@
 }
 .profile-container06 {
   flex: 0 0 auto;
-  width: 248px;
+  width: fit-content;
   height: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding:50px;
 }
 .profile-container07 {
   flex: 0 0 auto;
@@ -204,12 +205,12 @@
   align-items: center;
   flex-direction: column;
 }
-.profile-container07 {
+.profile-container07a {
   flex: 0 0 auto;
   width: auto;
   height: auto;
   display: flex;
-  align-self: flex-start;
+  align-self: left;
   align-items: center;
   flex-direction: column;
 }

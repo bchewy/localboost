@@ -20,6 +20,7 @@ import ViewActiveProjects from "./pages/ViewActiveProjects";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import { AuthContextProvider } from "./components/auth/AuthContext";
 
+
 function App() {
   return (
     <div>
