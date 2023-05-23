@@ -16,15 +16,6 @@ function Layout(props) {
             }
         });
 
-    // const authContext = UserAuth();
-    // const isUserSignedIn = authContext.user !== undefined && authContext.user !== null;
-    // const isUserSignedIn = authContext.user && authContext.user.uid;
-        
-    // const { user } = UserAuth();
-    // const isUserSignedIn = !!user; // Check if user is defined and truthy
-
-    // const isUserSignedIn = user && Object.keys(user).length > 0;
-
     return (
         <div>
       <MainNavigation isUserSignedIn={isUserSignedIn} />

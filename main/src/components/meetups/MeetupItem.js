@@ -2,7 +2,7 @@ import classes from "./MeetupItem.module.css";
 import { useState } from "react";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { app } from "../../pages/firebase";
-import { getFirestore,doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 
@@ -13,7 +13,7 @@ function MeetupItem(props) {
     alert("You have been selected for this project!");
     console.log(auth.currentUser.uid);
     console.log(props.title);
-    
+
   }
 
   return (
