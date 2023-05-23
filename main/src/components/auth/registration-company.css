@@ -37,33 +37,35 @@
   align-self: flex-start;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-top: 3px;
 }
 .registration-company-text04 {
   align-self: flex-start;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
+  margin-top: 37px;
 }
 .registration-company-text05 {
   align-self: flex-start;
-  margin-top: 3px;
+  margin-top: 35px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
 }
 .registration-company-text06 {
   align-self: flex-start;
-  margin-top: 3px;
+  margin-top: 36px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
 }
 .registration-company-text07 {
   align-self: flex-start;
-  margin-top: 3px;
+  margin-top: 36px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
 }
 .registration-company-text11 {
   align-self: flex-start;
-  margin-top: 3px;
+  margin-top: 30px;
   margin-left: var(--dl-space-space-unit);
   margin-right: var(--dl-space-space-unit);
 }

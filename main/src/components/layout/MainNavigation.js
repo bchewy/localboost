@@ -86,4 +86,3 @@ const MainNavigation = ({ isUserSignedIn }) => {
 }
 
 export default MainNavigation;
-

@@ -17,6 +17,9 @@
   padding-bottom: var(--dl-space-space-twounits);
   justify-content: space-between;
 }
+.profile-container99 {
+  align-self: flex-start;
+}
 .profile-logo {
   height: 2rem;
 }
@@ -123,7 +126,7 @@
   margin-top: var(--dl-space-space-unit);
   align-items: center;
   flex-direction: row;
-  margin-left: 60px;
+  margin-left: 0px;
 }
 .profile-finish-button{
   margin-left: 200px;
@@ -156,6 +159,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  margin-left: 110px;
 }
 .profile-container04 {
   flex: 0 0 auto;
@@ -262,21 +266,21 @@
 }
 .profile-text08 {
   align-self: flex-start;
-  margin-bottom: var(--dl-space-space-halfunit);
+  margin-top: 10px;
 }
 .profile-text09 {
   align-self: flex-start;
-  margin-top: 13px;
+  margin-top: 14px;
 
 }
 .profile-text12 {
   align-self: flex-start;
-  margin-top: 13px;
+  margin-top: 14px;
 
 }
 .profile-text15 {
   align-self: flex-start;
-  margin-top: 13px;
+  margin-top: 14px;
 
 }
 .profile-container12 {
@@ -331,7 +335,6 @@
 
 }
 .profile-container15 {
-  margin-top: 60px;
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
