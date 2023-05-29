@@ -2,7 +2,7 @@ terraform {
  required_providers {
      aws = {
          source = "hashicorp/aws"
-         version = "~>4.19.0"
+         version = "4.45.0"  # Changed from: [version = "~>4.19.0"]
      }
  }
 }
@@ -18,24 +18,29 @@ resource "aws_ecr_repository" "localboost_ecr" {
         scan_on_push = true
   }
 }
+
+
+
 # CREATING ECS CLUSTER
 resource "aws_ecs_cluster" "localboost_cluster" {
   name = "localboost_cluster" # Naming the cluster
 }
 
 # CREATING ECS TASK DEFINITION
-resource "aws_ecs_task_definition" "localboost_task" {
-  family                   = "localboost_task" # Naming our first task
+# The task definition is like the blueprint that describes how the
+# docker container should launch. 
+resource "aws_ecs_task_definition" "localboost_taskdef" {
+  family                   = "localboost_taskdef" # Naming our first task
   container_definitions    = <<DEFINITION
   [
     {
-      "name": "localboost_task",
-      "image": "${aws_ecr_repository.localboost_ecr.repository_url}",
+      "name": "localboost_taskdef",
+      "image": "442029411374.dkr.ecr.ap-southeast-1.amazonaws.com/localboost_ecr",
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 3000,
-          "hostPort": 3000
+          "containerPort": 80,
+          "hostPort": 80
         }
       ],
       "memory": 512,
@@ -47,35 +52,12 @@ resource "aws_ecs_task_definition" "localboost_task" {
   network_mode             = "awsvpc"    # Using awsvpc as our network mode as this is required for Fargate
   memory                   = 512         # Specifying the memory our container requires
   cpu                      = 256         # Specifying the CPU our container requires
-  execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRoleLB.arn}"
+  execution_role_arn       = "${aws_iam_role.ecsTaskExecutionRoleLBS.arn}"
 }
 
-# CREATING ECS SERVICE
-resource "aws_ecs_service" "localboost_service" {
-  name            = "localboost_service"                             # Naming our first service
-  cluster         = "${aws_ecs_cluster.localboost_cluster.id}"             # Referencing our created Cluster
-  task_definition = "${aws_ecs_task_definition.localboost_task.arn}" # Referencing the task our service will spin up
-  launch_type     = "FARGATE"
-  desired_count   = 3 # Setting the number of containers we want deployed to 3
-
-  # Linking back the service to the LB.
-  load_balancer {
-    target_group_arn = "${aws_lb_target_group.target_group.arn}" # Referencing our target group
-    container_name   = "${aws_ecs_task_definition.localboost_task.family}"
-    container_port   = 3000 # Specifying the container port
-  }
-
-  network_configuration {
-        subnets         = ["${aws_default_subnet.default_subnet_a.id}", "${aws_default_subnet.default_subnet_b.id}", "${aws_default_subnet.default_subnet_c.id}"] # Referencing the subnets we want our containers to be deployed to
-        # security_groups = ["${aws_security_group.ecs_security_group.id}"] # Referencing the security group we created
-        security_groups  = ["${aws_security_group.service_security_group.id}"] # Setting the security group
-        assign_public_ip = true
-  }
-}
-
-# IAM role for ECS task execution
-resource "aws_iam_role" "ecsTaskExecutionRoleLB" {
-  name               = "ecsTaskExecutionRoleLB"
+# Create ECS task execution roles in IAM.
+resource "aws_iam_role" "ecsTaskExecutionRoleLBS" {
+  name               = "ecsTaskExecutionRoleLBS"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role_policy.json}"
 }
 
@@ -90,14 +72,13 @@ data "aws_iam_policy_document" "assume_role_policy" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRoleLB_policy" {
-  role       = "${aws_iam_role.ecsTaskExecutionRoleLB.name}"
+resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRoleLBS_policy" {
+  role       = "${aws_iam_role.ecsTaskExecutionRoleLBS.name}"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
 
 # CREATING VPCs
-
 # Providing a reference to our default VPC
 resource "aws_default_vpc" "default_vpc" {
 }
@@ -115,8 +96,8 @@ resource "aws_default_subnet" "default_subnet_c" {
 }
 
 # CREATING LOAD BALANCER
-resource "aws_alb" "localboost_loadbalancer" {
-  name               = "localboost" # Naming our load balancer
+resource "aws_alb" "application_load_balancer" {
+  name               = "loadbalancer" # Naming our load balancer
   load_balancer_type = "application"
   subnets = [ # Referencing the default subnets
     "${aws_default_subnet.default_subnet_a.id}",
@@ -131,17 +112,17 @@ resource "aws_alb" "localboost_loadbalancer" {
 # Creating a security group for the load balancer:
 resource "aws_security_group" "load_balancer_security_group" {
   ingress {
-    from_port   = 80 # Allowing traffic in from port 80
+    from_port   = 80 
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Allowing traffic in from all sources
+    cidr_blocks = ["0.0.0.0/0"] 
   }
 
   egress {
-    from_port   = 0 # Allowing any incoming port
-    to_port     = 0 # Allowing any outgoing port
-    protocol    = "-1" # Allowing any outgoing protocol 
-    cidr_blocks = ["0.0.0.0/0"] # Allowing traffic out to all IP addresses
+    from_port   = 0
+    to_port     = 0 
+    protocol    = "-1" 
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -151,19 +132,19 @@ resource "aws_lb_target_group" "target_group" {
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = "${aws_default_vpc.default_vpc.id}" # Referencing the default VPC
-  health_check {
-    matcher = "200,301,302"
-    path = "/"
-  }
+  # health_check {
+  #   matcher = "200,301,302"
+  #   path = "/"
+  # }
 }
 
 resource "aws_lb_listener" "listener" {
-  load_balancer_arn = "${aws_alb.localboost_loadbalancer.arn}" # Referencing our load balancer
+  load_balancer_arn = "${aws_alb.application_load_balancer.arn}" 
   port              = "80"
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.target_group.arn}" # Referencing our tagrte group
+    target_group_arn = "${aws_lb_target_group.target_group.arn}" 
   }
 }
 
@@ -173,7 +154,6 @@ resource "aws_security_group" "service_security_group" {
     from_port = 0
     to_port   = 0
     protocol  = "-1"
-    # Only allowing traffic in from the load balancer security group
     security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
   }
 
@@ -183,4 +163,31 @@ resource "aws_security_group" "service_security_group" {
     protocol    = "-1" # Allowing any outgoing protocol 
     cidr_blocks = ["0.0.0.0/0"] # Allowing traffic out to all IP addresses
   }
+}
+
+
+# CREATING ECS SERVICE
+resource "aws_ecs_service" "localboost_service" {
+  name            = "localboost_service"                             # Naming our first service
+  cluster         = "${aws_ecs_cluster.localboost_cluster.id}"             # Referencing our created Cluster
+  task_definition = "${aws_ecs_task_definition.localboost_taskdef.arn}" # Referencing the task our service will spin up
+  launch_type     = "FARGATE"
+  desired_count   = 2 # Setting the number of containers we want deployed to 3
+
+  # Linking back the service to the LB.
+  load_balancer {
+    target_group_arn = "${aws_lb_target_group.target_group.arn}" # Referencing our target group
+    container_name   = "${aws_ecs_task_definition.localboost_taskdef.family}"
+    container_port   = 80 # Specifying the container port
+  }
+
+  network_configuration {
+        subnets         = ["${aws_default_subnet.default_subnet_a.id}", "${aws_default_subnet.default_subnet_b.id}", "${aws_default_subnet.default_subnet_c.id}"]
+        assign_public_ip = true
+        security_groups  = ["${aws_security_group.service_security_group.id}"] # Set up the security group
+  }
+}
+
+output "app_url" {
+  value = aws_alb.application_load_balancer.dns_name
 }
