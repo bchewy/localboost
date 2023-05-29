@@ -1,8 +1,18 @@
-FROM node:18-alpine
+# Install Dep and Build
+FROM node:16-alpine as builder
 WORKDIR /app
-COPY package.json /app
+COPY . .
 RUN npm install --legacy-peer-deps
-COPY . . 
-EXPOSE 3000
-# RUN npm run build
-CMD ["npm", "start"]
+RUN npm run build
+# Bundle static assets with nginx
+FROM nginx:1.21.0-alpine as production
+ENV NODE_ENV production
+# Copy built assets from `builder` image
+COPY --from=builder /app/build /usr/share/nginx/html
+# Add your nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Expose port
+EXPOSE 80
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
+
