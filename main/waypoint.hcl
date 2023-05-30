@@ -1,25 +1,32 @@
-# The name of your project. A project typically maps 1:1 to a VCS repository.
-# This name must be unique for your Waypoint server. If you're running in
-# local mode, this must be unique to your machine.
 project = "localboost"
-
-# Labels can be specified for organizational purposes.
-# labels = { "foo" = "bar" }
-
-# An application to deploy.
 app "web" {
-    # Build specifies how an application should be deployed. In this case,
-    # we'll build using a Dockerfile and keeping it in a local registry.
     build {
+        // Build locally to docker, then get a waypoint endpoint to test!
         use "docker" {
-            disable_entrypoint = false # Disabling URL entrypoint
+            # https://developer.hashicorp.com/waypoint/integrations/hashicorp/docker/latest/components/builder/docker-builder#parameters.disable_entrypoint
+            // disable_entrypoint     = false 
+            // buildkit               = false 
         }
+        //   use "pack" {}
+        //     registry {
+        //         use "aws-ecr" {
+        //         region     = "ap-southeast-1"
+        //         repository = "bchewy"`
+        //         tag        = "latest"
+        //         }
+        //     }
 
     }
-
-    # Deploy to Docker
     deploy {
-        use "docker" {}
+        // use "docker" {}
+        use "aws-ecs" {
+            region        = "ap-southeast-1" // Sg
+            memory        = 512
+            ec2_cluster   = true
+            cpu           = 512
+            architecture  = "arm64"
+            count         = 1
+        }
     }
 
 }
