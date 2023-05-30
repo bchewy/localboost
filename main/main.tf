@@ -10,17 +10,6 @@ provider "aws" {
   region  = "ap-southeast-1" #singapore
 }
 
-# CREATING ECR REPOSITORY
-resource "aws_ecr_repository" "localboost_ecr" {
-  name = "localboost_ecr"
-  image_tag_mutability = "MUTABLE"
-  image_scanning_configuration {
-        scan_on_push = true
-  }
-}
-
-
-
 # CREATING ECS CLUSTER
 resource "aws_ecs_cluster" "localboost_cluster" {
   name = "localboost_cluster" # Naming the cluster
@@ -35,7 +24,7 @@ resource "aws_ecs_task_definition" "localboost_taskdef" {
   [
     {
       "name": "localboost_taskdef",
-      "image": "442029411374.dkr.ecr.ap-southeast-1.amazonaws.com/localboost_ecr",
+      "image": "public.ecr.aws/v4m1i4y3/bchewy:latest",
       "essential": true,
       "portMappings": [
         {
