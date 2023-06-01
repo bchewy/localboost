@@ -1,12 +1,6 @@
 # LocalBoost
 ## A project by SMUChamps
-SMU Champs consists of five freshmen SMU students majoring in Information Systems
-Meet the team!
-- https://www.linkedin.com/in/tanhaoen/
-- https://www.linkedin.com/in/yiji-yap/
-- https://www.linkedin.com/in/carissa-chia-398286242/
-- https://www.linkedin.com/in/brian-chew/
-- https://www.linkedin.com/in/matthias-lee-a404a3146
+Originally made for HackSingapore 2023.
 
 # DEMO
 https://localboost.vercel.app/
