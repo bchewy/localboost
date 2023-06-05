@@ -5,3 +5,5 @@ main/.terraform/providers/registry.terraform.io/hashicorp/aws/5.0.0/darwin_arm64
 main/AWSCLIV2.pkg
 main/terraform.tfstate
 main/terraform.tfstate.backup
+hackathon_archive
+hackathon_archive.zip
