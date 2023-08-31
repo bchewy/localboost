@@ -7,3 +7,4 @@ main/terraform.tfstate
 main/terraform.tfstate.backup
 hackathon_archive
 build
+infra/
